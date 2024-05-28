@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7409692974588456871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a9890a5eb6254459f33c2fb5789519, type: 3}
+  m_Name: C 1->2
+  m_EditorClassIdentifier: 
+  prg: {fileID: -4132111390272426962}
+  Text: 1-2
+--- !u!114 &-4931639263494175005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ab1680eb3f9df4db5fc698d722a9fe, type: 3}
+  m_Name: 1
+  m_EditorClassIdentifier: 
+  position: {x: 92.19998, y: 136.2}
+  prg_Name: 1
+  nodes:
+  - {fileID: 5069029750070865380}
+  - {fileID: -3177112500185792019}
+  inPrgs: []
+  outChcs:
+  - {fileID: -7409692974588456871}
+  - {fileID: -1498289941056513730}
+--- !u!114 &-4132111390272426962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ab1680eb3f9df4db5fc698d722a9fe, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  position: {x: 444.2, y: 136.79999}
+  prg_Name: 2
+  nodes: []
+  inPrgs:
+  - {fileID: -4931639263494175005}
+  outChcs:
+  - {fileID: -1660870816026291553}
+--- !u!114 &-3177112500185792019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9a1e6b19e6d4947abb5892e7efb0e7, type: 3}
+  m_Name: N 1--1
+  m_EditorClassIdentifier: 
+  Speaker: "\u732A\u732A\u4FA0"
+  Emotion: {fileID: 0}
+  Text: "\u770B\u4EC0\u4E48\u770B\uFF1F\u628A\u5C3C\u739B\u770B\u6B7B\u4E86\uFF01\uFF01\uFF01"
+  Readed: 0
+--- !u!114 &-1660870816026291553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a9890a5eb6254459f33c2fb5789519, type: 3}
+  m_Name: C 2->3
+  m_EditorClassIdentifier: 
+  prg: {fileID: 1313395945448229373}
+  Text: 2-3
+--- !u!114 &-1498289941056513730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a9890a5eb6254459f33c2fb5789519, type: 3}
+  m_Name: C 1->3
+  m_EditorClassIdentifier: 
+  prg: {fileID: 1313395945448229373}
+  Text: 1-3
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf6f2466931e8540865b7f263b6263e, type: 3}
+  m_Name: thepig
+  m_EditorClassIdentifier: 
+  prgList:
+  - {fileID: -4931639263494175005}
+  - {fileID: -4132111390272426962}
+  - {fileID: 1313395945448229373}
+  PrgIndex: 0
+--- !u!114 &1313395945448229373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ab1680eb3f9df4db5fc698d722a9fe, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  position: {x: 444.80002, y: 450.40002}
+  prg_Name: 3
+  nodes: []
+  inPrgs:
+  - {fileID: -4931639263494175005}
+  - {fileID: -4132111390272426962}
+  outChcs: []
+--- !u!114 &5069029750070865380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9a1e6b19e6d4947abb5892e7efb0e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speaker: "\u732A\u732A\u4FA0"
+  Emotion: {fileID: -1779833635, guid: 21807d170b7eb9845ac6c120ea9e53eb, type: 3}
+  Text: "\u6211\u662F\u9E21\u9E21\u7206\u548C\u732A\u516B\u6212\u7684\u79C1\u751F\u5B50\u3002\n\u732A\u51E0\u628A\u7206~~~~\n\u54FC\u54FC\u54FC\uFF01\uFF01\uFF01"
+  Readed: 0

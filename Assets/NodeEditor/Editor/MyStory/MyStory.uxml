@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/NodeEditor/Editor/MyStory/MyStory.uss?fileID=7433441132597879392&amp;guid=a98f9d9dd0c46644cb5636ea4672eaa2&amp;type=3#MyStory" />
+    <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+        <ui:VisualElement name="right" style="flex-grow: 1;">
+            <PrgTreeViewer focusable="true" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="left" style="flex-grow: 0; display: flex; max-width: 300px; min-width: 300px;">
+            <ui:VisualElement style="flex-direction: row; justify-content: space-around; align-items: flex-end;">
+                <ui:Button text="添加节点" display-tooltip-when-elided="true" name="addNodeBtn" style="justify-content: flex-start; flex-grow: 1; flex-shrink: 1;" />
+                <ui:Button text="删除节点" display-tooltip-when-elided="true" name="removeNodeBtn" style="flex-grow: 1; flex-shrink: 1;" />
+            </ui:VisualElement>
+            <ui:VisualElement>
+                <ui:Button text="新节点" display-tooltip-when-elided="true" name="newNodeBtn" style="height: 40px; font-size: 24px;" />
+            </ui:VisualElement>
+            <ui:ListView focusable="true" fixed-item-height="0" virtualization-method="DynamicHeight" show-border="false" selection-type="Single" style="flex-grow: 1; display: flex; background-color: rgb(255, 192, 203); border-top-left-radius: 3px; border-bottom-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 1px; padding-right: 1px; padding-top: 1px; padding-bottom: 1px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

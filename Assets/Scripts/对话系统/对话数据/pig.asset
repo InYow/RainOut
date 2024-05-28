@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b0fe9f1eaa9514388c4306ec59785f, type: 3}
+  m_Name: pig
+  m_EditorClassIdentifier: 
+  speaker_Image: {fileID: -1779833635, guid: 21807d170b7eb9845ac6c120ea9e53eb, type: 3}
+  speaker_Name: "\u732A\u732A\u4FA0"
+  text: "\u6211\u662F\u9E21\u9E21\u7206\u548C\u732A\u516B\u6212\u7684\u79C1\u751F\u5B50\u3002\n\u732A\u51E0\u628A\u7206~~~~\n\u54FC\u54FC\u54FC\uFF01\uFF01\uFF01"
