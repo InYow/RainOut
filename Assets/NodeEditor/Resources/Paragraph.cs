@@ -16,6 +16,10 @@ public class Paragraph : ScriptableObject
     /// </summary>
     public TheNode CurrentNode(int NodeIndex)
     {
+        if (NodeIndex > nodes.Count - 1)
+        {
+            return null;
+        }
         return nodes[NodeIndex];
     }
     /// <summary>

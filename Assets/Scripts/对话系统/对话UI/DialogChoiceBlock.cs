@@ -12,7 +12,6 @@ public class DialogChoiceBlock : MonoBehaviour, IPointerClickHandler, IPointerEn
     public Color hoverColor;
     public Color normalColor;
     public Action OnClick;
-
     public void Init(DialogChoiceActionInfo info)
     {
         textGUI.text = info.text;
@@ -24,13 +23,11 @@ public class DialogChoiceBlock : MonoBehaviour, IPointerClickHandler, IPointerEn
         OnClick.Invoke();
         dialogChoiceMenu.Destroy();
     }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log($"{gameObject.name}进入了");
         image.color = hoverColor;
     }
-
     public void OnPointerExit(PointerEventData eventData)
     {
         image.color = normalColor;
@@ -40,9 +37,7 @@ public class DialogChoiceBlock : MonoBehaviour, IPointerClickHandler, IPointerEn
         OnClick = null;
         Destroy(this.gameObject);
     }
-
     public void OnDeselect(BaseEventData eventData)
     {
     }
-
 }

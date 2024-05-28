@@ -6,6 +6,9 @@ public class Story : MonoBehaviour
 {
     public PrgTree prgTree;
     public int nodeIndex;
+    /// <summary>
+    /// 不使用，仅作调试
+    /// </summary>
     public TheNode curretNode;
     public Paragraph currentParagraph;
     public int NodeIndex
@@ -25,6 +28,9 @@ public class Story : MonoBehaviour
         curretNode = prgTree.CurrentNode(NodeIndex, currentParagraph);
         NodeIndex = 0;
     }
+    /// <summary>
+    /// 返回当前指向的节点，返回空意味着无节点或超出索引
+    /// </summary>
     public TheNode CurrentNode
     {
         get
@@ -64,6 +70,7 @@ public class Story : MonoBehaviour
     public Paragraph NextParagraph(int index)
     {
         currentParagraph = prgTree.NextParagraph(index, currentParagraph);
+        nodeIndex = 0;
         return currentParagraph;
     }
     /// <summary>
@@ -73,7 +80,9 @@ public class Story : MonoBehaviour
     /// <returns></returns>
     public Paragraph NextParagraph(Choice choice)
     {
-        return prgTree.NextParagraph(choice, currentParagraph);
+        currentParagraph = prgTree.NextParagraph(choice, currentParagraph);
+        nodeIndex = 0;
+        return currentParagraph;
     }
     /// <summary>
     ///  如果Count为0，说明当前分支结束了
