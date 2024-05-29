@@ -10,6 +10,8 @@ public class testdialog : MonoBehaviour
     public Story story;
     [Header("选项预制件")]
     public DialogChoiceMenu dialogChoiceMenuPrb;
+    [Header("当前选项菜单")]
+    public DialogChoiceMenu dialogChoiceMenu;
     [Header("UI")]
     public TextMeshProUGUI textGUI;
     public TextMeshProUGUI speaker_NameGUI;
@@ -26,19 +28,27 @@ public class testdialog : MonoBehaviour
         set
         {
             currentNode = value;
-            if (currentNode.Speaker != null)
+            if (currentNode != null)
             {
-                speaker_NameGUI.text = currentNode.Speaker;
+                if (currentNode.Speaker != null)
+                {
+                    speaker_NameGUI.text = currentNode.Speaker;
+                }
+                if (currentNode.Emotion != null)
+                {
+                    speaker_Image.sprite = currentNode.Emotion;
+                }
+                if (currentNode.Text != null)
+                {
+                    textGUI.text = currentNode.Text;
+                }
+                currentNode.Readed = true;
             }
-            if (currentNode.Emotion != null)
+            //设置的节点为空
+            else
             {
-                speaker_Image.sprite = currentNode.Emotion;
+                Debug.Log("设置的节点为空");
             }
-            if (currentNode.Text != null)
-            {
-                textGUI.text = currentNode.Text;
-            }
-            currentNode.Readed = true;
         }
     }
     private void Start()
@@ -60,11 +70,13 @@ public class testdialog : MonoBehaviour
         TheNode node = story.NextNode;
         if (node != null)
         {
-            //设置信息
+            //Debug.Log("nul Paragraph");
+            //节点设置信息
             CurrentNode = node;
         }
         else
         {
+            //Debug.Log(node.name);
             //段结束
             Fin();
         }
@@ -74,24 +86,29 @@ public class testdialog : MonoBehaviour
     /// </summary>
     private void Fin()
     {
-        List<Choice> choices = story.Choices;
-        if (choices != null)
+        if (this.dialogChoiceMenu == null)
         {
-            //打印分支
-            Debug.Log("打印分支");
-            DialogChoiceMenu dialogChoiceMenu = Instantiate(dialogChoiceMenuPrb, transform);
-            List<DialogChoiceActionInfo> dialogChoiceActionInfos = new();
-            foreach (var choice in choices)
+            List<Choice> choices = story.Choices;
+            if (choices != null)
             {
-                var capturedChoice = choice;
-                DialogChoiceActionInfo d = new(choice.Text, () => Choose(capturedChoice));
+                //打印分支
+                //            Debug.Log("打印分支");
+                DialogChoiceMenu dialogChoiceMenu = Instantiate(dialogChoiceMenuPrb, transform);
+                this.dialogChoiceMenu = dialogChoiceMenu;
+                List<DialogChoiceActionInfo> dialogChoiceActionInfos = new();
+                foreach (var choice in choices)
+                {
+                    var capturedChoice = choice;
+                    DialogChoiceActionInfo d = new(choice.Text, () => Choose(capturedChoice));
+                    dialogChoiceActionInfos.Add(d);
+                }
+                dialogChoiceMenu.Init(dialogChoiceActionInfos);
             }
-            dialogChoiceMenu.Init(dialogChoiceActionInfos);
-        }
-        else
-        {
-            //分支结束了
-            Debug.Log("分支结束了");
+            else
+            {
+                //分支结束了
+                Debug.Log("分支结束了");
+            }
         }
     }
 
@@ -107,12 +124,13 @@ public class testdialog : MonoBehaviour
             //参数不规范
             Debug.Log("参数不规范 story.NextParagraph(choice);");
         }
+        dialogChoiceMenu.Destroy();
         TheNode node = story.CurrentNode;
         if (node == null)
         {
             //空段落，或者说段落结束
             Fin();
-            Debug.Log("无节点或超出索引");
+            Debug.Log("空段落，或者说段落结束");
         }
         //加载当前段落
         CurrentNode = node;

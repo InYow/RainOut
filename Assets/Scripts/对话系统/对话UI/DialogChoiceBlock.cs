@@ -14,6 +14,7 @@ public class DialogChoiceBlock : MonoBehaviour, IPointerClickHandler, IPointerEn
     public Action OnClick;
     public void Init(DialogChoiceActionInfo info)
     {
+        //        Debug.Log("Init DialogChoiceBlock");
         textGUI.text = info.text;
         OnClick += info.action;
     }

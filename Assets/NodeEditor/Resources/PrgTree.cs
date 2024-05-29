@@ -21,10 +21,12 @@ public class PrgTree : ScriptableObject
         TheNode theNode = CurrentParagraph.NextNode(ref NodeIndex);
         if (theNode == null)
         {
+            //Debug.Log("nul Paragraph");
             return null;
         }
         else
         {
+            //Debug.Log(theNode.name);
             return theNode;
         }
 

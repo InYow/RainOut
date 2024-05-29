@@ -6,9 +6,6 @@ public class Story : MonoBehaviour
 {
     public PrgTree prgTree;
     public int nodeIndex;
-    /// <summary>
-    /// 不使用，仅作调试
-    /// </summary>
     public TheNode curretNode;
     public Paragraph currentParagraph;
     public int NodeIndex
@@ -51,7 +48,8 @@ public class Story : MonoBehaviour
         get
         {
             curretNode = prgTree.NextNode(ref nodeIndex, currentParagraph);
-            return CurrentNode;
+            //            Debug.Log(nodeIndex);
+            return curretNode;
         }
     }
     /// <summary>

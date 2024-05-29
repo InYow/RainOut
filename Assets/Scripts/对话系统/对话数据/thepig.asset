@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8003545654529806266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9a1e6b19e6d4947abb5892e7efb0e7, type: 3}
+  m_Name: N 1--2
+  m_EditorClassIdentifier: 
+  Speaker: "\u732A\u732A\u4FA0"
+  Emotion: {fileID: 0}
+  Text: "\u6D4B\u5C3C\u739B\uFF01\uFF01\uFF01"
+  Readed: 1
 --- !u!114 &-7409692974588456871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,6 +30,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prg: {fileID: -4132111390272426962}
   Text: 1-2
+--- !u!114 &-6561344967447103656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9a1e6b19e6d4947abb5892e7efb0e7, type: 3}
+  m_Name: N 2--0
+  m_EditorClassIdentifier: 
+  Speaker: "\uFF1F\uFF1F\uFF1F"
+  Emotion: {fileID: -964422303, guid: dd8949ceeadc9db4faf2ccae29b6c573, type: 3}
+  Text: "\u6211\u662F\u2026\u2026"
+  Readed: 1
+--- !u!114 &-5010970703512455285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a9890a5eb6254459f33c2fb5789519, type: 3}
+  m_Name: C 3->2
+  m_EditorClassIdentifier: 
+  prg: {fileID: -4132111390272426962}
+  Text: 
 --- !u!114 &-4931639263494175005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,6 +77,7 @@ MonoBehaviour:
   nodes:
   - {fileID: 5069029750070865380}
   - {fileID: -3177112500185792019}
+  - {fileID: -8003545654529806266}
   inPrgs: []
   outChcs:
   - {fileID: -7409692974588456871}
@@ -47,11 +94,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ab1680eb3f9df4db5fc698d722a9fe, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  position: {x: 444.2, y: 136.79999}
+  position: {x: 444, y: 135.99998}
   prg_Name: 2
-  nodes: []
+  nodes:
+  - {fileID: -6561344967447103656}
+  - {fileID: 8772824601790928137}
+  - {fileID: 114272556400947816}
+  - {fileID: 1247381784734150562}
   inPrgs:
   - {fileID: -4931639263494175005}
+  - {fileID: 1313395945448229373}
   outChcs:
   - {fileID: -1660870816026291553}
 --- !u!114 &-3177112500185792019
@@ -69,7 +121,7 @@ MonoBehaviour:
   Speaker: "\u732A\u732A\u4FA0"
   Emotion: {fileID: 0}
   Text: "\u770B\u4EC0\u4E48\u770B\uFF1F\u628A\u5C3C\u739B\u770B\u6B7B\u4E86\uFF01\uFF01\uFF01"
-  Readed: 0
+  Readed: 1
 --- !u!114 &-1660870816026291553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +150,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prg: {fileID: 1313395945448229373}
   Text: 1-3
+--- !u!114 &-543602618237969491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9a1e6b19e6d4947abb5892e7efb0e7, type: 3}
+  m_Name: N 3--0
+  m_EditorClassIdentifier: 
+  Speaker: "\u51B0\uFF01"
+  Emotion: {fileID: 21300000, guid: 3bf2a1a02c548ce4f87142a6cc3f7551, type: 3}
+  Text: "\u4F60\u65E0\u654C\u4E86\uFF0C\u5B69\u5B50\u3002"
+  Readed: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +182,38 @@ MonoBehaviour:
   - {fileID: -4931639263494175005}
   - {fileID: -4132111390272426962}
   - {fileID: 1313395945448229373}
-  PrgIndex: 0
+--- !u!114 &114272556400947816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9a1e6b19e6d4947abb5892e7efb0e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speaker: "\uFF1F\uFF1F\uFF1F"
+  Emotion: {fileID: 21300000, guid: dfe3bac7f5e8ee34fa01a495884656f1, type: 3}
+  Text: "\u6211\u662F\u2026\u2026"
+  Readed: 1
+--- !u!114 &1247381784734150562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9a1e6b19e6d4947abb5892e7efb0e7, type: 3}
+  m_Name: N 2--2
+  m_EditorClassIdentifier: 
+  Speaker: "\u4F60\u7239\uFF01"
+  Emotion: {fileID: 21300000, guid: 83a1c97de7bf2204ca297dbd9dda3081, type: 3}
+  Text: "\u4F60\u7239\uFF01\u6CA1\u60F3\u5230\u5427\uFF01"
+  Readed: 1
 --- !u!114 &1313395945448229373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,13 +226,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ab1680eb3f9df4db5fc698d722a9fe, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: 
-  position: {x: 444.80002, y: 450.40002}
+  position: {x: 443.99997, y: 450}
   prg_Name: 3
-  nodes: []
+  nodes:
+  - {fileID: -543602618237969491}
   inPrgs:
   - {fileID: -4931639263494175005}
   - {fileID: -4132111390272426962}
-  outChcs: []
+  outChcs:
+  - {fileID: -5010970703512455285}
 --- !u!114 &5069029750070865380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,4 +250,20 @@ MonoBehaviour:
   Speaker: "\u732A\u732A\u4FA0"
   Emotion: {fileID: -1779833635, guid: 21807d170b7eb9845ac6c120ea9e53eb, type: 3}
   Text: "\u6211\u662F\u9E21\u9E21\u7206\u548C\u732A\u516B\u6212\u7684\u79C1\u751F\u5B50\u3002\n\u732A\u51E0\u628A\u7206~~~~\n\u54FC\u54FC\u54FC\uFF01\uFF01\uFF01"
+  Readed: 1
+--- !u!114 &8772824601790928137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9a1e6b19e6d4947abb5892e7efb0e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speaker: 2
+  Emotion: {fileID: 1388907142, guid: dd8949ceeadc9db4faf2ccae29b6c573, type: 3}
+  Text: "2\uFF0C\u6CA1\u60F3\u5230\u5427\u4F60\u3002"
   Readed: 0

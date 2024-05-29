@@ -28,14 +28,16 @@ public class Paragraph : ScriptableObject
     public TheNode NextNode(ref int NodeIndex)
     {
         NodeIndex++;
-        if (NodeIndex == nodes.Count)
+        if (NodeIndex >= nodes.Count)
         {
             //溢出数量了
             NodeIndex = nodes.Count - 1;
+            //Debug.Log("nul Paragraph");
             return null;
         }
         else
         {
+            //Debug.Log(nodes[NodeIndex].name);
             return nodes[NodeIndex];
         }
 
