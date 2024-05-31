@@ -17,6 +17,9 @@ public class TaskBar : MonoBehaviour
         }
         set
         {
+            //Debug.Log(" SelectedBlock TaskBar");
+            //更新到手上
+            hand.CarryBagBlock = value.linkBagBlock;
             //之前的设置为不选中 
             if (SelectedBlock != null)
             {
@@ -26,8 +29,6 @@ public class TaskBar : MonoBehaviour
             this.m_selectBlock = value;
             //现在的设置选中
             SelectedBlock.Selected = true;
-            //更新到手上
-            hand.CarryBagBlock = SelectedBlock.linkBagBlock;
         }
     }
     private void Start()

@@ -15,7 +15,8 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
     public Bag bag;
     public List<TaskBlock> LinkTaskBlocks;
     public Item item;
-    public Item MyItem
+    public Item item1;//只用一次。要付给item的值
+    public Item Item
     {
         get
         {
@@ -23,13 +24,15 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
         }
         set
         {
-            if (MyItem == null)
+            item1 = value;
+            if (value == null)
             {
                 m_itemIcon.sprite = m_iconNone;
                 if (LinkTaskBlocks.Count != 0)
                 {
                     for (int i = 0; i < LinkTaskBlocks.Count; i++)
                     {
+                        //Debug.Log("value == null" + "BagBlock");
                         LinkTaskBlocks[i].m_itemIcon.sprite = m_iconNone;
                         LinkTaskBlocks[i].OnLinkBagBlockItemAction?.Invoke();
                     }
@@ -42,7 +45,8 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
                 {
                     for (int i = 0; i < LinkTaskBlocks.Count; i++)
                     {
-                        LinkTaskBlocks[i].m_itemIcon.sprite = MyItem.data.icon;
+                        //Debug.Log("value != null" + "BagBlock");
+                        LinkTaskBlocks[i].m_itemIcon.sprite = value.data.icon;
                         LinkTaskBlocks[i].OnLinkBagBlockItemAction?.Invoke();
                     }
                 }
@@ -80,11 +84,11 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public override void OnPointerEnter()
     {
-        if (MyItem != null)
+        if (Item != null)
         {
             bag.Info.SetActive(true);
             bag.Info.SetPosition(this.transform.position);
-            bag.Info.SetText(MyItem.data);
+            bag.Info.SetText(Item.data);
         }
         base.OnPointerEnter();
     }
@@ -95,7 +99,7 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (MyItem != null)
+        if (Item != null)
         {
             // Disable raycast blocking to avoid interfering with dragging
             //canvasGroup.blocksRaycasts = false;
@@ -108,7 +112,7 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
             rectTransform.anchoredPosition = localPointerPosition;
 
             Image image = fadeIcon.GetComponent<Image>();
-            image.sprite = MyItem.data.icon;
+            image.sprite = Item.data.icon;
         }
     }
 
@@ -135,7 +139,7 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
         // Optionally, you can add logic here to snap the UI element to a grid or specific position
 
         #region 两个背包交换物品
-        if (this.MyItem != null)
+        if (this.Item != null)
         {
             List<RaycastResult> results = new List<RaycastResult>();
             PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
@@ -151,7 +155,7 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
                 {
                     //在这里处理放置的背包物体
                     BagBlock bagBlock = targetRect.gameObject.GetComponent<BagBlock>();
-                    Debug.Log($"OnEndDrag {targetRect.gameObject.name}");
+                    //Debug.Log($"OnEndDrag {targetRect.gameObject.name}");
                     bagBlock.Change(this);
                     return;
                 }
@@ -165,7 +169,7 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
         if (Input.GetMouseButtonUp(1))
         {
             //右键点击
-            if (MyItem)
+            if (Item)
             {
                 //打开物品操作栏
                 BagItemMenu bagItemMenu = Instantiate(bagItemMenuPrb, transform);
@@ -218,45 +222,45 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         if (item == null)
         {
-            this.MyItem = null;
+            this.Item = null;
         }
         else
         {
             item.transform.parent = transform;
             item.transform.localPosition = Vector3.zero;
-            this.MyItem = item;
+            this.Item = item;
         }
     }
     public override void Pop()
     {
-        if (MyItem == null)
+        if (Item == null)
         {
             return;
         }
-        MyItem.transform.parent = null;
+        Item.transform.parent = null;
         // SpriteRenderer spriteRenderer = MyItem.GetComponent<SpriteRenderer>();
         // spriteRenderer.sortingLayerName = MyItem.LayerName;
         // spriteRenderer.sortingOrder = MyItem.LayerID;
-        MyItem.transform.position = player.transform.position;
-        MyItem.GetComponent<Collider2D>().enabled = true;
-        MyItem.gameObject.transform.rotation = Quaternion.identity;
-        MyItem.gameObject.transform.localScale = Vector3.one;
+        Item.transform.position = player.transform.position;
+        Item.GetComponent<Collider2D>().enabled = true;
+        Item.gameObject.transform.rotation = Quaternion.identity;
+        Item.gameObject.transform.localScale = Vector3.one;
         Debug.Log($"Pop MyItem.gameObject.SetActive(true);");
-        MyItem.gameObject.SetActive(true);
+        Item.gameObject.SetActive(true);
         //Icon为none
         //m_itemIcon.sprite = m_iconNone;
-        this.MyItem = null;
+        this.Item = null;
     }
     public override void Change(BaseBlock bagBlock)
     {
-        Item item = this.MyItem;
+        Item item = this.Item;
         this.Push(bagBlock.Get());
         bagBlock.Push(item);
         //FIXME 背包》空格子交换，潜在的风险
     }
     public override Item Get()
     {
-        return MyItem;
+        return Item;
     }
     public override bool Empty()
     {

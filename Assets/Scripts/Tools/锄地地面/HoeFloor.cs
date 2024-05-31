@@ -20,12 +20,12 @@ public class HoeFloor : MonoBehaviour
         if (m_ruleTile == null)
             Debug.Log($"{gameObject.name}的m_ruleTile未设置！！！");
     }
-    public void SetHoeDirt(Vector3 position)
+    public void SetHoeDirt(Vector3Int vector3Int)
     {
-        m_tilemap.SetTile(m_tilemap.WorldToCell(position), m_ruleTile);
+        m_tilemap.SetTile(vector3Int, m_ruleTile);
     }
-    public void RemoveHoeDirt(Vector3 position)
+    public void RemoveHoeDirt(Vector3Int vector3Int)
     {
-        m_tilemap.SetTile(m_tilemap.WorldToCell(position), null);
+        m_tilemap.SetTile(vector3Int, null);
     }
 }

@@ -14,7 +14,7 @@ public class TaskBlock : BaseBlock, IPointerClickHandler
     public Action OnLinkBagBlockItemAction;//LinkBagBlock为item赋值时
     public TaskBar taskBar;//this.爹
     public Color _SelectColor;
-    private bool selected;
+    public bool selected;
     public bool hovered;
     public bool Selected
     {
@@ -45,7 +45,8 @@ public class TaskBlock : BaseBlock, IPointerClickHandler
         //如果自身格子是手上的格子，并且格子的值变化了，则重新附给手上的值
         if (this.Selected)
         {
-
+            //Debug.Log("OnLinkBagBlockItem() Taskblock");
+            this.taskBar.SelectedBlock = this;
         }
     }
     //被选中时触发

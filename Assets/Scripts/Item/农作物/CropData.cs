@@ -18,4 +18,11 @@ public class CropData : ItemData
     {
         return StageDatas[index];
     }
+    public Sprite SeedIcon;
+    public string SeedName;
+    [TextArea(3, 7)]
+    public string SeedDescription;
+    public string SeedTag;
+    public int SeedSell;
+    public CropPlant cropPlantPrb;
 }

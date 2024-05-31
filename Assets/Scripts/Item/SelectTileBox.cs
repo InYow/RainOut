@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+//作用 提供对瓦片的访问
 public class SelectTileBox : MonoBehaviour
 {
     public Color availableColor;
@@ -11,6 +12,9 @@ public class SelectTileBox : MonoBehaviour
     public Tilemap tilemap;
     public TilemapGameobject tilemapGameobject;
     public Vector3 Anchor;
+    public Vector3Int vector3int;
+    public GameObject tileObject;
+    public HoeDirt hoeDirt;
     private void Start()
     {
         GameObject gridObject = GameObject.FindWithTag("HoeLayer");
@@ -38,19 +42,19 @@ public class SelectTileBox : MonoBehaviour
         //mouse-position
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //tile-position
-        Vector3Int vector3int = tilemap.WorldToCell(mouseWorldPos);
+        vector3int = tilemap.WorldToCell(mouseWorldPos);
         //tileObject
-        GameObject tileObject = tilemapGameobject.GetTileGameObject(vector3int);
+        tileObject = tilemapGameobject.GetTileGameObject(vector3int);
         //HoeDirt
-        HoeDirt hoeDirt = null;
+        hoeDirt = null;
         if (tileObject != null)
         {
             hoeDirt = tileObject.GetComponent<HoeDirt>();
         }
         // && tile.gameObject.GetComponent<HoeDirt>().plant == null
-        if (tileObject != null && hoeDirt != null && hoeDirt.plant == null)
+        if (tileObject != null && hoeDirt != null && hoeDirt.CanPlant())
         {
-            Debug.Log($"{vector3int} {tileObject.name}");
+            //Debug.Log($"{vector3int} {tileObject.name}");
             // 能种下去
             spriteRenderer.color = availableColor;
         }

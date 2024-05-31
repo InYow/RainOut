@@ -33,10 +33,16 @@ public class CropPlant : MonoBehaviour
             Grow();
         }
     }
-    public void Init(CropData c)
+    public void Init(CropData c, HoeDirt hoeDirt)
     {
+        //cropdata
         cropData = c;
         CurrentStage = 0;
+        //transform
+        transform.parent = hoeDirt.transform;
+        //position
+        transform.localPosition = Vector3.zero;
+        hoeDirt.plant = this;
     }
     public void Grow()
     {

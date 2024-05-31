@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hoe : MonoBehaviour
+public class Hoe : Item
 {
+    public SelectTileBox selectTileBoxPrb;
+    public SelectTileBox selectTileBox;
     private Animator m_animator;
     public GameObject head;
     // Start is called before the first frame update
@@ -11,21 +13,23 @@ public class Hoe : MonoBehaviour
     {
         m_animator = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Use();
-        }
-    }
-    public void Use()
+    public override void Use()
     {
         m_animator.Play("use");
     }
     public void HoeDirt()
     {
-        HoeFloor.Instance.SetHoeDirt(head.transform.position);
+        HoeFloor.Instance.SetHoeDirt(selectTileBox.vector3int);
+    }
+    public override void OnCarryOn(Hand hand)
+    {
+        base.OnCarryOn(hand);
+        selectTileBox = Instantiate(selectTileBoxPrb);
+    }
+    public override void OnDisCarry(Hand hand)
+    {
+        base.OnDisCarry(hand);
+        Destroy(selectTileBox.gameObject);
+        selectTileBox = null;
     }
 }

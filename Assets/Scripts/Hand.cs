@@ -16,7 +16,7 @@ public class Hand : MonoBehaviour
             //之前的从手上离开
             if (CarryBagBlock != null)
             {
-                Item itempast = CarryBagBlock.MyItem;
+                Item itempast = CarryBagBlock.Item;
                 if (itempast != null)
                 {
                     itempast.OnDisCarry(this);
@@ -27,7 +27,7 @@ public class Hand : MonoBehaviour
             //新的进到手上
             if (CarryBagBlock != null)
             {
-                Item itemnow = CarryBagBlock.MyItem;
+                Item itemnow = CarryBagBlock.item1;
                 if (itemnow != null)
                 {
                     //Debug.Log("item!=null");
@@ -85,10 +85,10 @@ public class Hand : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             //            Debug.Log("carryBagBlock?.item?.Use();");
-            CarryBagBlock?.MyItem?.Use();
+            CarryBagBlock?.Item?.Use();
         }
         #region 调试
-        CarryItem = CarryBagBlock.MyItem;
+        CarryItem = CarryBagBlock.Item;
         #endregion 
     }
     public void CarryOn(BagBlock bagBlock)

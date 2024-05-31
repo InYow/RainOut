@@ -18,13 +18,19 @@ MonoBehaviour:
   tag: "\u519C\u4F5C\u7269"
   sell: 35
   StageDatas:
-  - sprite: {fileID: -10527118, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+  - sprite: {fileID: -614531353, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
     days: 1
-  - sprite: {fileID: 1940602561, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+  - sprite: {fileID: -747973142, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
     days: 1
-  - sprite: {fileID: -336065363, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+  - sprite: {fileID: 547708562, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
     days: 1
-  - sprite: {fileID: -56398019, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+  - sprite: {fileID: 1165093018, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
     days: 1
-  - sprite: {fileID: -1383395883, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+  - sprite: {fileID: 650831785, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
     days: 4
+  SeedIcon: {fileID: 21300000, guid: f2f54e5be136eb747a028ec0e194f838, type: 3}
+  SeedName: "\u9632\u98CE\u8349\u79CD\u5B50"
+  SeedDescription: "\u6625\u5929\u64AD\u79CD\u30024\u5929\u6210\u719F\u3002"
+  SeedTag: "\u79CD\u5B50"
+  SeedSell: 10
+  cropPlantPrb: {fileID: 8810874678530036448, guid: bffdb3908bf8f0c4bb82cfb4b973014d, type: 3}
