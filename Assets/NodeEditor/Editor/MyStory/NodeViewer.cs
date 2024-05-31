@@ -30,6 +30,7 @@ public class NodeViewer : VisualElement
         text.bindingPath = "Text";
 
     }
+    //值绑定
     public void NodeViewerBind(TheNode node)
     {
         this.node = node;

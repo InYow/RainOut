@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Story : MonoBehaviour
 {
+    [Header("使用的对话数据 必须赋值")]
     public PrgTree prgTree;
+    [Header("")]
+    [Header("当前节点,段落的信息 可以不用管")]
     public int nodeIndex;
     public TheNode curretNode;
     public Paragraph currentParagraph;
@@ -26,7 +29,7 @@ public class Story : MonoBehaviour
         NodeIndex = 0;
     }
     /// <summary>
-    /// 返回当前指向的节点，返回空意味着无节点或超出索引
+    /// 当前节点，null意味无节点或超出索引
     /// </summary>
     public TheNode CurrentNode
     {
@@ -41,7 +44,7 @@ public class Story : MonoBehaviour
         }
     }
     /// <summary>
-    /// 下个节点，返回null意味当前Paragraph结束了
+    /// 下个节点，null意味当前Paragraph结束了
     /// </summary>
     public TheNode NextNode
     {
@@ -63,7 +66,7 @@ public class Story : MonoBehaviour
         }
     }
     /// <summary>
-    /// 进入下个段落，返回null说明参数不规范
+    /// 下个段落，null说明参数不规范
     /// </summary>
     public Paragraph NextParagraph(int index)
     {
@@ -72,7 +75,7 @@ public class Story : MonoBehaviour
         return currentParagraph;
     }
     /// <summary>
-    /// 进入下个段落，返回null说明参数不规范
+    /// 下个段落，null说明参数不规范
     /// </summary>
     /// <param name="choice"></param>
     /// <returns></returns>
@@ -91,5 +94,12 @@ public class Story : MonoBehaviour
         {
             return prgTree.Choices(currentParagraph);
         }
+    }
+    /// <summary>
+    /// 重新开始当前段落
+    /// </summary>
+    public void ReStartCurrentParagraph()
+    {
+        NodeIndex = 0;
     }
 }

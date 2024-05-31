@@ -20,4 +20,11 @@ public class PrgEdge : Edge
         edgeControl.Add(textField);
         textField.bindingPath = "Text";
     }
+    public override void OnSelected()
+    {
+        base.OnSelected();
+        PrgViewer forwardPrgViewer = this.output.node as PrgViewer;
+        PrgViewer nextPrgViewer = this.input.node as PrgViewer;
+        Selection.activeObject = forwardPrgViewer.prg.FindChoice(nextPrgViewer.prg);
+    }
 }

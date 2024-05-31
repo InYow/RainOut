@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObjects/Item_ScriptableObject", order = 1)]
-public class ItemScriptableObject : ScriptableObject
+public class ItemData : ScriptableObject
 {
     //FIN:物品的信息
     public Sprite icon;
@@ -9,4 +9,5 @@ public class ItemScriptableObject : ScriptableObject
     [TextArea(3, 7)]
     public string description;
     public string tag;
+    [Tooltip("售价")] public int sell;
 }

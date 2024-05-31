@@ -173,9 +173,10 @@ MonoBehaviour:
   m_itemIcon: {fileID: 0}
   _HoverColor: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
   _NormalColor: {r: 1, g: 1, b: 1, a: 1}
-  signedBagBlock: {fileID: 0}
+  linkBagBlock: {fileID: 0}
   taskBar: {fileID: 0}
   _SelectColor: {r: 0, g: 0, b: 0, a: 1}
+  hovered: 0
 --- !u!61 &8903712919930500170
 BoxCollider2D:
   m_ObjectHideFlags: 0

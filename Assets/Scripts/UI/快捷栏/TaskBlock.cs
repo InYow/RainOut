@@ -10,7 +10,8 @@ using UnityEngine.UI;
 //F左键单击切换手持,用颜色标记出当前手持的格子
 public class TaskBlock : BaseBlock, IPointerClickHandler
 {
-    public BagBlock signedBagBlock;//链接的背包格子
+    public BagBlock linkBagBlock;//链接的背包格子
+    public Action OnLinkBagBlockItemAction;//LinkBagBlock为item赋值时
     public TaskBar taskBar;//this.爹
     public Color _SelectColor;
     private bool selected;
@@ -24,32 +25,31 @@ public class TaskBlock : BaseBlock, IPointerClickHandler
         set
         {
             this.selected = value;
-            OnSelectedTaskBlock();
+            OnSelected();
         }
     }
-    public Action OnSignedBagBlockItemChangeAction;//绑定的BagBlock的item改变时调用
     private void Awake()
     {
         hovered = false;
         Selected = false;
-        OnSignedBagBlockItemChangeAction += OnSignedBagBlockItemChange;
+        OnLinkBagBlockItemAction += OnLinkBagBlockItem;
     }
-    private void OnSignedBagBlockItemChange()
-    {
-        if (Selected)
-        {
-            taskBar.SelectedBlock = this;
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         Init();
-        signedBagBlock.SignedTaskBlocks.Add(this);
+        linkBagBlock.LinkTaskBlocks.Add(this);
+    }
+    public void OnLinkBagBlockItem()
+    {
+        //如果自身格子是手上的格子，并且格子的值变化了，则重新附给手上的值
+        if (this.Selected)
+        {
+
+        }
     }
     //被选中时触发
-    public void OnSelectedTaskBlock()
+    public void OnSelected()
     {
         if (Selected)
         {
@@ -93,22 +93,12 @@ public class TaskBlock : BaseBlock, IPointerClickHandler
     }
     public override void OnClick()
     {
-        Debug.Log("what");
         taskBar.SelectedBlock = this;
         base.OnClick();
     }
-    // public override void OnClick(RightClickBag rightClickBag)
-    // {
-    //     base.OnClick(rightClickBag);
-    //     //FIN 实时找到上层
-    //     //FIN 向上层更新状态
-    //     //FIN 上层更新的同时做出动作
-    //     TaskBar taskBar = GetComponentInParent<TaskBar>();
-    //     taskBar.Select(this);
-    // }
     private void OnDisable()
     {
-        signedBagBlock.SignedTaskBlocks.Remove(this);
+        linkBagBlock.LinkTaskBlocks.Remove(this);
     }
 
     public void OnPointerClick(PointerEventData eventData)

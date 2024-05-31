@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO 预制件手动赋值，Action的程序化
-//管理DialogChoiceBlock, 作为对外的接口
-//USE 使用Prb，Instan的时候Init，传入List<DialogChoiceActionInfo> actioninfos
+//管理DialogChoiceBlock, 提供对外接口
+//使用方法 使用Prb，Instan的时候Init，传入List<DialogChoiceActionInfo> actioninfos
 public class DialogChoiceMenu : MonoBehaviour
 {
     public List<DialogChoiceBlock> dialogChoiceBlocks = new();

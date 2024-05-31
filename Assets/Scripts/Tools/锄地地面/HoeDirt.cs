@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class HoeDirt : MonoBehaviour
 {
+    public CropPlant plant;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log($"{gameObject.name}诞生于位置{transform.position}");
+        //        Debug.Log($"{gameObject.name}诞生于位置{transform.position}");
     }
 
     // Update is called once per frame

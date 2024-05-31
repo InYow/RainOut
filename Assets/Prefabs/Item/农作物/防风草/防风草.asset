@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eaf5a315b5c8254e931eeb8194c2935, type: 3}
+  m_Name: "\u9632\u98CE\u8349"
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: d97d33d5e29df374cbe704bbe1728554, type: 3}
+  itemName: "\u9632\u98CE\u8349"
+  description: "\u4E00\u79CD\u548C\u80E1\u841D\u535C\u5F88\u76F8\u4F3C\u7684\u6625\u5B63\u5757\u830E\u690D\u7269\u3002\u5B83\u8425\u517B\u4E30\u5BCC\u4E14\u5E26\u6709\u6CE5\u571F\u7684\u6C14\u606F\u3002"
+  tag: "\u519C\u4F5C\u7269"
+  sell: 35
+  StageDatas:
+  - sprite: {fileID: -10527118, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+    days: 1
+  - sprite: {fileID: 1940602561, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+    days: 1
+  - sprite: {fileID: -336065363, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+    days: 1
+  - sprite: {fileID: -56398019, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+    days: 1
+  - sprite: {fileID: -1383395883, guid: ef1f533d4c44f3a47b4e02c5a59a4fa5, type: 3}
+    days: 4

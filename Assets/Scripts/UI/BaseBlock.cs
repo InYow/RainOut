@@ -35,13 +35,9 @@ public abstract class BaseBlock : MonoBehaviour
     {
         m_blockImage.color = _NormalColor;
     }
-    // public virtual void OnClick(RightClickBag rightClickBag)
-    // {
-    //     Debug.Log($"{gameObject.name}被点击了Click()");
-    // }
     public virtual void OnClick()
     {
-        Debug.Log($"{gameObject.name}被点击了Click()");
+        //Debug.Log($"{gameObject.name}被点击了Click()");
     }
     public virtual void Push(Item item)
     {

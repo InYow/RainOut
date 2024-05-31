@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Contact_Talk : InterActable
 {
     public GameObject PressIcon;//NN
+    [Tooltip("对话脚本")] public Story story;
     private void Start()
     {
         if (!PressIcon)
@@ -15,14 +16,8 @@ public class Contact_Talk : InterActable
     }
     public override Intertype Active()
     {
-        //FIN:压入富文本，打开对话框, 定义富文本。
-        DialogText dialogText = GetComponent<DialogText>();
-        if (dialogText == null)
-        {
-            Debug.Log($"{gameObject.name}上没有DialogText组件");
-            return Intertype.Nullable;
-        }
-        DialogBox.Instance.Open(dialogText.Data);
+        DialogUI.Instance.OpenOrClose();
+        DialogUI.Instance.Story = story;
         return Intertype.Contact_Talk;
     }
     public override void CheckEnter()

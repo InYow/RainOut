@@ -84,7 +84,7 @@ public class InterActive : MonoBehaviour
                 #region 可拾取物品进背包 Pickable_Item
                 else if (type == InterActable.Intertype.Pickable_Item)
                 {
-                    Debug.Log($"InterAct SetActive(false)");
+                    //Debug.Log($"InterAct SetActive(false)");
                     collider.gameObject.SetActive(false);
                     bag.Add(collider.gameObject);
                     //FIN:写完背包，写"进背包"

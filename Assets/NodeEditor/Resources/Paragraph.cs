@@ -11,6 +11,14 @@ public class Paragraph : ScriptableObject
     public List<TheNode> nodes = new();//包含的节点
     public List<Paragraph> inPrgs = new();//输入的段落
     public List<Choice> outChcs = new();//输出的段落
+    public enum Paragraph_Extention
+    {
+        normal = 0,
+        close,
+    }
+    [Header("拓展效果")]
+    public Paragraph_Extention extention;
+    [Tooltip("拓展效果重复的次数, 默认值 1 . \n注意! close拓展时必须有一个自动跳转选项")] public int repeat_Times = 1;
     /// <summary>
     /// 当前节点
     /// </summary>
@@ -65,6 +73,7 @@ public class Paragraph : ScriptableObject
     {
         inPrgs.Remove(prg);
     }
+    //当前段落指向参数段落的Choice
     public Choice FindChoice(Paragraph prg)
     {
         Choice chc = null;

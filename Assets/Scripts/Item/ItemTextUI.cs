@@ -31,7 +31,7 @@ public class ItemTextUI : MonoBehaviour
     {
         _textUI.SetActive(view);
     }
-    public void SetText(ItemScriptableObject item)
+    public void SetText(ItemData item)
     {
         TextMeshProUGUI tmp = _textUI.GetComponentInChildren<TextMeshProUGUI>();
         if (_textUI != null)

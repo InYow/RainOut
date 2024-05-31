@@ -18,17 +18,18 @@ public class TaskBar : MonoBehaviour
         set
         {
             //之前的设置为不选中 
-            if (m_selectBlock != null)
+            if (SelectedBlock != null)
             {
-                m_selectBlock.Selected = false;
+                SelectedBlock.Selected = false;
             }
+            //字段赋值
             this.m_selectBlock = value;
-            //现在的设置为选中
-            m_selectBlock.Selected = true;
-            this.CarryOn(value);
+            //现在的设置选中
+            SelectedBlock.Selected = true;
+            //更新到手上
+            hand.CarryBagBlock = SelectedBlock.linkBagBlock;
         }
     }
-    public InterActive m_interActive;
     private void Start()
     {
         foreach (var block in m_blockList)
@@ -39,9 +40,5 @@ public class TaskBar : MonoBehaviour
         {
             SelectedBlock = m_blockList[0];
         }
-    }
-    private void CarryOn(TaskBlock taskBlock)
-    {
-        hand.CarryOn(taskBlock.signedBagBlock);
     }
 }

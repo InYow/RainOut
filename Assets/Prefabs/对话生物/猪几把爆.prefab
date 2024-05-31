@@ -145,9 +145,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6700503929543094789}
   - component: {fileID: 6700503929543094794}
-  - component: {fileID: 6700503929543094788}
-  - component: {fileID: 6700503929543094791}
   - component: {fileID: 6700503929543094790}
+  - component: {fileID: 6700503929543094788}
+  - component: {fileID: 2043933886856554471}
   m_Layer: 0
   m_Name: "\u732A\u51E0\u628A\u7206"
   m_TagString: Untagged
@@ -223,34 +223,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6700503929543094788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6700503929543094795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e84f5b42e83b154c90b807e5db6f876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnterBound: 0
-  ExitBound: 0
-  PressIcon: {fileID: 6885387083725309578}
---- !u!114 &6700503929543094791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6700503929543094795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89aae44717502b44d8d5532cb6ef8502, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: a5e730b6d90241648a85ca4f64b3c9f6, type: 2}
 --- !u!61 &6700503929543094790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -277,6 +249,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &6700503929543094788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6700503929543094795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e84f5b42e83b154c90b807e5db6f876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnterBound: 0
+  ExitBound: 0
+  PressIcon: {fileID: 6885387083725309578}
+  story: {fileID: 2043933886856554471}
+--- !u!114 &2043933886856554471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6700503929543094795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678af7cf5d58ab449a2bd063a3a4bc1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prgTree: {fileID: 11400000, guid: c91ef1e0f515b1348a812e44510e9d72, type: 2}
+  nodeIndex: 0
+  curretNode: {fileID: 0}
+  currentParagraph: {fileID: 0}
 --- !u!1 &6885387083725309578
 GameObject:
   m_ObjectHideFlags: 0

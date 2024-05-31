@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    //FIN:优化,可堆叠物品
-    public ItemScriptableObject data;
+    //TODO: 优化,可堆叠物品
+    public ItemData data;
     public string LayerName;
     public int LayerID;
     public ItemTextUI itemTextUI;
+    public bool Carrying;
     private void Start()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
@@ -26,13 +27,25 @@ public class Item : MonoBehaviour
         }
         itemTextUI.SeeText(view);
     }
+    //在手上使用时
     public virtual void Use()
     {
 
     }
-    //手持
+    //被手持时
     public virtual void OnCarryOn(Hand hand)
     {
-        Debug.Log($"{gameObject.name}被拾起来了");
+        Carrying = true;
+        Debug.Log($"{gameObject.name}拿在手中");
+    }
+    public virtual void OnDisCarry(Hand hand)
+    {
+        Carrying = false;
+        #region 清空手持的物体
+        this.transform.parent = hand.CarryBagBlock.transform;
+        this.transform.localPosition = Vector3.zero;
+        this.gameObject.SetActive(false);
+        #endregion
+        Debug.Log($"{gameObject.name}离开了手");
     }
 }

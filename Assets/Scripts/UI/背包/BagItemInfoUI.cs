@@ -23,7 +23,7 @@ public class BagItemInfoUI : MonoBehaviour
         transform.position = vector2;
     }
     //设置文本内容
-    public int SetText(ItemScriptableObject data)
+    public int SetText(ItemData data)
     {
         if (data == null)
             return 1;

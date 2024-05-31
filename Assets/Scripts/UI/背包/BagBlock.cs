@@ -13,7 +13,7 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
     //F左键拖拽、虚影跟随、松开交换位置
     private InputControllor player;
     public Bag bag;
-    public List<TaskBlock> SignedTaskBlocks;
+    public List<TaskBlock> LinkTaskBlocks;
     public Item item;
     public Item MyItem
     {
@@ -23,31 +23,31 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
         }
         set
         {
-            item = value;
-            if (value == null)
+            if (MyItem == null)
             {
                 m_itemIcon.sprite = m_iconNone;
-                if (SignedTaskBlocks.Count != 0)
+                if (LinkTaskBlocks.Count != 0)
                 {
-                    for (int i = 0; i < SignedTaskBlocks.Count; i++)
+                    for (int i = 0; i < LinkTaskBlocks.Count; i++)
                     {
-                        SignedTaskBlocks[i].m_itemIcon.sprite = m_iconNone;
-                        SignedTaskBlocks[i].OnSignedBagBlockItemChangeAction.Invoke();
+                        LinkTaskBlocks[i].m_itemIcon.sprite = m_iconNone;
+                        LinkTaskBlocks[i].OnLinkBagBlockItemAction?.Invoke();
                     }
                 }
             }
             else
             {
                 m_itemIcon.sprite = value.data.icon;
-                if (SignedTaskBlocks.Count != 0)
+                if (LinkTaskBlocks.Count != 0)
                 {
-                    for (int i = 0; i < SignedTaskBlocks.Count; i++)
+                    for (int i = 0; i < LinkTaskBlocks.Count; i++)
                     {
-                        SignedTaskBlocks[i].m_itemIcon.sprite = value.data.icon;
-                        SignedTaskBlocks[i].OnSignedBagBlockItemChangeAction.Invoke();
+                        LinkTaskBlocks[i].m_itemIcon.sprite = MyItem.data.icon;
+                        LinkTaskBlocks[i].OnLinkBagBlockItemAction?.Invoke();
                     }
                 }
             }
+            item = value;
         }
     }
     [Header("物品右键操作栏")]
@@ -211,25 +211,20 @@ public class BagBlock : BaseBlock, IBeginDragHandler, IDragHandler, IEndDragHand
     //             rightClickBag.m_selectedBlock = null;
     //         }
     //     }
-
     // }
+
     //添加到格子里
     public override void Push(Item item)
     {
         if (item == null)
         {
-            //this.item.SeeText(false);
             this.MyItem = null;
-            //this.m_itemIcon.sprite = m_iconNone;
         }
         else
         {
             item.transform.parent = transform;
             item.transform.localPosition = Vector3.zero;
             this.MyItem = item;
-            //m_itemIcon.sprite = item.data.icon;
-            //设置文本不可见
-            //item.SeeText(false);
         }
     }
     public override void Pop()

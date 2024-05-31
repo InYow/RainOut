@@ -40,10 +40,6 @@ public class InputControllor : MonoBehaviour
     void Update()
     {
         #region 对话
-        if (Input.GetKeyDown(KeyCode.Equals))
-        {
-            DialogBox.Instance.Next();
-        }
         #endregion
 
         _horizontal = Input.GetAxis("Horizontal");

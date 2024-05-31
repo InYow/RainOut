@@ -95,6 +95,9 @@ MonoBehaviour:
   textGUI: {fileID: 251843865223610616}
   hoverColor: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
+  abandonColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  abandon: 0
+  stay: 0
 --- !u!1 &251843865223610618
 GameObject:
   m_ObjectHideFlags: 0
