@@ -41,7 +41,7 @@ public class MyStory : EditorWindow
         listViewer = root.Q<ListView>();
         listViewer.makeItem = MakeListItem;
         listViewer.bindItem = BindListItem;
-        listViewer.onSelectionChange += ListSelectChange;
+        listViewer.selectionChanged += ListSelectChange;
         //按钮
         addNodeBtn = root.Q<Button>("addNodeBtn");
         addNodeBtn.clicked += OnAddNodeBtnClick;
