@@ -62,3 +62,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: "\u6D4B\u8BD5\u5C42\u7EA7\u5730\u56FE\u7684\u73A9\u5BB6"
+    uniqueID: 3354847737
+    locked: 0

@@ -68,13 +68,13 @@ MonoBehaviour:
   preview: {fileID: 0}
   dependencies:
   - dependency: {fileID: 501707107149765896, guid: 1f9da277e54db98439358ff9de1168c1, type: 3}
-    instantiationMode: 0
+    instantiationMode: 1
   - dependency: {fileID: 11400000, guid: 3bb44a59babf9d044814f551280fab79, type: 2}
     instantiationMode: 1
   - dependency: {fileID: 2800000, guid: ce37c758926d0464f8278aadbfef0122, type: 3}
-    instantiationMode: 0
+    instantiationMode: 1
   - dependency: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    instantiationMode: 0
+    instantiationMode: 1
   templatePipeline: {fileID: 0}
   badge: {fileID: 0}
   addToDefaults: 1

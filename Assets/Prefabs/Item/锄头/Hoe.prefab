@@ -138,7 +138,7 @@ MonoBehaviour:
   LayerID: 0
   itemTextUI: {fileID: 0}
   Carrying: 0
-  selectTileBoxPrb: {fileID: 0}
+  selectTileBoxPrb: {fileID: 2591341329083936701, guid: 5875c02f52e69c741b144d7b62f32b61, type: 3}
   selectTileBox: {fileID: 0}
   head: {fileID: 1643297105692600905}
 --- !u!95 &8616150217555465676

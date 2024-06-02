@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 195531362}
   - component: {fileID: 195531361}
   m_Layer: 7
-  m_Name: WallTop
+  m_Name: "\u4E8C\u697C\u5899\u4F532F"
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 198962948}
   - component: {fileID: 198962947}
   m_Layer: 7
-  m_Name: Wall01
+  m_Name: "\u5730\u9762\u5899\u4F531F"
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -625,7 +625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425660514}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: "\u5899\u4F53\u7EC4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,7 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 612251339}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: "\u5730\u677F\u7EC4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 1191918572}
   - component: {fileID: 1191918571}
   m_Layer: 0
-  m_Name: HoeLayer
+  m_Name: "\u5730\u677F\u8015\u79CD\u56FE\u5C42"
   m_TagString: HoeLayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 1888054336}
   - component: {fileID: 1888054335}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: "\u5730\u677F\u56FE\u5C42"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
