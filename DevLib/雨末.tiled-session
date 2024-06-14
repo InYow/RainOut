@@ -1,0 +1,82 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "西郊车站东.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "全部文件 (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 5.5
+        },
+        "#spring_outdoorsTileSheet.zh-CN.": {
+            "scaleInEditor": 1
+        },
+        "西郊车站.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 5.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 434.8181818181818,
+                "y": 285.1818181818182
+            }
+        },
+        "西郊车站.tmx#grass.": {
+            "scaleInDock": 4,
+            "scaleInEditor": 1
+        },
+        "西郊车站.tmx#spring_outdoorsTileSheet.zh-CN.": {
+            "scaleInDock": 3
+        },
+        "西郊车站.tmx#summer_outdoorsTileSheet.zh-CN.": {
+            "scaleInDock": 4
+        },
+        "西郊车站东.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 502.875,
+                "y": 150.125
+            }
+        },
+        "西郊车站东.tmx#grass.": {
+            "scaleInDock": 1
+        },
+        "西郊车站东.tmx#spring_outdoorsTileSheet.zh-CN.": {
+            "scaleInDock": 1
+        },
+        "西郊车站东.tmx#summer_outdoorsTileSheet.zh-CN.": {
+            "scaleInDock": 3
+        }
+    },
+    "last.imagePath": "C:/Library/Unity/maoxiandalu/DevLib/使用的素材",
+    "last.worldFilePath": "C:/Library/Unity/maoxiandalu/DevLib",
+    "loadedWorlds": [
+        "C:/Library/Unity/maoxiandalu/DevLib/泉镇.world"
+    ],
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "西郊车站.tmx",
+        "西郊车站东.tmx"
+    ],
+    "project": "雨末.tiled-project",
+    "recentFiles": [
+        "西郊车站.tmx",
+        "西郊车站东.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
