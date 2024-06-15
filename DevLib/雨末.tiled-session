@@ -3,7 +3,8 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "西郊车站东.tmx",
+    "activeFile": "西郊车站.tmx",
+    "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "."
     ],
@@ -15,15 +16,26 @@
         "#spring_outdoorsTileSheet.zh-CN.": {
             "scaleInEditor": 1
         },
+        ":/automap-tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "一队西郊.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 57,
+                "y": 42.5
+            }
+        },
         "西郊车站.tmx": {
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 5.5,
-            "selectedLayer": 3,
+            "scale": 0.0625,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 434.8181818181818,
-                "y": 285.1818181818182
+                "x": 10184,
+                "y": 7496
             }
         },
         "西郊车站.tmx#grass.": {
@@ -37,42 +49,45 @@
             "scaleInDock": 4
         },
         "西郊车站东.tmx": {
-            "expandedObjectLayers": [
-                5
+            "expandedGroupLayers": [
+                15,
+                11,
+                17,
+                12
             ],
-            "scale": 4,
-            "selectedLayer": 3,
+            "scale": 1.5,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 502.875,
-                "y": 150.125
+                "x": 479,
+                "y": 7237.666666666666
             }
         },
         "西郊车站东.tmx#grass.": {
             "scaleInDock": 1
         },
         "西郊车站东.tmx#spring_outdoorsTileSheet.zh-CN.": {
-            "scaleInDock": 1
+            "scaleInDock": 2
         },
         "西郊车站东.tmx#summer_outdoorsTileSheet.zh-CN.": {
-            "scaleInDock": 3
+            "scaleInDock": 1
         }
     },
     "last.imagePath": "C:/Library/Unity/maoxiandalu/DevLib/使用的素材",
     "last.worldFilePath": "C:/Library/Unity/maoxiandalu/DevLib",
     "loadedWorlds": [
-        "C:/Library/Unity/maoxiandalu/DevLib/泉镇.world"
+        "C:/Library/Unity/RainOut/DevLib/泉镇.world"
     ],
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "西郊车站.tmx",
-        "西郊车站东.tmx"
+        "西郊车站.tmx"
     ],
     "project": "雨末.tiled-project",
     "recentFiles": [
         "西郊车站.tmx",
-        "西郊车站东.tmx"
+        "西郊车站东.tmx",
+        "一队西郊.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {

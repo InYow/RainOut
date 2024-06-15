@@ -2,10 +2,10 @@
     "maps": [
         {
             "fileName": "西郊车站东.tmx",
-            "height": 320,
-            "width": 480,
+            "height": 12800,
+            "width": 19200,
             "x": 0,
-            "y": 0
+            "y": -6400
         },
         {
             "fileName": "西郊车站.tmx",
