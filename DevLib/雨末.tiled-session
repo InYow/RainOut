@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "西郊车站.tmx",
+    "activeFile": "西郊车站东.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "."
@@ -31,11 +31,11 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 0.0625,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 10184,
-                "y": 7496
+                "x": 550,
+                "y": -40.66666666666663
             }
         },
         "西郊车站.tmx#grass.": {
@@ -50,16 +50,16 @@
         },
         "西郊车站东.tmx": {
             "expandedGroupLayers": [
-                15,
-                11,
                 17,
-                12
+                15,
+                12,
+                11
             ],
-            "scale": 1.5,
+            "scale": 3,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 479,
-                "y": 7237.666666666666
+                "x": 1257.5,
+                "y": 4977.833333333333
             }
         },
         "西郊车站东.tmx#grass.": {
@@ -69,7 +69,7 @@
             "scaleInDock": 2
         },
         "西郊车站东.tmx#summer_outdoorsTileSheet.zh-CN.": {
-            "scaleInDock": 1
+            "scaleInDock": 1.5
         }
     },
     "last.imagePath": "C:/Library/Unity/maoxiandalu/DevLib/使用的素材",
@@ -81,7 +81,8 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "西郊车站.tmx"
+        "西郊车站.tmx",
+        "西郊车站东.tmx"
     ],
     "project": "雨末.tiled-project",
     "recentFiles": [
