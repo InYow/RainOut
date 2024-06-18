@@ -34,8 +34,8 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 550,
-                "y": -40.66666666666663
+                "x": 540,
+                "y": -46
             }
         },
         "西郊车站.tmx#grass.": {
@@ -50,16 +50,16 @@
         },
         "西郊车站东.tmx": {
             "expandedGroupLayers": [
-                17,
                 15,
                 12,
-                11
+                11,
+                17
             ],
-            "scale": 3,
+            "scale": 1.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 1257.5,
-                "y": 4977.833333333333
+                "x": 1887.6666666666665,
+                "y": 4842.333333333333
             }
         },
         "西郊车站东.tmx#grass.": {
@@ -69,7 +69,7 @@
             "scaleInDock": 2
         },
         "西郊车站东.tmx#summer_outdoorsTileSheet.zh-CN.": {
-            "scaleInDock": 1.5
+            "scaleInDock": 3
         }
     },
     "last.imagePath": "C:/Library/Unity/maoxiandalu/DevLib/使用的素材",
