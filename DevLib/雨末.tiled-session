@@ -34,8 +34,8 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 540,
-                "y": -46
+                "x": 239.33333333333326,
+                "y": 158
             }
         },
         "西郊车站.tmx#grass.": {
@@ -52,14 +52,18 @@
             "expandedGroupLayers": [
                 15,
                 12,
-                11,
+                17,
+                11
+            ],
+            "expandedObjectLayers": [
+                18,
                 17
             ],
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 1887.6666666666665,
-                "y": 4842.333333333333
+                "x": 1781.5,
+                "y": 4770.5
             }
         },
         "西郊车站东.tmx#grass.": {
