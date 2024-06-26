@@ -34,8 +34,13 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
+<<<<<<< Updated upstream
                 "x": 239.33333333333326,
                 "y": 158
+=======
+                "x": 532,
+                "y": 34
+>>>>>>> Stashed changes
             }
         },
         "西郊车站.tmx#grass.": {
@@ -50,6 +55,7 @@
         },
         "西郊车站东.tmx": {
             "expandedGroupLayers": [
+<<<<<<< Updated upstream
                 15,
                 12,
                 17,
@@ -64,6 +70,18 @@
             "viewCenter": {
                 "x": 1781.5,
                 "y": 4770.5
+=======
+                11,
+                17,
+                15,
+                12
+            ],
+            "scale": 0.75,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 1970,
+                "y": 4953.333333333333
+>>>>>>> Stashed changes
             }
         },
         "西郊车站东.tmx#grass.": {
