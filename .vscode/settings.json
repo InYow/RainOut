@@ -52,6 +52,6 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "maoxiandalu.sln",
+    "dotnet.defaultSolution": "RainOut.sln",
     "git.ignoreLimitWarning": true
 }
