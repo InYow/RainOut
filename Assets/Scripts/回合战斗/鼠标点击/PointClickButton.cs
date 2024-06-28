@@ -5,6 +5,20 @@ using UnityEngine.Events;
 
 public class PointClickButton : MonoBehaviour, IPointClickInterface
 {
+    [Tooltip("是否可以使用")] public bool interactable = true;
+
+    public bool Interactable
+    {
+        get
+        {
+            return interactable;
+        }
+        set
+        {
+            interactable = value;
+        }
+    }
+
     public enum RenderType
     {
         color = 0,

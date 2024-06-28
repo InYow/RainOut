@@ -87,7 +87,8 @@ public class PointClick : MonoBehaviour
                         //添加到HoverList中
                         HoverPoCInterfaceList.Add(pointClickInterface);
                         //调用鼠标进入
-                        pointClickInterface.PointClickEnter();
+                        if (pointClickInterface.Interactable)
+                            pointClickInterface.PointClickEnter();
                     }
                     HoverThisFrameList.Add(pointClickInterface);
                 }
@@ -105,7 +106,8 @@ public class PointClick : MonoBehaviour
                         //添加到PressList中
                         PressPoCInterfaceList.Add(firstPointClickInterface);
                         //调用鼠标按下
-                        firstPointClickInterface.PointClickDown();
+                        if (firstPointClickInterface.Interactable)
+                            firstPointClickInterface.PointClickDown();
                     }
                 }
 
@@ -124,7 +126,8 @@ public class PointClick : MonoBehaviour
                     if (PressPoCInterfaceList.Contains(firstPointClickInterface))
                     {
                         //调用鼠标松开
-                        firstPointClickInterface.PointClickUp();
+                        if (firstPointClickInterface.Interactable)
+                            firstPointClickInterface.PointClickUp();
                         //从PressList中移除
                         PressPoCInterfaceList.Remove(firstPointClickInterface);
                     }
@@ -143,21 +146,25 @@ public class PointClick : MonoBehaviour
         //调用HoverList和PressList中的Hover和Press方法
         foreach (var pointClickInterface in HoverPoCInterfaceList)
         {
-            pointClickInterface.PointClickHover();
+            if (pointClickInterface.Interactable)
+                pointClickInterface.PointClickHover();
         }
         foreach (var pointClickInterface in PressPoCInterfaceList)
         {
-            pointClickInterface.PointClick();
+            if (pointClickInterface.Interactable)
+                pointClickInterface.PointClick();
         }
 
         //调用离开方法
         foreach (var pointClickInterface in HoverToDeleteList)
         {
-            pointClickInterface.PointClickExit();
+            if (pointClickInterface.Interactable)
+                pointClickInterface.PointClickExit();
         }
         foreach (var pointClickInterface in PressToDeleteList)
         {
-            pointClickInterface.PointClickUp();
+            if (pointClickInterface.Interactable)
+                pointClickInterface.PointClickUp();
         }
     }
 }

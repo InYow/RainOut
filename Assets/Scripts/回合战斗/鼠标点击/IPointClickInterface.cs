@@ -4,6 +4,9 @@ using UnityEngine;
 
 public interface IPointClickInterface
 {
+    //是否可以使用
+    public bool Interactable { get; set; }
+
     //鼠标进入时触发
     public void PointClickEnter();
 

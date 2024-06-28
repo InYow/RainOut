@@ -23,11 +23,11 @@ public class RoundManager : MonoBehaviour
     // 当前回合的主人,技能的释放者
     public Entity originEntity;
 
-    //技能的释放目标
-    public Entity targetEntity;
-
     //释放的技能
     public Skill skill;
+
+    //技能的释放目标
+    public Entity targetEntity;
 
     private void Awake()
     {
@@ -49,8 +49,16 @@ public class RoundManager : MonoBehaviour
         roundManager.AList.Clear();
         roundManager.BList.Clear();
         roundManager.originEntity = null;
-        roundManager.targetEntity = null;
         roundManager.skill = null;
+        roundManager.targetEntity = null;
+    }
+
+    //上个回合结束后，下个回合开始前的初始化
+    public static void InitRound()
+    {
+        roundManager.originEntity = null;
+        roundManager.skill = null;
+        roundManager.targetEntity = null;
     }
 
     //向AList中添加Entity
@@ -154,6 +162,19 @@ public class RoundManager : MonoBehaviour
             roundManager.targetEntity = entity;
             //使用技能
             roundManager.skill.SetOriginAndTarget(roundManager.originEntity, roundManager.targetEntity);
+            //回合已经用掉了
+            for (int i = 0; i < roundManager.RoundList.Count; i++)
+            {
+                if (roundManager.originEntity == roundManager.RoundList[i].master)
+                {
+                    roundManager.RoundList.RemoveAt(i);
+                    break;
+                }
+            }
+            //关闭展开的UI
+            UIManager.ClearList();
+            //执行回合结束后的流程
+            InitRound();
         }
     }
 }
