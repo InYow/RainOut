@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
+//还承担了控制selectentity圆圈的任务
 public class RoundManager : MonoBehaviour
 {
     public static RoundManager roundManager;
@@ -19,14 +20,16 @@ public class RoundManager : MonoBehaviour
     public List<Entity> BList;
 
     //行动方枚举定义
-    public enum OriginSide
+    public enum Side
     {
         A = 0,
         B
     }
 
+    public Side originSide;
+
     //行动方
-    public OriginSide originSide;
+    public Side OriginSide { get { return originSide; } set { originSide = value; } }
 
     //未行动的回合队列
     public List<Round> RoundList;
@@ -74,7 +77,7 @@ public class RoundManager : MonoBehaviour
     //释放的技能
     public Skill skill;
 
-    //释放的技能-属性 
+    //释放的技能 
     public Skill Skill
     {
         get
@@ -88,10 +91,10 @@ public class RoundManager : MonoBehaviour
             //设置的skill是否为空
             if (value != null)
             {
-                //符合的圆圈可见
-                switch (originSide)
+                //能成为skill目标的圆圈可见
+                switch (OriginSide)
                 {
-                    case OriginSide.A:
+                    case Side.A:
                         {
                             foreach (var entity in BList)
                             {
@@ -103,7 +106,7 @@ public class RoundManager : MonoBehaviour
                             break;
                         }
 
-                    case OriginSide.B:
+                    case Side.B:
                         {
                             break;
                         }
@@ -117,9 +120,9 @@ public class RoundManager : MonoBehaviour
             else
             {
                 //关闭该关闭的圆圈
-                switch (originSide)
+                switch (OriginSide)
                 {
-                    case OriginSide.A:
+                    case Side.A:
                         {
                             foreach (var entity in BList)
                             {
@@ -128,7 +131,7 @@ public class RoundManager : MonoBehaviour
                             break;
                         }
 
-                    case OriginSide.B:
+                    case Side.B:
                         {
                             break;
                         }
@@ -191,23 +194,15 @@ public class RoundManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("先手开始战斗")]
-    public void RS1()
+    //entity还有回合
+    public static bool RoundContains(Entity entity)
     {
-        RoundStart(1);
-    }
-    [ContextMenu("后手开始战斗")]
-    public void RS2()
-    {
-        RoundStart(2);
-    }
-
-    //上个回合结束后，下个回合开始前的初始化
-    public static void InitRound()
-    {
-        roundManager.OriginEntity = null;
-        roundManager.Skill = null;
-        roundManager.targetEntity = null;
+        foreach (var round in roundManager.RoundList)
+        {
+            if (round.master == entity)
+                return true;
+        }
+        return false;
     }
 
     //添加可行回合
@@ -228,17 +223,41 @@ public class RoundManager : MonoBehaviour
 
         //移除
         roundManager.RoundList.RemoveAt(index);
+
+        //一边是否结束
+        if (roundManager.RoundList.Count == 0)
+        {
+            //换边
+            switch (roundManager.originSide)
+            {
+                case Side.A:
+                    {
+                        SideChange(Side.B);
+                        break;
+                    }
+                case Side.B:
+                    {
+                        SideChange(Side.A);
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+
+        }
     }
 
-    //还有回合
-    public static bool RoundContains(Entity entity)
+    [ContextMenu("先手开始战斗")]
+    public void RS1()
     {
-        foreach (var round in roundManager.RoundList)
-        {
-            if (round.master == entity)
-                return true;
-        }
-        return false;
+        RoundStart(1);
+    }
+    [ContextMenu("后手开始战斗")]
+    public void RS2()
+    {
+        RoundStart(2);
     }
 
     /// <summary>
@@ -292,13 +311,27 @@ public class RoundManager : MonoBehaviour
 
     }
 
-    //设置释放的技能
+    //换边
+    public static void SideChange(Side side)
+    {
+
+    }
+
+    //上个回合结束后，下个回合开始前的初始化
+    public static void InitRound()
+    {
+        roundManager.OriginEntity = null;
+        roundManager.Skill = null;
+        roundManager.targetEntity = null;
+    }
+
+    //释放的技能
     public static void SetSkill(Skill skill)
     {
         roundManager.Skill = skill;
     }
 
-    //设置技能的释放对象
+    //技能的释放目标
     public static void SelectEntity(Entity entity)
     {
         //改变战斗者

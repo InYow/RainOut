@@ -4,11 +4,14 @@ using UnityEngine;
 
 public abstract class Skill : MonoBehaviour
 {
-    [Tooltip("技能名称")] public string skillName;
-
     [Tooltip("释放者")] public Entity origin;
 
     [Tooltip("目标")] public Entity target;
+
+    [Header("技能信息")]
+    [Tooltip("名称")] public string skillName;
+
+    [Tooltip("描述")] public string skillDes;
 
     //施法目标类型
     public enum TargetType
