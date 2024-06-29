@@ -10,7 +10,12 @@ public class Entity : MonoBehaviour
 
     [Tooltip("生命")] public int hp;
 
+    [Tooltip("死没死")] public bool dead = false;
+
     [Tooltip("攻击力")] public int atk;
+
+    [Header("非手动赋值")]
+    [Tooltip("对应圆圈")] public SelectEntity selectEntity;
 
     //减少生命值 hp
     public void DetectHP(int value)
@@ -20,6 +25,7 @@ public class Entity : MonoBehaviour
         //是否战败
         if (hp <= 0)
         {
+            dead = true;
             Debug.Log($"{entityName}战败");
         }
     }

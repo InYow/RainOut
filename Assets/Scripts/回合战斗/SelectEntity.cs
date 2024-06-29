@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,18 @@ using UnityEngine.Events;
 
 public class SelectEntity : MonoBehaviour, IPointClickInterface
 {
+    [Tooltip("绑定的entity")] public Entity entity;
+
     [Tooltip("是否可以使用")] public bool interactable = true;
+
+    public enum Type
+    {
+        origin = 0,
+        target
+    }
+
+    //出现的意义，行动模式
+    public Type type;
 
     public bool Interactable
     {
@@ -16,16 +28,24 @@ public class SelectEntity : MonoBehaviour, IPointClickInterface
         set
         {
             interactable = value;
+            if (value == true)
+            {
+                spriteRenderer.color = NormalColor;
+            }
+            else
+            {
+                spriteRenderer.color = DisableColor;
+            }
         }
     }
 
     [Tooltip("点击事件")] public UnityEvent OnClick;
 
-    [Tooltip("绑定的entity")] public Entity entity;
-
     [Tooltip("精灵渲染器")] public SpriteRenderer spriteRenderer;
 
     [Header("视觉表现相关")]
+
+    [Tooltip("偏移量")] public Vector2 offset;
 
     [Tooltip("旋转速度")] public float rotateSpeed;
 
@@ -38,12 +58,12 @@ public class SelectEntity : MonoBehaviour, IPointClickInterface
 
     public void PointClick()
     {
-        OnClick.Invoke();
     }
 
     public void PointClickDown()
     {
         Debug.Log("选择了" + entity);
+        OnClick.Invoke();
         RoundManager.SelectEntity(entity);
     }
 
@@ -59,10 +79,26 @@ public class SelectEntity : MonoBehaviour, IPointClickInterface
 
     public void PointClickHover()
     {
-        transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
     }
 
     public void PointClickUp()
     {
+    }
+
+    public void OnManagerSelect()
+    {
+        transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+    }
+
+    private void OnValidate()
+    {
+        //位置
+        transform.position = entity.gameObject.transform.position + (Vector3)offset;
+
+        //名称
+        gameObject.name = entity.entityName;
+
+        //赋值entity
+        entity.selectEntity = this;
     }
 }
