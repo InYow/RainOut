@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2920517b091f9948a130cb86817b092, type: 3}
   m_Name: "\u654C\u4EBA1_Table"
   m_EditorClassIdentifier: 
-  intention: {fileID: 0}
+  intention:
+  - {fileID: 11400000, guid: b3392410fbcaac84d866871a9c7d280e, type: 2}
+  percentList: 
