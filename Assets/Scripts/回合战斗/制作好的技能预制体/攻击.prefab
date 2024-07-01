@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d13de531bee5b498698ccad5ce11d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: "\u653B\u51FB"
   origin: {fileID: 0}
   target: {fileID: 0}
+  skillName: "\u653B\u51FB"
+  skillDes: "\u9020\u6210\u4F24\u5BB3\u3002"
+  targetType: 0

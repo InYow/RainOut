@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class IntentionChecker : MonoBehaviour, IPointClickInterface
 {
+    [Header("显示意图相关")]
     public Intention intention;
 
+    public SpriteRenderer spriteRenderer;
+
+    [Tooltip("文本框")] public DetailChecker detailCheckerPrb;
+
+    [Header("PointClick")]
     public bool interactable;
 
     public bool Interactable { get => interactable; set => interactable = value; }
-
-    [Tooltip("文本框")] public DetailChecker detailCheckerPrb;
 
     public DetailChecker detailChecker;
 
@@ -30,9 +34,16 @@ public class IntentionChecker : MonoBehaviour, IPointClickInterface
         detailChecker = Instantiate(detailCheckerPrb, transform);
 
         //位置
-        detailChecker.gameObject.transform.localPosition = Vector2.zero;
+        detailChecker.gameObject.transform.localPosition = Vector2.zero + offset;
+
         //文本
         detailChecker.SetTextDes(intention.Des);
+    }
+
+    public void SetIntention(Intention intention)
+    {
+        this.intention = intention;
+        spriteRenderer.sprite = intention.sprite;
     }
 
     public void PointClickExit()
@@ -42,11 +53,9 @@ public class IntentionChecker : MonoBehaviour, IPointClickInterface
 
     public void PointClickHover()
     {
-        throw new System.NotImplementedException();
     }
 
     public void PointClickUp()
     {
-        throw new System.NotImplementedException();
     }
 }

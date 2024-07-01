@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DetailChecker : MonoBehaviour
 {
@@ -32,25 +33,26 @@ public class DetailChecker : MonoBehaviour
         if (rectTransform != null)
         {
             EditorApplication.delayCall += () =>
-            {
-                SetTextDes(text);
-            };
+             {
+                 SetTextDes(text);
+             };
         }
     }
 
     public void SetTextDes(string str)
     {
-        //文字
+        // 更新文字
         if (DesTextGUI != null)
         {
             DesTextGUI.text = str;
+            Canvas.ForceUpdateCanvases();
         }
 
-        //长度
+        // 更新长度
         if (rectTransform != null)
         {
-            //计算长度
-            float x = CountCharacters(text);
+            // 计算长度
+            float x = CountCharacters(str);
             float y = (1 / 3f + offset_k) * x + 2f / 3f + offset_b;
             if (y < 1f)
             {
@@ -63,6 +65,8 @@ public class DetailChecker : MonoBehaviour
             vector2.x = y;
             rectTransform.sizeDelta = vector2;
 
+            // 强制更新布局
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
         }
     }
 
