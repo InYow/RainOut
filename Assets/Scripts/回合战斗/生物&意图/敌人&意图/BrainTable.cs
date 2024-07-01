@@ -13,7 +13,7 @@ public class BrainTable : ScriptableObject
     //概率
     public List<int> percentList;
 
-    public Intention FuncIntention(List<Intention> IntentionList_value)
+    public Intention RandomIntention()
     {
         //计算总权重
         int percent_Sum = 0;
