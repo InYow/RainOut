@@ -1,35 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : Bar
 {
-    public Image image;
+    [Header("管理器")]
+    public EntityInfoManager entityInfoManager;
 
-    public TextMeshProUGUI textGUI;
-
+    [Header("生物")]
     public Entity entity;
 
     void Update()
     {
-        //检查有无指定entity
-        if (entity != null)
+        //提取entity
+        Entity e = null;
+        if (entityInfoManager != null && entityInfoManager.entity != null)
         {
-            Bar();
+            e = entityInfoManager.entity;
+        }
+        else if (entity != null)
+        {
+            e = entity;
+        }
+
+        //操作
+        if (e != null)
+        {
+            AsBar($"{e.hp}/{e.hpMax}", (float)e.hp / (float)e.hpMax);
+        }
+        else
+        {
+            throw new NotImplementedException("${gameObject.name} 的 entity||entityInfoManger 未赋值");
         }
     }
 
-    //执行Bar的任务
-    public void Bar()
+    private void OnValidate()
     {
-        //文字更新
-        string str = $"{entity.hp}/{entity.hpMax}";
-        textGUI.text = str;
-
-        //图片填充比例更新
-        float percent = (float)entity.hp / (float)entity.hpMax;
-        image.fillAmount = percent;
+        entityInfoManager = GetComponentInParent<EntityInfoManager>();
     }
 }

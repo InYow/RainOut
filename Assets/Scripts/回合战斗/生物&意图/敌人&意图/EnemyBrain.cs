@@ -11,7 +11,7 @@ public class EnemyBrain : MonoBehaviour
 
     [Tooltip("行动意图列表")] public List<Intention> IntentionList;
 
-    [Tooltip("旗下检视管理者")] public IntentionCheckerManager intentionCheckerManager;
+    [Tooltip("意图检视管理者")] public IntentionCheckerManager intentionCheckerManager;
 
     private void OnValidate()
     {
@@ -21,9 +21,16 @@ public class EnemyBrain : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        UpToNumber();
+        Refresh();
+    }
+
     [ContextMenu("动态生成意图")]
     public void UpToNumber()
     {
+        intentionCheckerManager.UpToNumber();
 
         //观察到的意图数量
         int number = intentionCheckerManager.intentionCheckerList.Count;
@@ -47,5 +54,51 @@ public class EnemyBrain : MonoBehaviour
             checker.SetIntention(IntentionList[i]);
             i++;
         }
+    }
+
+    /// <summary>
+    /// 在这里调用索敌行为规则
+    /// </summary>
+    /// <returns></returns>
+    public Entity FindTarget()
+    {
+        //获取对面队伍
+        List<Entity> AList = RoundManager.GetAList();
+
+        //获取目标
+        Entity target = null;
+        //第一个没死的
+        foreach (var e in AList)
+        {
+            if (!e.dead)
+            {
+                target = e;
+                break;
+            }
+        }
+
+        return target;
+    }
+
+    //你的回合
+    public void YourRound()
+    {
+        //我的回合!
+        RoundManager.SetOrigin(entity);
+
+        //意图技能
+        RoundManager.SetSkill(IntentionList[0].skill);
+        if (IntentionList[0].skill.targetType != Skill.TargetType.self)
+        {
+
+            //选择目标
+            Entity target = FindTarget();
+            RoundManager.SetTarget(target);
+        }
+
+        //移除生效意图，并刷新
+        IntentionList.RemoveAt(0);
+        UpToNumber();
+        Refresh();
     }
 }

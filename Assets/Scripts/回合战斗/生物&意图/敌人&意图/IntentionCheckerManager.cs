@@ -13,11 +13,10 @@ public class IntentionCheckerManager : MonoBehaviour
 
     private void Start()
     {
-        //补全数量
-        UpToNumber();
     }
 
     //补全数量
+    [ContextMenu("补全数量")]
     public void UpToNumber()
     {
         int i = intentionCheckerList.Count;

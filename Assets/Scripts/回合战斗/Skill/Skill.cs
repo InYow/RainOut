@@ -17,18 +17,18 @@ public abstract class Skill : MonoBehaviour
     public enum TargetType
     {
         single = 0,
-        multiple
+        multiple,
+        self
     }
 
     //目标类型
     public TargetType targetType;
 
-    //在这个方法中组合技能效果
-    //使用技能
-    public abstract void SetOriginAndTarget(Entity origin, Entity target);
-
-    //在这个方法中书写判断式
-    //目标条件
+    /// <summary>
+    /// 在这个方法中书写判断式, 目标条件
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <returns></returns>
     public virtual bool IfCanTarget(Entity entity)
     {
         if (!entity.dead)
@@ -41,4 +41,45 @@ public abstract class Skill : MonoBehaviour
         }
     }
 
+    //使用技能
+    /// <summary>
+    /// 在这个方法中组合仅需要施法者的技能效果
+    /// </summary>
+    /// <param name="origin"></param>
+    /// <returns>返回true 意味着结束回合</returns>
+    public virtual bool SetOrigin(Entity origin)
+    {
+        return false;
+    }
+
+    //使用技能
+    /// <summary>
+    /// 在这个方法中组合技能效果
+    /// </summary>
+    /// <param name="origin"></param>
+    /// <param name="target"></param>
+    public abstract void SetOriginAndTarget(Entity origin, Entity target);
+
+    //-----------------------------------------------------------------------------------
+
+    /// <summary>
+    /// 一个生物攻击另一个生物
+    /// </summary>
+    /// <param name="origin"></param>
+    /// <param name="target"></param>
+    public void Attack(Entity origin, Entity target)
+    {
+        int hurtvalue = (int)origin.atk;
+        target.OnAttack(hurtvalue);
+    }
+
+    /// <summary>
+    /// 一个生物为一个生物起甲
+    /// </summary>
+    /// <param name="origin"></param>
+    /// <param name="target"></param>
+    public void Armor(Entity origin, Entity target, int value)
+    {
+        target.Armor = value;
+    }
 }
