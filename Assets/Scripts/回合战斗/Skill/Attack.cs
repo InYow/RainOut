@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Attack : Skill
 {
-    public override void SetOriginAndTarget(Entity origin, Entity target)
+    public override void Effect()
     {
         Attack(origin, target);
     }
+
 }

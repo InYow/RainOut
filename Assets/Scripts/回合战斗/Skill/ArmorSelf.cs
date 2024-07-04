@@ -6,13 +6,8 @@ public class ArmorSelf : Skill
 {
     [Tooltip("起甲数值")] public int value;
 
-    public override bool SetOrigin(Entity origin)
+    public override void Effect_Origin()
     {
         Armor(origin, origin, value);
-        return true;
-    }
-
-    public override void SetOriginAndTarget(Entity origin, Entity target)
-    {
     }
 }

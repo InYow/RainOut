@@ -384,6 +384,7 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    //一
     /// <summary>
     /// 回合的拥有者
     /// </summary>
@@ -394,38 +395,39 @@ public class RoundManager : MonoBehaviour
         roundManager.originEntitySelect = entity.selectEntity;
     }
 
-    //释放的技能
+    //二
+    //释放技能
     public static void SetSkill(Skill skill)
     {
         roundManager.Skill = skill;
 
-        //使用仅需要施法者的技能, 并判断是否该结束回合
-        if (roundManager.skill.SetOrigin(roundManager.OriginEntity))
-        {
-            //回合已经用掉了
-            for (int i = 0; i < roundManager.RoundList.Count; i++)
-            {
-                if (roundManager.OriginEntity == roundManager.RoundList[i].master)
-                {
-                    RoundRemoveList(i);
-                    break;
-                }
-            }
-            //关闭展开的UI
-            UIManager.ClearList();
-            //执行回合结束后的流程
-            InitRound();
-        }
+        //仅需要施法者的技能
+        roundManager.Skill.SetOrigin(roundManager.OriginEntity);
     }
 
+    //三
+    //释放目标
     public static void SetTarget(Entity target)
     {
         //设置目标
         roundManager.targetEntity = target;
         //使用技能
         roundManager.Skill.SetOriginAndTarget(roundManager.OriginEntity, roundManager.targetEntity);
-        //关闭展开的UI
-        UIManager.ClearList();
+    }
+
+    //四
+    //动画触发技能效果
+    public static void AnimaSkillEffect()
+    {
+        roundManager.Skill.AnimaSkillEffect();
+    }
+
+    //五
+    /// <summary>
+    /// 回合结束
+    /// </summary>
+    public static void RoundFinish()
+    {
         //回合已经用掉了
         for (int i = 0; i < roundManager.RoundList.Count; i++)
         {

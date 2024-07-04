@@ -5,19 +5,26 @@ using UnityEngine.Video;
 
 public class EnemyBrain : MonoBehaviour
 {
-    [Tooltip("生物体")] public Entity entity;
+    [Tooltip("生物体")] public Entity enemy;
 
     [Tooltip("脑子模板")] public BrainTable brainTable;
 
+    public IntentionChecker intentionCheckerPrb;
+
+    [Tooltip("检视器数量")] public int number;
+
+    [Tooltip("检视器存放位置")] public Transform CheckerListTrans;
+
+    [Tooltip("检视器列表")] public List<IntentionChecker> intentionCheckerList;
+
     [Tooltip("行动意图列表")] public List<Intention> IntentionList;
 
-    [Tooltip("意图检视管理者")] public IntentionCheckerManager intentionCheckerManager;
 
     private void OnValidate()
     {
-        if (entity == null)
+        if (enemy == null)
         {
-            entity = GetComponent<Entity>();
+            enemy = GetComponent<Entity>();
         }
     }
 
@@ -30,13 +37,19 @@ public class EnemyBrain : MonoBehaviour
     [ContextMenu("动态生成意图")]
     public void UpToNumber()
     {
-        intentionCheckerManager.UpToNumber();
+        //动态生成intentionChecker
+        int i = intentionCheckerList.Count;
+        for (; i < number; i++)
+        {
+            IntentionChecker intentionChecker = Instantiate(intentionCheckerPrb, CheckerListTrans);
+            intentionCheckerList.Add(intentionChecker);
+        }
 
         //观察到的意图数量
-        int number = intentionCheckerManager.intentionCheckerList.Count;
+        int n = intentionCheckerList.Count;
 
-        //动态生成行动意图
-        for (; IntentionList.Count < number;)
+        //动态生成intention
+        for (; IntentionList.Count < n;)
         {
             Intention intention = brainTable.RandomIntention();
             IntentionList.Add(intention);
@@ -47,7 +60,7 @@ public class EnemyBrain : MonoBehaviour
     [ContextMenu("刷新行动意图显示")]
     public void Refresh()
     {
-        List<IntentionChecker> checkerList = intentionCheckerManager.intentionCheckerList;
+        List<IntentionChecker> checkerList = intentionCheckerList;
         int i = 0;
         foreach (var checker in checkerList)
         {
@@ -84,13 +97,12 @@ public class EnemyBrain : MonoBehaviour
     public void YourRound()
     {
         //我的回合!
-        RoundManager.SetOrigin(entity);
+        RoundManager.SetOrigin(enemy);
 
         //意图技能
         RoundManager.SetSkill(IntentionList[0].skill);
         if (IntentionList[0].skill.targetType != Skill.TargetType.self)
         {
-
             //选择目标
             Entity target = FindTarget();
             RoundManager.SetTarget(target);

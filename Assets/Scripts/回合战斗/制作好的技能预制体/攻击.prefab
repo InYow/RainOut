@@ -48,4 +48,5 @@ MonoBehaviour:
   target: {fileID: 0}
   skillName: "\u653B\u51FB"
   skillDes: "\u9020\u6210\u4F24\u5BB3\u3002"
+  stateName: "\u91CA\u653E\u6280\u80FD"
   targetType: 0

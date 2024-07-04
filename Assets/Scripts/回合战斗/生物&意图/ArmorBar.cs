@@ -1,35 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using TMPro;
 using UnityEngine;
 
-public class EntityArmor : MonoBehaviour
+public class ArmorBar : MonoBehaviour
 {
     public Vector2 offset = new(-2f, 0f);
-
-    public int armor;
-
-    public int Armor
-    {
-        get
-        {
-            return armor;
-        }
-        set
-        {
-            armor = value;
-            if (value > 0)
-            {
-                Open();
-            }
-            else
-            {
-                Close();
-            }
-            textGUI.text = $"{value}";
-        }
-    }
 
     public TextMeshProUGUI textGUI;
 
@@ -48,12 +26,6 @@ public class EntityArmor : MonoBehaviour
 
         //位置
         transform.localPosition = offset;
-    }
-
-    private void Start()
-    {
-        //
-        Armor = Armor;
     }
 
     private void Open()
@@ -81,5 +53,18 @@ public class EntityArmor : MonoBehaviour
     private void OnDestroy()
     {
         SpriteNormal();
+    }
+
+    public void ShowArmor(int armor)
+    {
+        if (armor > 0)
+        {
+            Open();
+        }
+        else
+        {
+            Close();
+        }
+        textGUI.text = $"{armor}";
     }
 }
