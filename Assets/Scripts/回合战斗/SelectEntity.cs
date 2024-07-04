@@ -62,7 +62,7 @@ public class SelectEntity : MonoBehaviour, IPointClickInterface
 
     public void PointClickDown()
     {
-        Debug.Log("选择了" + entity);
+        //Debug.Log("选择了" + entity);
         OnClick.Invoke();
         RoundManager.SelectEntity(entity);
     }

@@ -740,8 +740,8 @@ GameObject:
   m_Component:
   - component: {fileID: 29791559}
   - component: {fileID: 29791558}
-  - component: {fileID: 29791563}
   - component: {fileID: 29791562}
+  - component: {fileID: 29791563}
   m_Layer: 0
   m_Name: "\u654C\u4EBA1"
   m_TagString: Untagged
@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1183484497}
   entityArmor: {fileID: 636464090}
-  animator: {fileID: 0}
+  animator: {fileID: 1449707964}
   dead: 0
   entityName: "\u53CB\u65B9\u89D2\u8272\u732B"
   hpMax: 60
@@ -8343,6 +8343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 950158709}
   - component: {fileID: 950158710}
+  - component: {fileID: 950158711}
   m_Layer: 0
   m_Name: "\u654C\u4EBA3"
   m_TagString: Untagged
@@ -8387,6 +8388,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &950158711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950158708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8847f89f0da3be4bbec86fec167ddf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 1384024114}
 --- !u!1 &961193823
 GameObject:
   m_ObjectHideFlags: 0
@@ -13305,6 +13319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069065189}
   - component: {fileID: 1069065190}
+  - component: {fileID: 1069065191}
   m_Layer: 0
   m_Name: "\u654C\u4EBA4"
   m_TagString: Untagged
@@ -13349,6 +13364,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1069065191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069065188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8847f89f0da3be4bbec86fec167ddf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 1964960137}
 --- !u!1 &1083427839
 GameObject:
   m_ObjectHideFlags: 0
@@ -14897,7 +14925,7 @@ Transform:
   m_GameObject: {fileID: 1254239723}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.98, y: 1.3, z: -10}
+  m_LocalPosition: {x: -14.99, y: -0.41, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15258,6 +15286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1262342074}
   - component: {fileID: 1262342075}
+  - component: {fileID: 1262342076}
   m_Layer: 0
   m_Name: "\u654C\u4EBA2"
   m_TagString: Untagged
@@ -15302,6 +15331,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1262342076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262342073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8847f89f0da3be4bbec86fec167ddf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 1965520086}
 --- !u!1 &1269910427
 GameObject:
   m_ObjectHideFlags: 0
@@ -15408,8 +15450,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AList:
   - {fileID: 1423512472}
+  - {fileID: 60169765}
   BList:
   - {fileID: 29791562}
+  - {fileID: 1965520086}
+  - {fileID: 1384024114}
+  - {fileID: 1964960137}
 --- !u!4 &1281278509
 Transform:
   m_ObjectHideFlags: 0
@@ -17680,9 +17726,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f9b7b537227e54eb8bc4b0c305bcda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  entityArmor: {fileID: 0}
-  animator: {fileID: 0}
+  healthBar: {fileID: 931110562}
+  entityArmor: {fileID: 46901637}
+  animator: {fileID: 950158710}
   dead: 0
   entityName: "\u654C\u4EBA3 (1)"
   hpMax: 50
@@ -17704,9 +17750,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1384024114}
   brainTable: {fileID: 11400000, guid: d3c97afa41063a4408985b80749cb9ea, type: 2}
-  intentionCheckerPrb: {fileID: 0}
-  number: 0
-  CheckerListTrans: {fileID: 0}
+  intentionCheckerPrb: {fileID: 2430005927917058944, guid: 67ec4ef40ecf4d649bfb481648cf6fca, type: 3}
+  number: 2
+  CheckerListTrans: {fileID: 399075795}
   intentionCheckerList: []
   IntentionList: []
 --- !u!1 &1389639694
@@ -29786,6 +29832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1449707963}
   - component: {fileID: 1449707964}
+  - component: {fileID: 1449707965}
   m_Layer: 0
   m_Name: "\u53CB\u65B9\u89D2\u8272\u732B"
   m_TagString: Untagged
@@ -29830,6 +29877,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1449707965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449707962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8847f89f0da3be4bbec86fec167ddf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 60169765}
 --- !u!1 &1473812640
 GameObject:
   m_ObjectHideFlags: 0
@@ -33845,9 +33905,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f9b7b537227e54eb8bc4b0c305bcda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  entityArmor: {fileID: 0}
-  animator: {fileID: 0}
+  healthBar: {fileID: 384549245}
+  entityArmor: {fileID: 513333657}
+  animator: {fileID: 1069065190}
   dead: 0
   entityName: "\u654C\u4EBA4 (1)"
   hpMax: 50
@@ -33869,9 +33929,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1964960137}
   brainTable: {fileID: 11400000, guid: c2d77c9d8ca470a4586853bb0d0bf882, type: 2}
-  intentionCheckerPrb: {fileID: 0}
-  number: 0
-  CheckerListTrans: {fileID: 0}
+  intentionCheckerPrb: {fileID: 2430005927917058944, guid: 67ec4ef40ecf4d649bfb481648cf6fca, type: 3}
+  number: 2
+  CheckerListTrans: {fileID: 306497299}
   intentionCheckerList: []
   IntentionList: []
 --- !u!1 &1965520083
@@ -33974,9 +34034,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f9b7b537227e54eb8bc4b0c305bcda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  entityArmor: {fileID: 0}
-  animator: {fileID: 0}
+  healthBar: {fileID: 1986871592}
+  entityArmor: {fileID: 192064117}
+  animator: {fileID: 1262342075}
   dead: 0
   entityName: "\u654C\u4EBA2 (1)"
   hpMax: 50
@@ -33998,9 +34058,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1965520086}
   brainTable: {fileID: 11400000, guid: c25730550764b9440a66a41104edacd9, type: 2}
-  intentionCheckerPrb: {fileID: 0}
-  number: 0
-  CheckerListTrans: {fileID: 0}
+  intentionCheckerPrb: {fileID: 2430005927917058944, guid: 67ec4ef40ecf4d649bfb481648cf6fca, type: 3}
+  number: 2
+  CheckerListTrans: {fileID: 801074750}
   intentionCheckerList: []
   IntentionList: []
 --- !u!1 &1971947422
