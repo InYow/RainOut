@@ -63,12 +63,12 @@ public class Entity : MonoBehaviour
 
     [Tooltip("对应圆圈")] public SelectEntity selectEntity;
 
-    private void Start()
+    public void Start()
     {
         StartInit();
     }
 
-    private void StartInit()
+    public void StartInit()
     {
         healthBar?.ShowHealth(Hp, hpMax);
         entityArmor?.ShowArmor(Armor);
@@ -107,6 +107,8 @@ public class Entity : MonoBehaviour
             Armor = RestArmor;
             HP_Detect(RestvalidATK);
         }
+
+        animator.Play("受击", 0, 0f);
     }
 
     //减少生命值 hp
@@ -117,8 +119,15 @@ public class Entity : MonoBehaviour
         //是否战败
         if (Hp <= 0)
         {
-            dead = true;
-            Debug.Log($"{entityName}战败");
+            Dead();
         }
+    }
+
+    public virtual void Dead()
+    {
+        dead = true;
+        //Debug.Log($"{entityName}战败");
+
+        RoundManager.BattleEnd();
     }
 }

@@ -20,7 +20,7 @@ public class IntoRoundBattle : MonoBehaviour
             RoundManager.AddToBList(entity);
         }
 
-        RoundManager.RoundStart(1);
+        RoundManager.BattleStart(1);
 
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -259,19 +260,19 @@ public class RoundManager : MonoBehaviour
     [ContextMenu("先手开始战斗")]
     public void RS1()
     {
-        RoundStart(1);
+        BattleStart(1);
     }
     [ContextMenu("后手开始战斗")]
     public void RS2()
     {
-        RoundStart(2);
+        BattleStart(2);
     }
 
     /// <summary>
     /// 回合战斗开始
     /// </summary>
     /// <param name="Type">1 先手, 2 后手</param>
-    public static void RoundStart(int Type)
+    public static void BattleStart(int Type)
     {
         switch (Type)
         {
@@ -451,5 +452,34 @@ public class RoundManager : MonoBehaviour
         }
         //执行回合结束后的流程
         InitRound();
+    }
+
+    public static void BattleEnd()
+    {
+        bool B_Out = true;
+
+        foreach (var entity in roundManager.BList)
+        {
+            if (!entity.dead)
+            {
+                B_Out = false;
+                break;
+            }
+        }
+
+        if (B_Out)
+        {
+            //B队活光光
+            Debug.Log("你赢了");
+        }
+        else
+        {
+            //无事发生
+        }
+    }
+
+    public static void BattleFailure()
+    {
+        Debug.Log("你败了");
     }
 }
