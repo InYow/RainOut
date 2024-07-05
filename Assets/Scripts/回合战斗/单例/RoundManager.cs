@@ -283,12 +283,15 @@ public class RoundManager : MonoBehaviour
                     foreach (var entity in roundManager.AList)
                     {
                         //回合
-                        Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
-                        round.gameObject.name = entity.entityName;
-                        round.master = entity;
-                        round.id = i;
-                        RoundAddList(round);
-                        i++;
+                        if (!entity.dead)
+                        {
+                            Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
+                            round.gameObject.name = entity.entityName;
+                            round.master = entity;
+                            round.id = i;
+                            RoundAddList(round);
+                            i++;
+                        }
                     }
                     break;
                 }
@@ -301,12 +304,15 @@ public class RoundManager : MonoBehaviour
                     foreach (var entity in roundManager.BList)
                     {
                         //回合
-                        Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
-                        round.gameObject.name = entity.entityName;
-                        round.master = entity;
-                        round.id = i;
-                        RoundAddList(round);
-                        i++;
+                        if (!entity.dead)
+                        {
+                            Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
+                            round.gameObject.name = entity.entityName;
+                            round.master = entity;
+                            round.id = i;
+                            RoundAddList(round);
+                            i++;
+                        }
                     }
                     break;
                 }
@@ -331,10 +337,13 @@ public class RoundManager : MonoBehaviour
                     foreach (var e in roundManager.AList)
                     {
                         //回合
-                        Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
-                        round.gameObject.name = e.entityName;
-                        round.master = e;
-                        RoundAddList(round);
+                        if (!e.dead)
+                        {
+                            Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
+                            round.gameObject.name = e.entityName;
+                            round.master = e;
+                            RoundAddList(round);
+                        }
                     }
                     break;
                 }
@@ -343,10 +352,13 @@ public class RoundManager : MonoBehaviour
                     foreach (var e in roundManager.BList)
                     {
                         //回合
-                        Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
-                        round.gameObject.name = e.entityName;
-                        round.master = e;
-                        RoundAddList(round);
+                        if (!e.dead)
+                        {
+                            Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
+                            round.gameObject.name = e.entityName;
+                            round.master = e;
+                            RoundAddList(round);
+                        }
                     }
                     break;
                 }
