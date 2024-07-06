@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Xml.Serialization;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Purchasing;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 //还承担了控制selectentity圆圈的任务
 public class RoundManager : MonoBehaviour
@@ -13,6 +17,8 @@ public class RoundManager : MonoBehaviour
 
     //回合预制体
     public Round roundPrb;
+
+    public MoreRound moreRoundPrb;
 
     //玩家控制的角色们
     public List<Entity> AList;
@@ -33,13 +39,21 @@ public class RoundManager : MonoBehaviour
     //行动方
     public Side OriginSide { get { return originSide; } set { originSide = value; } }
 
-    //未行动的回合队列
+    //未行动的自然回合队列
     public List<Round> RoundList;
+
+    //额外回合队列
+    public List<MoreRound> MoreList;
+
+    //换手按钮队列
+    public List<ChangeBtn> ChangeBtnList;
 
     //当前回合主人身上的圆圈
     public SelectEntity originEntitySelect;
 
     [Header("三方信息")]
+
+    public Round currentRound;
 
     //当前回合的主人,技能的释放者
     public Entity originEntity;
@@ -202,6 +216,63 @@ public class RoundManager : MonoBehaviour
         return roundManager.AList;
     }
 
+    //所有圆圈可见/不可见
+    public static void SelectAllSet(bool b)
+    {
+        foreach (var e in roundManager.AList)
+        {
+            e.selectEntity.gameObject.SetActive(b);
+        }
+        foreach (var e in roundManager.BList)
+        {
+            e.selectEntity.gameObject.SetActive(b);
+        }
+    }
+
+    //圆圈可见/不可见
+    public static void SelectSet(Entity e, bool b)
+    {
+        e.selectEntity.gameObject.SetActive(b);
+    }
+
+    //拥有自然回合的可见/不可见
+    public static void SelectHasRoundSet(bool b)
+    {
+        foreach (var r in roundManager.RoundList)
+        {
+            r.master.selectEntity.gameObject.SetActive(b);
+        }
+    }
+
+    //换手按钮全部打开/关闭
+    public static void ChangeBtnAllSet(bool b)
+    {
+        foreach (var btn in roundManager.ChangeBtnList)
+        {
+            btn.gameObject.SetActive(b);
+        }
+    }
+
+    public static void ChangeBtnSet(Entity e, bool b)
+    {
+        bool has = false;
+
+        foreach (var btn in roundManager.ChangeBtnList)
+        {
+            if (btn.entity == e)
+            {
+                btn.gameObject.SetActive(b);
+                has = true;
+                break;
+            }
+        }
+
+        if (!has)
+        {
+            throw new NotImplementedException($"目标{e.gameObject.name}不存在");
+        }
+    }
+
     //entity还有回合
     public static bool RoundContains(Entity entity)
     {
@@ -218,42 +289,77 @@ public class RoundManager : MonoBehaviour
     {
         //添加
         roundManager.RoundList.Add(round);
-
-        //自然可行回合主人圆圈可见
-        round.master.selectEntity.gameObject.SetActive(true);
     }
 
     //移除自然可行回合
-    public static void RoundRemoveList(int index)
+    public static void RoundRemoveList(Entity entity)
     {
-        //自然可行回合主人圆圈不可见
-        roundManager.RoundList[index].master.selectEntity.gameObject.SetActive(false);
+        bool b = true;
 
-        //移除
-        roundManager.RoundList.RemoveAt(index);
-
-        //一边是否结束
-        if (roundManager.RoundList.Count == 0)
+        for (int i = 0; i < roundManager.RoundList.Count; i++)
         {
-            //换边
-            switch (roundManager.originSide)
+            if (roundManager.OriginEntity == roundManager.RoundList[i].master)
             {
-                case Side.A:
-                    {
-                        SideChange(Side.B);
-                        break;
-                    }
-                case Side.B:
-                    {
-                        SideChange(Side.A);
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
+                b = false;
+                roundManager.RoundList.RemoveAt(i);
+                break;
             }
+        }
 
+        if (b)
+        {
+            throw new NotImplementedException("移除回合不存在");
+        }
+    }
+
+    public static void RoundRemoveList(Round round)
+    {
+        MoreRound moreRound = round as MoreRound;
+        if (moreRound != null)
+        {
+            roundManager.MoreList.Remove(moreRound);
+        }
+        else
+        {
+            roundManager.RoundList.Remove(round);
+        }
+    }
+
+    //增加额外回合
+    public static void MoreAdd(Entity e)
+    {
+        MoreRound moreRound = MoreRound.Create(roundManager.moreRoundPrb, roundManager.transform, e, 0);
+        roundManager.MoreList.Add(moreRound);
+    }
+
+    public static void MoreChange(Entity e)
+    {
+        MoreRound moreRound = roundManager.currentRound as MoreRound;
+        if (moreRound != null)
+        {
+            //回合之前的主人
+            Entity e_before = moreRound.master;
+            //改变额外回合的主人
+            moreRound.gameObject.name = e.entityName;
+            moreRound.master = e;
+
+            //行动者和圆圈
+            roundManager.OriginEntity = e;
+            roundManager.originEntitySelect = e.selectEntity;
+
+            //圆圈只打开
+            SelectAllSet(false);
+            SelectSet(roundManager.OriginEntity, true);
+
+            //新主人的四个块
+            roundManager.originEntity.selectEntity.OnClick.Invoke();
+
+            //换手按钮全部关闭
+            ChangeBtnAllSet(false);
+        }
+        else
+        {
+            throw new NotImplementedException("没有额外回合可用");
         }
     }
 
@@ -279,17 +385,14 @@ public class RoundManager : MonoBehaviour
             //先手
             case 1:
                 {
-                    //生成并Add回合至列表
+                    //生成回合并Add至列表
                     int i = 1;
                     foreach (var entity in roundManager.AList)
                     {
                         //回合
                         if (!entity.dead)
                         {
-                            Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
-                            round.gameObject.name = entity.entityName;
-                            round.master = entity;
-                            round.id = i;
+                            Round round = Round.Create(roundManager.roundPrb, roundManager.transform, entity, i);
                             RoundAddList(round);
                             i++;
                         }
@@ -300,7 +403,7 @@ public class RoundManager : MonoBehaviour
             //后手
             case 2:
                 {
-                    //生成并Add回合至列表
+                    //生成回合并Add至列表
                     int i = 1;
                     foreach (var entity in roundManager.BList)
                     {
@@ -322,9 +425,8 @@ public class RoundManager : MonoBehaviour
                 {
                     break;
                 }
-
         }
-
+        InitRound();
     }
 
     //换边
@@ -371,10 +473,35 @@ public class RoundManager : MonoBehaviour
     //上个回合结束后，下个回合开始前的初始化
     public static void InitRound()
     {
+        roundManager.currentRound = null;
         roundManager.OriginEntity = null;
         roundManager.Skill = null;
         roundManager.targetEntity = null;
 
+        //优先使用额外回合
+        if (roundManager.MoreList.Count != 0)
+        {
+            roundManager.currentRound = roundManager.MoreList[0];
+            roundManager.OriginEntity = roundManager.MoreList[0].master;
+
+            //打开四个块
+            roundManager.OriginEntity.selectEntity.OnClick.Invoke();
+
+            //圆圈只打开
+            SelectAllSet(false);
+            SelectSet(roundManager.OriginEntity, true);
+
+            //换手所有打开，除了自己
+            ChangeBtnAllSet(true);
+            ChangeBtnSet(roundManager.OriginEntity, false);
+        }
+        else
+        {
+            //无额外回合
+
+            //圆圈正常打开
+            SelectHasRoundSet(true);
+        }
 
         if (roundManager.OriginSide == RoundManager.Side.B)
         {
@@ -386,7 +513,7 @@ public class RoundManager : MonoBehaviour
     public static void SelectEntity(Entity entity)
     {
         //改变战斗者
-        if (RoundContains(entity))
+        if (roundManager.AList.Contains(entity))
         {
             SetOrigin(entity);
         }
@@ -399,13 +526,36 @@ public class RoundManager : MonoBehaviour
 
     //一
     /// <summary>
-    /// 回合的拥有者
+    /// 在自然回合队列中选择回合的拥有者
     /// </summary>
     /// <param name="entity"></param>
     public static void SetOrigin(Entity entity)
     {
         roundManager.OriginEntity = entity;
         roundManager.originEntitySelect = entity.selectEntity;
+
+        Round round = null;
+        foreach (var r in roundManager.MoreList)
+        {
+            if (r.master == entity)
+            {
+                round = r;
+                break;
+            }
+        }
+        if (round == null)
+        {
+            foreach (var r in roundManager.RoundList)
+            {
+                if (r.master == entity)
+                {
+                    round = r;
+                    break;
+                }
+            }
+        }
+
+        roundManager.currentRound = round;
     }
 
     //二
@@ -441,19 +591,37 @@ public class RoundManager : MonoBehaviour
     /// </summary>
     public static void RoundFinish()
     {
-        //回合已经用掉了
-        for (int i = 0; i < roundManager.RoundList.Count; i++)
+        //移除当前回合
+        RoundRemoveList(roundManager.currentRound);
+
+        //一边是否结束
+        if (roundManager.RoundList.Count == 0 && roundManager.MoreList.Count == 0)
         {
-            if (roundManager.OriginEntity == roundManager.RoundList[i].master)
+            //换边
+            switch (roundManager.originSide)
             {
-                RoundRemoveList(i);
-                break;
+                case Side.A:
+                    {
+                        SideChange(Side.B);
+                        break;
+                    }
+                case Side.B:
+                    {
+                        SideChange(Side.A);
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
             }
         }
+
         //执行回合结束后的流程
         InitRound();
     }
 
+    //尝试结束战斗
     public static void BattleEnd()
     {
         bool B_Out = true;
@@ -478,6 +646,7 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    //失败了
     public static void BattleFailure()
     {
         Debug.Log("你败了");

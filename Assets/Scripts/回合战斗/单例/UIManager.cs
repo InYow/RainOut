@@ -5,6 +5,10 @@ using System.Linq.Expressions;
 using UnityEditor;
 using UnityEngine;
 
+//AddUILayer(UILayer uilayer) 添加UILAYER
+//RemoveTail() 关闭最上层UILAYER
+//ClearList() 关闭所有UILAYER
+//RemoveFrom(int index) 关闭从index之后UILAYER
 public class UIManager : MonoBehaviour
 {
     public static UIManager uIManager;

@@ -43,7 +43,6 @@ public class PointClickButton : MonoBehaviour, IPointClickInterface
 
     public void PointClick()
     {
-        unityEvent.Invoke();
     }
 
     public void PointClickDown()
@@ -61,6 +60,7 @@ public class PointClickButton : MonoBehaviour, IPointClickInterface
                     break;
                 }
         }
+        unityEvent.Invoke();
     }
 
     public void PointClickEnter()

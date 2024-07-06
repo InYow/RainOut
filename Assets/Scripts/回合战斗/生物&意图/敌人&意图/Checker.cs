@@ -2,28 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//展示图标 悬浮文本
 public class Checker : MonoBehaviour, IPointClickInterface
 {
-    public SpriteRenderer spriteRenderer;
-
+    //图标
     public Sprite sprite;
 
+    //文本
     public string str;
+
+
+    [Header("依附组件")]
+    public SpriteRenderer spriteRenderer;
 
     [Tooltip("文本框")] public DetailChecker detailCheckerPrb;
 
-    [Header("PointClick和detailChecker")]
     public bool interactable;
-
-    public DetailChecker detailChecker;
 
     public bool Interactable { get => interactable; set => interactable = value; }
 
-    public Vector2 offset;
+    public DetailChecker detailChecker;
 
-    public void SetIntention(Intention intention)
+    [Tooltip("文本框位置")] public Vector2 offset;
+
+
+    //图标
+    public void Sprite()
     {
-        spriteRenderer.sprite = intention.sprite;
+        spriteRenderer.sprite = sprite;
+    }
+
+    //文本
+    public virtual void Text()
+    {
+        detailChecker.SetTextDes(str);
     }
 
     public void PointClickEnter()
@@ -37,25 +49,9 @@ public class Checker : MonoBehaviour, IPointClickInterface
         Text();
     }
 
-    public virtual void Text()
-    {
-        //文本
-        detailChecker.SetTextDes(str);
-    }
-
     public void PointClickExit()
     {
         Destroy(detailChecker.gameObject);
-    }
-
-    private void Start()
-    {
-    }
-
-    [ContextMenu("INIT")]
-    public void Init()
-    {
-        spriteRenderer.sprite = sprite;
     }
 
     public void PointClick()

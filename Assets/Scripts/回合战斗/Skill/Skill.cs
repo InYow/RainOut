@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Effect() Effect_Origin() 空定义
+/// </summary>
 public abstract class Skill : MonoBehaviour
 {
     [Tooltip("释放者")] public Entity origin;
@@ -57,6 +61,9 @@ public abstract class Skill : MonoBehaviour
             //关闭展开的UI
             UIManager.ClearList();
 
+            //圆圈关闭
+            RoundManager.SelectAllSet(false);
+
             this.origin = origin;
 
             //播放动画
@@ -94,6 +101,9 @@ public abstract class Skill : MonoBehaviour
     {
         //关闭展开的UI
         UIManager.ClearList();
+
+        //圆圈关闭
+        RoundManager.SelectAllSet(false);
 
         this.origin = origin;
         this.target = target;
@@ -149,21 +159,55 @@ public abstract class Skill : MonoBehaviour
     /// <summary>
     /// 一个生物攻击另一个生物
     /// </summary>
-    /// <param name="origin"></param>
-    /// <param name="target"></param>
     public void Attack(Entity origin, Entity target)
     {
-        int hurtvalue = (int)origin.atk;
+        int hurtvalue = (int)origin.Atk;
         target.OnAttack(hurtvalue);
     }
 
     /// <summary>
     /// 一个生物为一个生物起甲
     /// </summary>
-    /// <param name="origin"></param>
-    /// <param name="target"></param>
     public void Armor(Entity origin, Entity target, int value)
     {
         target.Armor = value;
+    }
+
+    /// <summary>
+    /// 一个生物修正另一个生物的属性
+    /// </summary>
+    /// <param name="atb">hp atk def spd</param>
+    /// <param name="value">50->提升百分之50</param>
+    public void MoCa(Entity origin, Entity target, string atb, int n)
+    {
+        float value = n / 100f + 1;
+        if (atb == "hp")
+        {
+            target.HP_Moca = value;
+        }
+        else if (atb == "atk")
+        {
+            target.Atk_Moca = value;
+        }
+        else if (atb == "def")
+        {
+            target.Def_Moca = value;
+        }
+        else if (atb == "spd")
+        {
+            target.Spd_Moca = value;
+        }
+        else
+        {
+            throw new NotImplementedException("打错字了");
+        }
+    }
+
+    /// <summary>
+    /// 一个生物令另一个生物获得额外回合
+    /// </summary>
+    public void More(Entity origin, Entity target)
+    {
+        RoundManager.MoreAdd(origin);
     }
 }

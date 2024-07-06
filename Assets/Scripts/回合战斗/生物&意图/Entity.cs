@@ -13,6 +13,9 @@ public class Entity : MonoBehaviour
 
     [Tooltip("动画机")] public Animator animator;
 
+    [Tooltip("属性位置")] public Transform moca_Trans;
+
+    [Tooltip("实例列表")] public List<UpDownChecker> MoCaList;//生命、攻击、防御、速度
 
     [Header("信息")]
 
@@ -23,6 +26,28 @@ public class Entity : MonoBehaviour
     [Tooltip("最大生命")] public int hpMax;
 
     [Tooltip("生命")] public int hp;
+
+    [Tooltip("护甲")] public int armor;
+
+    [Tooltip("攻击力")] public int atk;
+
+    [Header("属性修正")]
+
+    public float hp_Moca;
+
+    public float atk_Moca;
+
+    public float def_Moca;
+
+    public float spd_Moca;
+
+    [Header("非手动赋值")]
+
+    [Tooltip("对应圆圈")] public SelectEntity selectEntity;
+
+
+
+
 
 
     [Tooltip("生命")]
@@ -39,9 +64,6 @@ public class Entity : MonoBehaviour
         }
     }
 
-    [Tooltip("护甲")] public int armor;
-
-
     [Tooltip("护甲")]
     public int Armor
     {
@@ -56,12 +78,19 @@ public class Entity : MonoBehaviour
         }
     }
 
-    [Tooltip("攻击力")] public int atk;
+    public int Atk
+    {
+        get
+        {
+            int n = (int)(atk * Atk_Moca);
+            return n;
+        }
+    }
 
 
-    [Header("非手动赋值")]
 
-    [Tooltip("对应圆圈")] public SelectEntity selectEntity;
+
+
 
     public void Start()
     {
@@ -83,6 +112,60 @@ public class Entity : MonoBehaviour
     }
 
     //--------------------------------------------------------------------
+
+    //属性修正
+    public float HP_Moca
+    {
+        get
+        {
+            return hp_Moca;
+        }
+        set
+        {
+            hp_Moca = value;
+
+            MoCaList[0].SetInfo(value);
+        }
+    }
+    public float Atk_Moca//属性修正
+    {
+        get
+        {
+            return atk_Moca;
+        }
+        set
+        {
+            atk_Moca = value;
+
+            MoCaList[1].SetInfo(value);
+        }
+    }
+    public float Def_Moca//属性修正
+    {
+        get
+        {
+            return def_Moca;
+        }
+        set
+        {
+            def_Moca = value;
+
+            MoCaList[2].SetInfo(value);
+        }
+    }
+    public float Spd_Moca//属性修正
+    {
+        get
+        {
+            return spd_Moca;
+        }
+        set
+        {
+            spd_Moca = value;
+
+            MoCaList[3].SetInfo(value);
+        }
+    }
 
     //受到攻击
     public void OnAttack(int atkValue)
@@ -123,11 +206,21 @@ public class Entity : MonoBehaviour
         }
     }
 
+    //生物死亡
     public virtual void Dead()
     {
         dead = true;
-        //Debug.Log($"{entityName}战败");
 
+        //尝试结束战斗
         RoundManager.BattleEnd();
+    }
+
+    //回合交替
+    public virtual void Change()
+    {
+        //击手者，自己是接替者
+        Entity e_before = RoundManager.roundManager.originEntity;
+
+        RoundManager.MoreChange(this);
     }
 }
