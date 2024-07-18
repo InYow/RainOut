@@ -17,6 +17,8 @@ public class Entity : MonoBehaviour
 
     [Tooltip("实例列表")] public List<UpDownChecker> MoCaList;//生命、攻击、防御、速度
 
+    [Tooltip("被击中音效")] public AudioSource AudioSourceOnAttack;
+
     [Header("信息")]
 
     [Tooltip("死没死")] public bool dead = false;
@@ -87,6 +89,14 @@ public class Entity : MonoBehaviour
         }
     }
 
+    [Header("状态")]
+
+    public StateManager stateManager;
+
+
+
+
+
 
 
 
@@ -103,12 +113,79 @@ public class Entity : MonoBehaviour
         entityArmor?.ShowArmor(Armor);
     }
 
+    private void OnValidate()
+    {
+        AudioSourceOnAttack = GetComponent<AudioSource>();
+        if (AudioSourceOnAttack != null)
+        {
+            AudioSourceOnAttack.playOnAwake = false;
+        }
+
+        stateManager = GetComponentInChildren<StateManager>();
+    }
     /// <summary>
     /// 动画触发技能效果
     /// </summary>
     public void AnimaSkill()
     {
         RoundManager.AnimaSkillEffect();
+    }
+
+    //到我们是行动方了
+    public void SideOur()
+    {
+        //调整属性
+        if (HP_Moca != 1f)
+        {
+            if (Mathf.Abs(HP_Moca - 1f) <= 0.1f)
+            {
+                HP_Moca = 1f;
+            }
+            else
+            {
+                HP_Moca += Mathf.Sign(1f - HP_Moca) * 0.1f;
+            }
+        }
+        if (Atk_Moca != 1f)
+        {
+            if (stateManager != null && stateManager?.FindWithClassName("XuRuo") == null)
+            {
+                if (Mathf.Abs(Atk_Moca - 1f) <= 0.1f)
+                {
+                    Atk_Moca = 1f;
+                }
+                else
+                {
+                    Atk_Moca -= 0.1f;
+                }
+            }
+        }
+        if (Def_Moca != 1f)
+        {
+            if (Mathf.Abs(Def_Moca - 1f) <= 0.1f)
+            {
+                Def_Moca = 1f;
+            }
+            else
+            {
+                Def_Moca += Mathf.Sign(1f - Def_Moca) * 0.1f;
+            }
+        }
+        if (Spd_Moca != 1f)
+        {
+            if (Mathf.Abs(Spd_Moca - 1f) <= 0.1f)
+            {
+                Spd_Moca = 1f;
+            }
+            else
+            {
+                Spd_Moca += Mathf.Sign(1f - Spd_Moca) * 0.1f;
+            }
+        }
+
+        //触发状态
+        stateManager?.SideOur(this);
+
     }
 
     //--------------------------------------------------------------------
@@ -192,6 +269,7 @@ public class Entity : MonoBehaviour
         }
 
         animator.Play("受击", 0, 0f);
+        AudioSourceOnAttack.Play();
     }
 
     //减少生命值 hp
@@ -204,6 +282,13 @@ public class Entity : MonoBehaviour
         {
             Dead();
         }
+    }
+
+    //被施加状态
+    public void StateAdd(State s)
+    {
+        State state = Instantiate(s, stateManager.transform);
+        state.stateManager = this.stateManager;
     }
 
     //生物死亡

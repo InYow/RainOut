@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Xml.Serialization;
 using JetBrains.Annotations;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Purchasing;
@@ -164,6 +165,16 @@ public class RoundManager : MonoBehaviour
     //技能的释放目标
     public Entity targetEntity;
 
+    [Header("设置参数")]
+
+    [Tooltip("相邻回合结束与回合开始的最小间隔时间")] public float timeRoundWait;
+
+    private float _timeRoundWait;
+
+    [Header("DeBug")]
+
+    public TextMeshProUGUI timeRoundWaitGUI;
+
     private void Awake()
     {
         //单例模式
@@ -179,7 +190,31 @@ public class RoundManager : MonoBehaviour
     }
     private void Update()
     {
+        Timer();
+        TimerWithoutScale();
+
         originEntitySelect?.OnManagerSelect();
+
+        DeBugUI();
+    }
+
+    private static void Timer()
+    {
+        //如果值小于零，则冷却完毕
+        if (roundManager._timeRoundWait > 0)
+        {
+            roundManager._timeRoundWait -= Time.deltaTime;
+        }
+    }
+
+    private static void DeBugUI()
+    {
+        roundManager.timeRoundWaitGUI.text = $"回合末始间隔：{roundManager._timeRoundWait}";
+    }
+
+    private static void TimerWithoutScale()
+    {
+
     }
 
     //初始化,清空上次对局的信息
@@ -191,6 +226,10 @@ public class RoundManager : MonoBehaviour
         roundManager.Skill = null;
         roundManager.targetEntity = null;
     }
+
+    //--------------------------------------------------------------------------------------------------------------------------
+    //参加战斗的生物队列操作
+    //--------------------------------------------------------------------------------------------------------------------------
 
     //向AList中添加Entity
     public static void AddToAList(Entity entity)
@@ -215,6 +254,10 @@ public class RoundManager : MonoBehaviour
     {
         return roundManager.AList;
     }
+
+    //--------------------------------------------------------------------------------------------------------------------------
+    //生物身上的圆圈可见操作
+    //--------------------------------------------------------------------------------------------------------------------------
 
     //所有圆圈可见/不可见
     public static void SelectAllSet(bool b)
@@ -243,6 +286,10 @@ public class RoundManager : MonoBehaviour
             r.master.selectEntity.gameObject.SetActive(b);
         }
     }
+
+    //--------------------------------------------------------------------------------------------------------------------------
+    //换手按钮可见不可见
+    //--------------------------------------------------------------------------------------------------------------------------
 
     //换手按钮全部打开/关闭
     public static void ChangeBtnAllSet(bool b)
@@ -273,6 +320,9 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    //--------------------------------------------------------------------------------------------------------------------------
+    //操作回合
+    //--------------------------------------------------------------------------------------------------------------------------
     //entity还有回合
     public static bool RoundContains(Entity entity)
     {
@@ -325,6 +375,10 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    //--------------------------------------------------------------------------------------------------------------------------
+    //额外回合、换手操作
+    //--------------------------------------------------------------------------------------------------------------------------
+
     //增加额外回合
     public static void MoreAdd(Entity e)
     {
@@ -363,6 +417,10 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    //--------------------------------------------------------------------------------------------------------------------------
+    //对局内操作
+    //--------------------------------------------------------------------------------------------------------------------------
+
     [ContextMenu("先手开始战斗")]
     public void RS1()
     {
@@ -375,7 +433,7 @@ public class RoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 回合战斗开始
+    /// 进入战斗
     /// </summary>
     /// <param name="Type">1 先手, 2 后手</param>
     public static void BattleStart(int Type)
@@ -429,7 +487,7 @@ public class RoundManager : MonoBehaviour
         InitRound();
     }
 
-    //换边
+    //行动方改变
     public static void SideChange(Side side)
     {
         roundManager.OriginSide = side;
@@ -439,13 +497,15 @@ public class RoundManager : MonoBehaviour
                 {
                     foreach (var e in roundManager.AList)
                     {
-                        //回合
+                        //生成自然回合
                         if (!e.dead)
                         {
                             Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
                             round.gameObject.name = e.entityName;
                             round.master = e;
                             RoundAddList(round);
+
+                            e.SideOur();
                         }
                     }
                     break;
@@ -454,13 +514,15 @@ public class RoundManager : MonoBehaviour
                 {
                     foreach (var e in roundManager.BList)
                     {
-                        //回合
+                        //生成自然回合
                         if (!e.dead)
                         {
                             Round round = Instantiate(roundManager.roundPrb, roundManager.transform);
                             round.gameObject.name = e.entityName;
                             round.master = e;
                             RoundAddList(round);
+
+                            e.SideOur();
                         }
                     }
                     break;
@@ -470,6 +532,130 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    //技能的释放目标
+    public static void SelectEntity(Entity entity)
+    {
+        //改变战斗者
+        if (roundManager.AList.Contains(entity))
+        {
+            SetOrigin(entity);
+        }
+        //选定攻击者，并施法
+        else
+        {
+            SetTarget(entity);
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------------------------------------
+    //一流程六步骤
+    //--------------------------------------------------------------------------------------------------------------------------
+
+    //一
+    //谁的回合
+    public static void SetOrigin(Entity entity)
+    {
+        roundManager.OriginEntity = entity;
+        roundManager.originEntitySelect = entity.selectEntity;
+
+        Round round = null;
+        foreach (var r in roundManager.MoreList)
+        {
+            if (r.master == entity)
+            {
+                round = r;
+                break;
+            }
+        }
+        if (round == null)
+        {
+            foreach (var r in roundManager.RoundList)
+            {
+                if (r.master == entity)
+                {
+                    round = r;
+                    break;
+                }
+            }
+        }
+
+        roundManager.currentRound = round;
+    }
+
+    //二
+    //用啥技能
+    public static void SetSkill(Skill skill)
+    {
+        //删除之前的
+        if (roundManager.Skill != null)
+            GameObject.Destroy(roundManager.Skill);
+
+        //实例化
+        Skill s = Instantiate(skill, roundManager.transform);
+
+        //赋值
+        roundManager.Skill = s;
+
+        //仅需要施法者的技能
+        roundManager.Skill.SetOrigin(roundManager.OriginEntity);
+    }
+
+    //三
+    //对谁释放
+    public static void SetTarget(Entity target)
+    {
+        //设置目标
+        roundManager.targetEntity = target;
+        //使用技能
+        roundManager.Skill.SetOriginAndTarget(roundManager.OriginEntity, roundManager.targetEntity);
+    }
+
+    //四
+    //效果触发
+    public static void AnimaSkillEffect()
+    {
+        roundManager.Skill.AnimaSkillEffect();
+    }
+
+    //五
+    //回合结束
+    public static void RoundFinish()
+    {
+        //移除当前回合
+        RoundRemoveList(roundManager.currentRound);
+
+        //一边是否结束
+        if (roundManager.RoundList.Count == 0 && roundManager.MoreList.Count == 0)
+        {
+            //换边
+            switch (roundManager.originSide)
+            {
+                case Side.A:
+                    {
+                        SideChange(Side.B);
+                        break;
+                    }
+                case Side.B:
+                    {
+                        SideChange(Side.A);
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+        }
+
+        //销毁技能实例
+        if (roundManager.Skill != null)
+            GameObject.Destroy(roundManager.Skill);
+
+        //执行回合结束后的流程
+        roundManager.StartCoroutine(nameof(IETimeRoundWait));
+    }
+
+    //六
     //上个回合结束后，下个回合开始前的初始化
     public static void InitRound()
     {
@@ -509,116 +695,23 @@ public class RoundManager : MonoBehaviour
         }
     }
 
-    //技能的释放目标
-    public static void SelectEntity(Entity entity)
+    //相邻回合结束与回合开始最小时间间隔
+    private IEnumerator IETimeRoundWait()
     {
-        //改变战斗者
-        if (roundManager.AList.Contains(entity))
-        {
-            SetOrigin(entity);
-        }
-        //选定攻击者，并施法
-        else
-        {
-            SetTarget(entity);
-        }
-    }
+        roundManager._timeRoundWait = roundManager.timeRoundWait;
 
-    //一
-    /// <summary>
-    /// 在自然回合队列中选择回合的拥有者
-    /// </summary>
-    /// <param name="entity"></param>
-    public static void SetOrigin(Entity entity)
-    {
-        roundManager.OriginEntity = entity;
-        roundManager.originEntitySelect = entity.selectEntity;
-
-        Round round = null;
-        foreach (var r in roundManager.MoreList)
+        while (true)
         {
-            if (r.master == entity)
+            if (roundManager._timeRoundWait <= 0f)
             {
-                round = r;
-                break;
+                //
+                InitRound();
+
+                yield break; // 条件满足后退出协程
             }
+
+            yield return null; // 等待下一帧继续检查
         }
-        if (round == null)
-        {
-            foreach (var r in roundManager.RoundList)
-            {
-                if (r.master == entity)
-                {
-                    round = r;
-                    break;
-                }
-            }
-        }
-
-        roundManager.currentRound = round;
-    }
-
-    //二
-    //释放技能
-    public static void SetSkill(Skill skill)
-    {
-        roundManager.Skill = skill;
-
-        //仅需要施法者的技能
-        roundManager.Skill.SetOrigin(roundManager.OriginEntity);
-    }
-
-    //三
-    //释放目标
-    public static void SetTarget(Entity target)
-    {
-        //设置目标
-        roundManager.targetEntity = target;
-        //使用技能
-        roundManager.Skill.SetOriginAndTarget(roundManager.OriginEntity, roundManager.targetEntity);
-    }
-
-    //四
-    //动画触发技能效果
-    public static void AnimaSkillEffect()
-    {
-        roundManager.Skill.AnimaSkillEffect();
-    }
-
-    //五
-    /// <summary>
-    /// 回合结束
-    /// </summary>
-    public static void RoundFinish()
-    {
-        //移除当前回合
-        RoundRemoveList(roundManager.currentRound);
-
-        //一边是否结束
-        if (roundManager.RoundList.Count == 0 && roundManager.MoreList.Count == 0)
-        {
-            //换边
-            switch (roundManager.originSide)
-            {
-                case Side.A:
-                    {
-                        SideChange(Side.B);
-                        break;
-                    }
-                case Side.B:
-                    {
-                        SideChange(Side.A);
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
-            }
-        }
-
-        //执行回合结束后的流程
-        InitRound();
     }
 
     //尝试结束战斗

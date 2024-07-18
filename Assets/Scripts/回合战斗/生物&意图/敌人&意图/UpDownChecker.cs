@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -24,7 +25,7 @@ public class UpDownChecker : Checker
 
     public void SetInfo(float info)
     {
-        int value = (int)((info - 1) * 100);
+        int value = (int)Mathf.Round((info - 1f) * 100f);
         correction = value;
 
         textGUI.text = $"{Mathf.Abs(value)}";
