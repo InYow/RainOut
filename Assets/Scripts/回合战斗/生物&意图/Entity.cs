@@ -121,7 +121,7 @@ public class Entity : MonoBehaviour
             AudioSourceOnAttack.playOnAwake = false;
         }
 
-        stateManager = GetComponentInChildren<StateManager>();
+        stateManager = GetComponent<StateManager>();
     }
     /// <summary>
     /// 动画触发技能效果
@@ -156,7 +156,7 @@ public class Entity : MonoBehaviour
                 }
                 else
                 {
-                    Atk_Moca -= 0.1f;
+                    Atk_Moca += Mathf.Sign(1f - Atk_Moca) * 0.1f;
                 }
             }
         }
@@ -285,10 +285,9 @@ public class Entity : MonoBehaviour
     }
 
     //被施加状态
-    public void StateAdd(State s)
+    public void StateAdd(State s, int stack)
     {
-        State state = Instantiate(s, stateManager.transform);
-        state.stateManager = this.stateManager;
+        stateManager.StateAdd(s, stack);
     }
 
     //生物死亡

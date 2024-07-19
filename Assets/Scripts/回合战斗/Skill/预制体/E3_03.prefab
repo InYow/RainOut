@@ -52,6 +52,7 @@ MonoBehaviour:
   stateName: "\u91CA\u653E\u6280\u80FD"
   audioSource: {fileID: 8692198009030214283}
   targetType: 0
+  XuRuo: {fileID: 2359947499223615456, guid: 0c4923877150acb4bbbe6fac9db7bd63, type: 3}
 --- !u!82 &8692198009030214283
 AudioSource:
   m_ObjectHideFlags: 0

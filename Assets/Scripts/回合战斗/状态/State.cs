@@ -10,6 +10,7 @@ public class State : MonoBehaviour
 
     public int stackCount;
 
+    //状态计数
     public int StackCount
     {
         get
@@ -22,25 +23,23 @@ public class State : MonoBehaviour
             stateChecker.stackCountGUI.text = $"{value}";
         }
     }
-
+    private void Start()
+    {
+        StackCount = StackCount;
+    }
     private void OnValidate()
     {
         stateChecker = GetComponent<StateChecker>();
     }
 
-    public virtual void OnSideOur(Entity entity)
-    {
-
-    }
-
-    //减少状态层数
-    public virtual void DetectStackCount()
+    //计数减一
+    public void DetectStackCount()
     {
         DetectStackCount(1);
     }
 
-    //减少状态层数
-    public virtual void DetectStackCount(int value)
+    //计数减少
+    public void DetectStackCount(int value)
     {
         StackCount -= value;
         if (StackCount <= 0)
@@ -48,5 +47,13 @@ public class State : MonoBehaviour
             stateManager.stateList.Remove(this);
             Destroy(this.gameObject);
         }
+    }
+    //-----------------------------------------------------------------------------------
+    //重写区
+    //------------------------------------------------------------------------------------
+    //行动到边
+    public virtual void OnSideOur(Entity entity)
+    {
+
     }
 }

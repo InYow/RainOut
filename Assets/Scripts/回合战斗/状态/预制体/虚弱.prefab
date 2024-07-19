@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateChecker: {fileID: 1902615486126419290}
   stateManager: {fileID: 0}
-  stackCount: 3
+  stackCount: 1
 --- !u!114 &1902615486126419290
 MonoBehaviour:
   m_ObjectHideFlags: 0
