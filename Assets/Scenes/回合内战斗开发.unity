@@ -32274,6 +32274,7 @@ GameObject:
   - component: {fileID: 1423512470}
   - component: {fileID: 1423512469}
   - component: {fileID: 1423512472}
+  - component: {fileID: 1423512475}
   - component: {fileID: 1423512471}
   - component: {fileID: 1423512473}
   - component: {fileID: 1423512474}
@@ -32365,7 +32366,7 @@ Animator:
   m_GameObject: {fileID: 1423512468}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0400b114a680a104fb5794d28cf5f7e6, type: 2}
+  m_Controller: {fileID: 9100000, guid: bf8b1e53c80dc294b9e8c709d603aab9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -32520,6 +32521,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateList: []
   stateTrs: {fileID: 350614694}
+--- !u!114 &1423512475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423512468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59ec49a50b27be42b0ef31e873f13db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Curve_Hit:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1
+      value: 1.4
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.6
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Curve_BeHitted:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  time_last: 0
+  time: 0
+  time_Anima: 0
+  which: 0
+  playing: 0
 --- !u!1 &1439996843
 GameObject:
   m_ObjectHideFlags: 0
