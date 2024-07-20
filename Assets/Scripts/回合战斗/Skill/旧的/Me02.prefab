@@ -49,7 +49,8 @@ MonoBehaviour:
   target: {fileID: 0}
   skillName: "\u6B8B\u5FCD"
   skillDes: "\u5F3A\u5316\u81EA\u8EAB\u653B\u51FB"
-  stateName: "\u91CA\u653E\u6280\u80FD"
+  stateName: "\u5F3A\u5316"
+  audioSource: {fileID: -9042065584158720909}
   targetType: 2
   value: 50
 --- !u!82 &-9042065584158720909

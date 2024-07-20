@@ -11,9 +11,9 @@ using UnityEngine;
 // transform.localPosition += new Vector3(0f, y_delta, 0f);
 
 //通用的攻击和受击刚体动画, 提供占位符
-public class Animation_HitAndBeHitted : Animation_Base
+public class Animation_HitBeHittedAndSoOn : Animation_Base
 {
-    public bool playing;
+    [Tooltip("交互对象")] public Transform trans;
 
     public Which which;
 
@@ -29,28 +29,8 @@ public class Animation_HitAndBeHitted : Animation_Base
         behitted
     }
 
-    [Header("信息")]
-
-    [Tooltip("稍晚的时间")] public float time_last;
-
-    [Tooltip("稍早的时间")] public float time;
-
-    [Tooltip("动画持续时间")] public float time_Anima;// 当前/上个播放的动画持续时间
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Play("hit");
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Play("behitted");
-
-        }
-
         if (playing)
         {
             //更新时间信息
@@ -76,18 +56,26 @@ public class Animation_HitAndBeHitted : Animation_Base
 
     private void PerFrame()
     {
+        Vector2 Dic = Vector2.right;
+        //计算交互对象方向
+        if (trans != null)
+        {
+            Dic = new(trans.position.x - transform.position.x, trans.position.y - transform.position.y);
+            Dic = Dic.normalized;
+        }
+
         switch (which)
         {
             case Which.hit:
                 {
                     float y_delta = Curve_Hit.Evaluate(time) - Curve_Hit.Evaluate(time_last);
-                    transform.localPosition += new Vector3(y_delta, 0f, 0f);
+                    transform.localPosition += y_delta * (Vector3)Dic;
                     break;
                 }
             case Which.behitted:
                 {
                     float y_delta = Curve_BeHitted.Evaluate(time) - Curve_BeHitted.Evaluate(time_last);
-                    transform.localPosition += new Vector3(y_delta, 0f, 0f);
+                    transform.localPosition += y_delta * (Vector3)Dic;
                     break;
                 }
             default:
@@ -130,7 +118,7 @@ public class Animation_HitAndBeHitted : Animation_Base
     /// "hit" "behitted"
     /// </summary>
     /// <param name="Name_Anima">"hit" "behitted"</param>
-    public void Play(string Name_Anima)
+    public void Play(string Name_Anima, Transform trans)
     {
         //如果在播放，则直接快进到播放完
         if (playing)
@@ -156,21 +144,9 @@ public class Animation_HitAndBeHitted : Animation_Base
         playing = true;
         time = 0f;
         time_last = 0f;
+
+        this.trans = trans;
     }
 
-    /// <summary>
-    /// 开始占位符, unity提供的动画机默认0~1秒
-    /// </summary>
-    public void StartTip()
-    {
 
-    }
-
-    /// <summary>
-    /// 结束占位符, unity提供的动画机默认0~1秒
-    /// </summary>
-    public void EndTip()
-    {
-
-    }
 }

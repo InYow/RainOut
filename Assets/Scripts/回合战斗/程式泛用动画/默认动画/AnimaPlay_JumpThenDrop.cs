@@ -1,21 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
-public class AnimaPlay_Hit : StateMachineBehaviour
+public class AnimaPlay_JumpThenDrop : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (RoundManager.roundManager.targetEntity != null)
-        {
-            animator.gameObject.GetComponent<Animation_HitBeHittedAndSoOn>().Play("hit", RoundManager.roundManager.targetEntity.gameObject.transform);
-        }
-        else
-        {
-            animator.gameObject.GetComponent<Animation_HitBeHittedAndSoOn>().Play("hit", null);
-        }
+        animator.gameObject.GetComponent<Animation_JumpThenDrop>().Play(null);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -121,6 +121,8 @@ public class Entity : MonoBehaviour
             AudioSourceOnAttack.playOnAwake = false;
         }
 
+        animator = GetComponent<Animator>();
+
         stateManager = GetComponent<StateManager>();
     }
     /// <summary>

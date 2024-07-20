@@ -4,19 +4,9 @@ using UnityEngine;
 
 public class Animation_Breath : Animation_Base
 {
-    public bool playing;
-
     [Header("刚体动画曲线")]
 
     public AnimationCurve Curve_Breath;
-
-    [Header("信息")]
-
-    [Tooltip("稍晚的时间")] public float time_last;
-
-    [Tooltip("稍早的时间")] public float time;
-
-    [Tooltip("动画周期")] public float time_Anima;
 
     private void Update()
     {

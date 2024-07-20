@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class Animation_Base : MonoBehaviour
 {
+    [Header("信息")]
+
+    public bool playing;
+
+    [Tooltip("稍晚的时间")] public float time_last;
+
+    [Tooltip("稍早的时间")] public float time;
+
+    [Tooltip("动画持续时间")] public float time_Anima;// 当前/上个播放的动画持续时间
+
     //-------------------------------------------------------------------------------------
     //工具性质的方法
     //--------------------------------------------------------------------------------------
@@ -29,4 +39,23 @@ public class Animation_Base : MonoBehaviour
         }
     }
 
+    //-------------------------------------------------------------------------------------
+    //公开方法
+    //-------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// 开始占位符, unity提供的动画机默认0~1秒
+    /// </summary>
+    public void StartTip()
+    {
+
+    }
+
+    /// <summary>
+    /// 结束占位符, unity提供的动画机默认0~1秒
+    /// </summary>
+    public void EndTip()
+    {
+
+    }
 }

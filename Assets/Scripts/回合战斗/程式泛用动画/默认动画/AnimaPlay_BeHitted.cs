@@ -7,7 +7,7 @@ public class AnimaPlay_BeHitted : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.gameObject.GetComponent<Animation_HitAndBeHitted>().Play("behitted");
+        animator.gameObject.GetComponent<Animation_HitBeHittedAndSoOn>().Play("behitted", RoundManager.roundManager.originEntity.gameObject.transform);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
