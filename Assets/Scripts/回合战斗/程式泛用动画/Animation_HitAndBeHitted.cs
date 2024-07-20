@@ -1,10 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using SuperTiled2Unity.Editor.LibTessDotNet;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 // float x1 = time_last;
 // float x2 = time;
@@ -15,16 +10,18 @@ using UnityEngine.PlayerLoop;
 // y += y_delta;
 // transform.localPosition += new Vector3(0f, y_delta, 0f);
 
-//通用的攻击和受击刚体动画
-public class Animation_HitAndBeHitted : MonoBehaviour
+//通用的攻击和受击刚体动画, 提供占位符
+public class Animation_HitAndBeHitted : Animation_Base
 {
+    public bool playing;
+
+    public Which which;
+
+    [Header("刚体动画曲线")]
+
     public AnimationCurve Curve_Hit;
+
     public AnimationCurve Curve_BeHitted;
-
-    public float time_last;
-    public float time;
-
-    public float time_Anima;
 
     public enum Which
     {
@@ -32,15 +29,26 @@ public class Animation_HitAndBeHitted : MonoBehaviour
         behitted
     }
 
-    public Which which;
+    [Header("信息")]
 
-    public bool playing;
+    [Tooltip("稍晚的时间")] public float time_last;
+
+    [Tooltip("稍早的时间")] public float time;
+
+    [Tooltip("动画持续时间")] public float time_Anima;// 当前/上个播放的动画持续时间
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            Play_Hit();
+            Play("hit");
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Play("behitted");
+
         }
 
         if (playing)
@@ -66,20 +74,7 @@ public class Animation_HitAndBeHitted : MonoBehaviour
 
     }
 
-    public void Play_Hit()
-    {
-        time_Anima = GetRightEndPoint(Curve_Hit).x;
-
-        which = Which.hit;
-
-
-        playing = true;
-
-        time = 0f;
-        time_last = 0f;
-    }
-
-    public void PerFrame()
+    private void PerFrame()
     {
         switch (which)
         {
@@ -104,27 +99,78 @@ public class Animation_HitAndBeHitted : MonoBehaviour
 
     }
 
-    //-------------------------------------------------------------------------------------
-    //工具性质的方法
-    //--------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //公开方法
+    //--------------------------------------------------------------------------
 
-    private Vector2 GetRightEndPoint(AnimationCurve curve)
+    public void Stop()
     {
-        // 确保曲线有关键帧
-        if (curve.length > 0)
+        if (playing)
         {
-            // 获取最后一个关键帧
-            Keyframe lastKeyframe = curve[curve.length - 1];
+            switch (which)
+            {
+                case Which.hit:
+                    {
+                        float y_delta = -Curve_Hit.Evaluate(time);
+                        transform.localPosition += new Vector3(y_delta, 0f, 0f);
+                        break;
+                    }
+                case Which.behitted:
+                    {
+                        float y_delta = -Curve_BeHitted.Evaluate(time);
+                        transform.localPosition += new Vector3(y_delta, 0f, 0f);
+                        break;
+                    }
+            }
+        }
 
-            // 获取右端点的时间和值
-            float rightEndTime = lastKeyframe.time;
-            float rightEndValue = lastKeyframe.value;
+    }
 
-            return new Vector2(rightEndTime, rightEndValue);
+    /// <summary>
+    /// "hit" "behitted"
+    /// </summary>
+    /// <param name="Name_Anima">"hit" "behitted"</param>
+    public void Play(string Name_Anima)
+    {
+        //如果在播放，则直接快进到播放完
+        if (playing)
+        {
+            Stop();
+        }
+
+        if (string.Equals(Name_Anima, "hit", StringComparison.OrdinalIgnoreCase))
+        {
+            time_Anima = GetRightEndPoint(Curve_Hit).x;
+            which = Which.hit;
+        }
+        else if (string.Equals(Name_Anima, "behitted", StringComparison.OrdinalIgnoreCase))
+        {
+            time_Anima = GetRightEndPoint(Curve_BeHitted).x;
+            which = Which.behitted;
         }
         else
         {
-            throw new NotImplementedException("曲线为空");
+            throw new NotImplementedException("未知动画的播放");
         }
+
+        playing = true;
+        time = 0f;
+        time_last = 0f;
+    }
+
+    /// <summary>
+    /// 开始占位符, unity提供的动画机默认0~1秒
+    /// </summary>
+    public void StartTip()
+    {
+
+    }
+
+    /// <summary>
+    /// 结束占位符, unity提供的动画机默认0~1秒
+    /// </summary>
+    public void EndTip()
+    {
+
     }
 }
