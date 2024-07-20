@@ -247,10 +247,25 @@ public class Entity : MonoBehaviour
     }
 
     //受到攻击
-    public void OnAttack(int atkValue)
+    public void OnAttack(float atkValue)
     {
         //实际效力攻击伤害
-        int validAtk = atkValue;
+        int validAtk = 0;
+
+
+        if (atkValue >= 0f && atkValue < 0.1f)
+        {
+            validAtk = 0;
+        }
+        else if (atkValue >= 0.1f && atkValue <= 1f)
+        {
+            validAtk = 1;
+        }
+        else
+        {
+            validAtk = (int)atkValue;
+        }
+
         if (validAtk < Armor)
         {
             int RestArmor = Armor - validAtk;

@@ -8,7 +8,7 @@ public class ME_01 : Skill
 
     public override void Effect()
     {
-        Attack(origin, target, 50);
+        Attack(origin, target, 100);
 
         AudioPlay();
     }

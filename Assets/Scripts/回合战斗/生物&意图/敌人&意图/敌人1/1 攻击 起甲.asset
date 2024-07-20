@@ -15,3 +15,4 @@ MonoBehaviour:
   skill: {fileID: 5788087005340343112, guid: 91d54488c1bb2a746a6eebb9ee05d8bd, type: 3}
   sprite: {fileID: 1535819974, guid: 7fc3d6d12e79b0c48afd2de188097a05, type: 3}
   Des: "\u8FD9\u540D\u654C\u4EBA\u5C06\u8981\u5BF9\u4E00\u540D\u89D2\u8272\u53D1\u8D77\u653B\u51FB\u3002"
+  tagList: 00000000

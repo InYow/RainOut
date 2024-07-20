@@ -185,7 +185,7 @@ public abstract class Skill : MonoBehaviour
     /// </summary>
     public void Attack(Entity origin, Entity target, int percent)
     {
-        int hurtvalue = (int)origin.Atk * (percent / 100);
+        float hurtvalue = (origin.Atk * (percent / 100f));
         target.OnAttack(hurtvalue);
     }
 

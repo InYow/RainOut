@@ -348,7 +348,7 @@ public class RoundManager : MonoBehaviour
 
         for (int i = 0; i < roundManager.RoundList.Count; i++)
         {
-            if (roundManager.OriginEntity == roundManager.RoundList[i].master)
+            if (entity == roundManager.RoundList[i].master)
             {
                 b = false;
                 roundManager.RoundList.RemoveAt(i);
@@ -358,7 +358,11 @@ public class RoundManager : MonoBehaviour
 
         if (b)
         {
-            throw new NotImplementedException("移除回合不存在");
+            foreach (var item in roundManager.RoundList)
+            {
+                Debug.Log(item.master.entityName);
+            }
+            throw new NotImplementedException("移除回合不存在" + entity.entityName);
         }
     }
 
@@ -588,7 +592,7 @@ public class RoundManager : MonoBehaviour
     {
         //删除之前的
         if (roundManager.Skill != null)
-            GameObject.Destroy(roundManager.Skill);
+            GameObject.Destroy(roundManager.Skill.gameObject);
 
         //实例化
         Skill s = Instantiate(skill, roundManager.transform);
@@ -649,7 +653,7 @@ public class RoundManager : MonoBehaviour
 
         //销毁技能实例
         if (roundManager.Skill != null)
-            GameObject.Destroy(roundManager.Skill);
+            GameObject.Destroy(roundManager.Skill.gameObject, 10f);
 
         //执行回合结束后的流程
         roundManager.StartCoroutine(nameof(IETimeRoundWait));

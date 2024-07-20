@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 9064509892048751028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.975397, y: 0.166596, z: 0.0687535}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49,9 +49,9 @@ MonoBehaviour:
   target: {fileID: 0}
   skillName: "\u6B8B\u5FCD"
   skillDes: "\u5F3A\u5316\u81EA\u8EAB40%\u653B\u51FB\u5C5E\u6027"
-  stateName: "\u91CA\u653E\u6280\u80FD"
+  stateName: "\u5F3A\u5316"
   audioSource: {fileID: 8749544047990763868}
-  targetType: 0
+  targetType: 2
 --- !u!82 &8749544047990763868
 AudioSource:
   m_ObjectHideFlags: 0

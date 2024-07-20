@@ -93,6 +93,14 @@ public class Animation_HitBeHittedAndSoOn : Animation_Base
 
     public void Stop()
     {
+        Vector2 Dic = Vector2.right;
+        //计算交互对象方向
+        if (trans != null)
+        {
+            Dic = new(trans.position.x - transform.position.x, trans.position.y - transform.position.y);
+            Dic = Dic.normalized;
+        }
+
         if (playing)
         {
             switch (which)
@@ -100,13 +108,13 @@ public class Animation_HitBeHittedAndSoOn : Animation_Base
                 case Which.hit:
                     {
                         float y_delta = -Curve_Hit.Evaluate(time);
-                        transform.localPosition += new Vector3(y_delta, 0f, 0f);
+                        transform.localPosition += y_delta * (Vector3)Dic;
                         break;
                     }
                 case Which.behitted:
                     {
                         float y_delta = -Curve_BeHitted.Evaluate(time);
-                        transform.localPosition += new Vector3(y_delta, 0f, 0f);
+                        transform.localPosition += y_delta * (Vector3)Dic;
                         break;
                     }
             }
