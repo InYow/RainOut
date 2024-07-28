@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: "\u654C\u4EBA2"
   m_EditorClassIdentifier: 
   intentionList:
-  - {fileID: 11400000, guid: 7fc3ad7c2de08c44086c53ac8fc4d989, type: 2}
-  percentList: 64000000
+  - {fileID: 11400000, guid: f083a5fb1c6f6c14cb851350c69e0cdb, type: 2}
+  - {fileID: 11400000, guid: 35941d52cc5dfb84cb6a643a11ea50ff, type: 2}
+  - {fileID: 11400000, guid: 64e5b3f09c9f6284a9f2fa8b874ea1d1, type: 2}
+  percentList: 320000001900000019000000

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -13,6 +14,7 @@ public abstract class Skill : MonoBehaviour
     [Tooltip("目标")] public Entity target;
 
     [Header("技能信息")]
+
     [Tooltip("名称")] public string skillName;
 
     [Tooltip("描述")] public string skillDes;
@@ -22,6 +24,7 @@ public abstract class Skill : MonoBehaviour
     [Tooltip("动画状态名")] public string stateName;
 
     [Header("音频")]
+
     [Tooltip("脚本同物体的AudioSource")] public AudioSource audioSource;
 
     //施法目标类型
@@ -185,8 +188,10 @@ public abstract class Skill : MonoBehaviour
     /// </summary>
     public void Attack(Entity origin, Entity target, int percent)
     {
-        float hurtvalue = (origin.Atk * (percent / 100f));
-        target.OnAttack(hurtvalue);
+        float hurtvalue = origin.Atk * (percent / 100f);//技能威力
+
+        target.OnAttack(hurtvalue, this);
+
     }
 
     /// <summary>

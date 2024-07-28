@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using SuperTiled2Unity.Editor.LibTessDotNet;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChooseBtn : MonoBehaviour, IPointClickInterface
+public class SkillChooseBtn : MonoBehaviour, IPointClickInterface
 {
     public bool interactable;
     [Header("技能详情")]
@@ -61,12 +57,12 @@ public class ChooseBtn : MonoBehaviour, IPointClickInterface
 
     public void ChooseSkill()
     {
-        RoundManager.SetSkill(skill);
+        RoundManager.SetSkill(Skill);
     }
 
     public void PointClickEnter()
     {
-        if (skill != null)
+        if (Skill != null)
         {
             //实例化
             skillDetailChecker = Instantiate(skillDetailCheckerPrb, transform);
@@ -74,7 +70,7 @@ public class ChooseBtn : MonoBehaviour, IPointClickInterface
             //位置
             skillDetailChecker.transform.localPosition += (Vector3)offset;
             //内容
-            skillDetailChecker.SetSkill(skill);
+            skillDetailChecker.SetSkill(Skill);
         }
     }
 

@@ -20,7 +20,7 @@ public class CA_01 : Skill
     {
         while (i > 0)
         {
-            Attack(origin, target, 15); // 执行攻击
+            Attack(origin, target, 25); // 执行攻击
             AudioPlay(); // 播放音频
 
             i--; // 递减i

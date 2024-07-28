@@ -1,15 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Xml.Serialization;
-using JetBrains.Annotations;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Purchasing;
 using UnityEngine;
-using UnityEngine.UIElements;
+
+public enum RoundType
+{
+    normal = 0,
+    more = 1
+}
 
 //还承担了控制selectentity圆圈的任务
 public class RoundManager : MonoBehaviour
@@ -169,11 +168,34 @@ public class RoundManager : MonoBehaviour
 
     [Tooltip("相邻回合结束与回合开始的最小间隔时间")] public float timeRoundWait;
 
+    public float timeRoundInitWait;
+
     private float _timeRoundWait;
 
     [Header("DeBug")]
 
     public TextMeshProUGUI timeRoundWaitGUI;
+
+    [Header("回合历史")]
+
+    [Tooltip("当前回合的类型")] public RoundType roundType = RoundType.normal;
+
+    public List<RoundInfo> roundHistory = new();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void Awake()
     {
@@ -488,7 +510,7 @@ public class RoundManager : MonoBehaviour
                     break;
                 }
         }
-        InitRound();
+        RoundInit();
     }
 
     //行动方改变
@@ -512,6 +534,15 @@ public class RoundManager : MonoBehaviour
                             e.SideOur();
                         }
                     }
+
+                    foreach (var e in roundManager.AList)
+                    {
+                        if (e.transform.parent.GetComponent<SkillChooseMenu>() != null)
+                        {
+                            e.transform.parent.GetComponent<SkillChooseMenu>().CoolDownFinish();
+                        }
+                    }
+
                     break;
                 }
             case Side.B:
@@ -602,6 +633,16 @@ public class RoundManager : MonoBehaviour
 
         //仅需要施法者的技能
         roundManager.Skill.SetOrigin(roundManager.OriginEntity);
+
+        if (roundManager.Skill.targetType == Skill.TargetType.self)
+        {
+            //圆圈全关闭
+            SelectAllSet(false);
+
+            //换手全关闭
+            ChangeBtnAllSet(false);
+        }
+
     }
 
     //三
@@ -612,6 +653,12 @@ public class RoundManager : MonoBehaviour
         roundManager.targetEntity = target;
         //使用技能
         roundManager.Skill.SetOriginAndTarget(roundManager.OriginEntity, roundManager.targetEntity);
+
+        //圆圈全关闭
+        SelectAllSet(false);
+
+        //换手全关闭
+        ChangeBtnAllSet(false);
     }
 
     //四
@@ -628,75 +675,81 @@ public class RoundManager : MonoBehaviour
         //移除当前回合
         RoundRemoveList(roundManager.currentRound);
 
-        //一边是否结束
-        if (roundManager.RoundList.Count == 0 && roundManager.MoreList.Count == 0)
-        {
-            //换边
-            switch (roundManager.originSide)
-            {
-                case Side.A:
-                    {
-                        SideChange(Side.B);
-                        break;
-                    }
-                case Side.B:
-                    {
-                        SideChange(Side.A);
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
-            }
-        }
-
-        //销毁技能实例
-        if (roundManager.Skill != null)
-            GameObject.Destroy(roundManager.Skill.gameObject, 10f);
-
         //执行回合结束后的流程
         roundManager.StartCoroutine(nameof(IETimeRoundWait));
     }
 
     //六
     //上个回合结束后，下个回合开始前的初始化
-    public static void InitRound()
+    public static void RoundInit()
     {
         roundManager.currentRound = null;
         roundManager.OriginEntity = null;
         roundManager.Skill = null;
         roundManager.targetEntity = null;
 
+        //
+        roundManager.StartCoroutine(nameof(IERoundInit));
+    }
+    public IEnumerator IERoundInit()
+    {
+        yield return new WaitForSeconds(roundManager.timeRoundInitWait);
+        //
+
         //优先使用额外回合
         if (roundManager.MoreList.Count != 0)
         {
+            roundType = RoundType.more;
+
             roundManager.currentRound = roundManager.MoreList[0];
             roundManager.OriginEntity = roundManager.MoreList[0].master;
 
-            //打开四个块
-            roundManager.OriginEntity.selectEntity.OnClick.Invoke();
+            //展示MoreCanvas，并设置销毁时间
+            GameObject moreCanvas = Instantiate(Resources.Load<GameObject>("Prefabs/MoreCanvas"));
+            Destroy(moreCanvas, 3f);
 
-            //圆圈只打开
-            SelectAllSet(false);
-            SelectSet(roundManager.OriginEntity, true);
-
-            //换手所有打开，除了自己
-            ChangeBtnAllSet(true);
-            ChangeBtnSet(roundManager.OriginEntity, false);
+            roundManager.StartCoroutine(nameof(IEAfterMoreCanvas));
         }
-        else
+
+        else if (roundManager.OriginSide == RoundManager.Side.A)
         {
             //无额外回合
+            roundType = RoundType.normal;
 
             //圆圈正常打开
             SelectHasRoundSet(true);
+
+            //设置回合
+            SetOrigin(roundManager.RoundList[0].master);
+
+            //打开四个块
+            roundManager.originEntity.selectEntity.OnClick.Invoke();
         }
 
-        if (roundManager.OriginSide == RoundManager.Side.B)
+        else if (roundManager.OriginSide == RoundManager.Side.B)
         {
+            //无额外回合
+            roundType = RoundType.normal;
+
             roundManager.RoundList[0].master.gameObject.GetComponent<EnemyBrain>().YourRound();
         }
+
+    }
+
+    IEnumerator IEAfterMoreCanvas()
+    {
+        yield return new WaitForSeconds(2f);
+
+        //打开四个块
+        roundManager.OriginEntity.selectEntity.OnClick.Invoke();
+
+        //圆圈只打开
+        SelectAllSet(false);
+        SelectSet(roundManager.OriginEntity, true);
+
+        //换手所有打开，除了自己
+        ChangeBtnAllSet(true);
+        ChangeBtnSet(roundManager.OriginEntity, false);
     }
 
     //相邻回合结束与回合开始最小时间间隔
@@ -708,8 +761,38 @@ public class RoundManager : MonoBehaviour
         {
             if (roundManager._timeRoundWait <= 0f)
             {
+                //一边是否结束
+                if (roundManager.RoundList.Count == 0 && roundManager.MoreList.Count == 0)
+                {
+                    //换边
+                    switch (roundManager.originSide)
+                    {
+                        case Side.A:
+                            {
+                                SideChange(Side.B);
+                                break;
+                            }
+                        case Side.B:
+                            {
+                                SideChange(Side.A);
+                                break;
+                            }
+                        default:
+                            {
+                                break;
+                            }
+                    }
+                }
+
+                //销毁技能实例
+                if (roundManager.Skill != null)
+                    GameObject.Destroy(roundManager.Skill.gameObject, 10f);
+
+                //记录历史回合
+                HisToryLog(roundManager.OriginEntity, roundManager.targetEntity, roundManager.Skill.targetType, roundManager.Skill.skillName, roundManager.roundType);
+
                 //
-                InitRound();
+                RoundInit();
 
                 yield break; // 条件满足后退出协程
             }
@@ -747,5 +830,40 @@ public class RoundManager : MonoBehaviour
     public static void BattleFailure()
     {
         Debug.Log("你败了");
+    }
+
+    //-----------------------------------------------------------------------------------
+    //历史记录
+    //-----------------------------------------------------------------------------------
+
+    //记录
+    public static RoundInfo HisToryLog(Entity origin, Entity target, Skill.TargetType targetType, string skname, RoundType roundType)
+    {
+        //生成
+        RoundInfo roundInfo = new(origin, target, targetType, skname, roundType);
+
+        //加入列表
+        roundManager.roundHistory.Insert(0, roundInfo);
+
+        return roundInfo;
+    }
+
+    //读取
+    public static RoundInfo HistoryRead(int index)
+    {
+        if (roundManager.roundHistory.Count > index)
+        {
+            return roundManager.roundHistory[index];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    //获取
+    public static List<RoundInfo> HisToryGet()
+    {
+        return roundManager.roundHistory;
     }
 }

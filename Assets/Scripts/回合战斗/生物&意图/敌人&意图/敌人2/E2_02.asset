@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14ca432e3d0a024c8befaff3c44235a, type: 3}
+  m_Name: E2_02
+  m_EditorClassIdentifier: 
+  skill: {fileID: 1692236292879122071, guid: 405aa554a780bcb419093d5a0d45a02f, type: 3}
+  sprite: {fileID: 1087586493, guid: 7fc3d6d12e79b0c48afd2de188097a05, type: 3}
+  Des: "\u8FD9\u540D\u654C\u4EBA\u5C06\u8981\u5BF9\u4E00\u540D\u89D2\u8272\u9020\u6210\u5C0F\u5E45\u4F24\u5BB3\u5E76\u5F31\u5316\u5176\u9632\u5FA1\u5C5E\u6027"
+  tagList: 0000000003000000

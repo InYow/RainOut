@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+
 [CreateAssetMenu()]
 public class PrgTree : ScriptableObject
 {
     public List<Paragraph> prgList = new();//所有的段落
-    //private Paragraph currentPrg;
+                                           //private Paragraph currentPrg;
     /// <summary>
     /// 当前节点
     /// </summary>
@@ -74,6 +76,7 @@ public class PrgTree : ScriptableObject
     {
         Paragraph prg = ScriptableObject.CreateInstance(typeof(Paragraph)) as Paragraph;
         prg.name = (prgList.Count + 1).ToString();
+        prg.guid = Guid.NewGuid().ToString();
 
         prg.prg_Name = (prgList.Count + 1).ToString();
         prgList.Add(prg);

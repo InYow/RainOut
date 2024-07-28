@@ -6,7 +6,7 @@ public class XuRuo : State
 {
     public override void OnSideOur(Entity entity)
     {
-        entity.Atk_Moca -= 0.1f;
+        entity.Atk_Moca -= 0.15f;
 
         DetectStackCount();
     }

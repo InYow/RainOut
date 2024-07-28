@@ -7,7 +7,10 @@ public enum Tag
     attack = 0,
     defend,
     moca_Strength,
-    moca_Weaken
+    moca_Weaken,
+    state_Good,
+    state_Normal,
+    state_Bad
 }
 
 [CreateAssetMenu(fileName = "New Intention", menuName = "ScriptableObjects/Intention/Intention", order = 1)]

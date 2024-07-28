@@ -10,6 +10,10 @@ public class StateManager : MonoBehaviour
     [Header("状态栏")]
     public Transform stateTrs;
 
+    //-----------------------------------------------
+    //工具类方法
+    //----------------------------------------------
+
     private void Start()
     {
         if (stateTrs == null)
@@ -18,6 +22,47 @@ public class StateManager : MonoBehaviour
         }
     }
 
+    public State FindWithClassName(string class_name)
+    {
+        foreach (var state in stateList)
+        {
+            //比较字符串,不区分大小写
+            if (string.Equals(state.GetType().Name, class_name, StringComparison.OrdinalIgnoreCase))
+            {
+                return state;
+            }
+        }
+        return null;
+    }
+
+    //-------------------------------------------------------------
+    //公开的方法
+    //-------------------------------------------------------------
+
+    //生成该生成的状态
+    public void StateAdd(State s, int stack)
+    {
+        State state_has = FindWithClassName(s.GetType().Name);
+        if (state_has == null)
+        {
+            //没有同名状态,生成一个
+
+            State state = Instantiate(s, stateTrs);
+            stateList.Add(state);
+
+            state.stateManager = this;
+            state.StackCount = stack;
+        }
+        else
+        {
+            //有同名状态,计数叠加,但不超过99
+            state_has.StackCount += stack;
+            if (state_has.StackCount > 99)
+                state_has.StackCount = 99;
+        }
+    }
+
+    //见State.OnSideOur
     public void SideOur(Entity entity)
     {
         for (int i = stateList.Count - 1; i >= 0; i--)
@@ -47,42 +92,14 @@ public class StateManager : MonoBehaviour
         //     Console.WriteLine(number);
         // }
         #endregion
-
     }
 
-    public State FindWithClassName(string class_name)
+    //受到攻击时调用
+    public void AttackGet(Entity entity, ref float minuend/*被减数*/, Skill skill)
     {
-        foreach (var state in stateList)
+        for (int i = stateList.Count - 1; i >= 0; i--)
         {
-            //比较字符串,不区分大小写
-            if (string.Equals(state.GetType().Name, class_name, StringComparison.OrdinalIgnoreCase))
-            {
-                return state;
-            }
-        }
-        return null;
-    }
-
-    //生成该生成的状态
-    public void StateAdd(State s, int stack)
-    {
-        State state_has = FindWithClassName(s.GetType().Name);
-        if (state_has == null)
-        {
-            //没有同名状态,生成一个
-
-            State state = Instantiate(s, stateTrs);
-            stateList.Add(state);
-
-            state.stateManager = this;
-            state.StackCount = stack;
-        }
-        else
-        {
-            //有同名状态,计数叠加,但不超过99
-            state_has.StackCount += stack;
-            if (state_has.StackCount > 99)
-                state_has.StackCount = 99;
+            stateList[i].OnAttackGet(entity, ref minuend, skill);
         }
     }
 }

@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+
 [Serializable]
 public class Paragraph : ScriptableObject
 {
+    public string guid;
+
     [HideInInspector] public PrgViewer prgViewer;
     public Vector2 position;
     public string prg_Name;//名称

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -32,6 +31,10 @@ public class Entity : MonoBehaviour
     [Tooltip("护甲")] public int armor;
 
     [Tooltip("攻击力")] public int atk;
+
+    [Tooltip("防御力")] public int def;
+
+    [Tooltip("敏捷值")] public int spd;
 
     [Header("属性修正")]
 
@@ -80,14 +83,36 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public int Atk
+    public float Atk
     {
         get
         {
-            int n = (int)(atk * Atk_Moca);
+            float n = atk * Atk_Moca;
+
             return n;
         }
     }
+
+    public float Def
+    {
+        get
+        {
+            float n = def * Def_Moca;
+
+            return n;
+        }
+    }
+
+    public float Spd
+    {
+        get
+        {
+            float n = spd * Spd_Moca;
+
+            return n;
+        }
+    }
+
 
     [Header("状态")]
 
@@ -139,49 +164,49 @@ public class Entity : MonoBehaviour
         //调整属性
         if (HP_Moca != 1f)
         {
-            if (Mathf.Abs(HP_Moca - 1f) <= 0.1f)
+            if (Mathf.Abs(HP_Moca - 1f) <= 0.05f)
             {
                 HP_Moca = 1f;
             }
             else
             {
-                HP_Moca += Mathf.Sign(1f - HP_Moca) * 0.1f;
+                HP_Moca += Mathf.Sign(1f - HP_Moca) * 0.05f;
             }
         }
         if (Atk_Moca != 1f)
         {
-            if (stateManager != null && stateManager?.FindWithClassName("XuRuo") == null)
+            // if (stateManager != null /*&& stateManager?.FindWithClassName("XuRuo") == null*/)
+            // {
+            if (Mathf.Abs(Atk_Moca - 1f) <= 0.05f)
             {
-                if (Mathf.Abs(Atk_Moca - 1f) <= 0.1f)
-                {
-                    Atk_Moca = 1f;
-                }
-                else
-                {
-                    Atk_Moca += Mathf.Sign(1f - Atk_Moca) * 0.1f;
-                }
+                Atk_Moca = 1f;
             }
+            else
+            {
+                Atk_Moca += Mathf.Sign(1f - Atk_Moca) * 0.05f;
+            }
+            //}
         }
         if (Def_Moca != 1f)
         {
-            if (Mathf.Abs(Def_Moca - 1f) <= 0.1f)
+            if (Mathf.Abs(Def_Moca - 1f) <= 0.05f)
             {
                 Def_Moca = 1f;
             }
             else
             {
-                Def_Moca += Mathf.Sign(1f - Def_Moca) * 0.1f;
+                Def_Moca += Mathf.Sign(1f - Def_Moca) * 0.05f;
             }
         }
         if (Spd_Moca != 1f)
         {
-            if (Mathf.Abs(Spd_Moca - 1f) <= 0.1f)
+            if (Mathf.Abs(Spd_Moca - 1f) <= 0.05f)
             {
                 Spd_Moca = 1f;
             }
             else
             {
-                Spd_Moca += Mathf.Sign(1f - Spd_Moca) * 0.1f;
+                Spd_Moca += Mathf.Sign(1f - Spd_Moca) * 0.05f;
             }
         }
 
@@ -247,39 +272,44 @@ public class Entity : MonoBehaviour
     }
 
     //受到攻击
-    public void OnAttack(float atkValue)
+    public void OnAttack(float atkValue/*已加上技能威力*/, Skill skill)
     {
-        //实际效力攻击伤害
-        int validAtk = 0;
+        stateManager.AttackGet(this, ref atkValue, skill);
 
+        //受到攻击伤害应当扣除的血量 = 受到的攻击伤害 - 自身防御力
+        float differValue = atkValue - this.Def;
 
-        if (atkValue >= 0f && atkValue < 0.1f)
+        //实际效力攻击伤害/受到攻击伤害应当扣除的血量
+        int validValue;
+
+        if (differValue >= 0f && differValue < 0.1f)
         {
-            validAtk = 0;
+            validValue = 0;
         }
-        else if (atkValue >= 0.1f && atkValue <= 1f)
+        else if (differValue >= 0.1f && differValue <= 1f)
         {
-            validAtk = 1;
+            validValue = 1;
         }
         else
         {
-            validAtk = (int)atkValue;
+            validValue = (int)differValue;
         }
 
-        if (validAtk < Armor)
+        //先尝试扣除护甲，然后再扣除生命值
+        if (validValue < Armor)
         {
-            int RestArmor = Armor - validAtk;
+            int RestArmor = Armor - validValue;
             Armor = RestArmor;
         }
-        else if (validAtk == Armor)
+        else if (validValue == Armor)
         {
-            int RestArmor = Armor - validAtk;
+            int RestArmor = Armor - validValue;
             Armor = RestArmor;
         }
-        else if (validAtk > Armor)
+        else if (validValue > Armor)
         {
             int RestArmor = 0;
-            int RestvalidATK = validAtk - Armor;
+            int RestvalidATK = validValue - Armor;
 
             Armor = RestArmor;
             HP_Detect(RestvalidATK);
@@ -293,6 +323,9 @@ public class Entity : MonoBehaviour
     public void HP_Detect(int value)
     {
         Hp -= value;
+
+        HurtValueFlow hurtValueFlow = Instantiate(Resources.Load<HurtValueFlow>("Prefabs/伤害显示"), transform.parent);
+        hurtValueFlow.SetText($"{value}");
 
         //是否战败
         if (Hp <= 0)

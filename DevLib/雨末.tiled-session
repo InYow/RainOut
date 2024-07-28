@@ -1,120 +1,35 @@
 {
-    "Map/SizeTest": {
-        "height": 4300,
-        "width": 2
-    },
     "activeFile": "西郊车站东.tmx",
-    "automapping.whileDrawing": false,
     "expandedProjectPaths": [
-        "."
     ],
-    "file.lastUsedOpenFilter": "全部文件 (*)",
     "fileStates": {
-        "": {
-            "scaleInDock": 5.5
-        },
-        "#spring_outdoorsTileSheet.zh-CN.": {
-            "scaleInEditor": 1
-        },
-        ":/automap-tiles.tsx": {
-            "scaleInDock": 1
-        },
-        "一队西郊.tmx": {
-            "scale": 1,
-            "selectedLayer": 0,
-            "viewCenter": {
-                "x": 57,
-                "y": 42.5
-            }
-        },
-        "西郊车站.tmx": {
-            "expandedObjectLayers": [
-                5
-            ],
-            "scale": 0.75,
-            "selectedLayer": 1,
-            "viewCenter": {
-<<<<<<< Updated upstream
-                "x": 239.33333333333326,
-                "y": 158
-=======
-                "x": 532,
-                "y": 34
->>>>>>> Stashed changes
-            }
-        },
-        "西郊车站.tmx#grass.": {
-            "scaleInDock": 4,
-            "scaleInEditor": 1
-        },
-        "西郊车站.tmx#spring_outdoorsTileSheet.zh-CN.": {
-            "scaleInDock": 3
-        },
-        "西郊车站.tmx#summer_outdoorsTileSheet.zh-CN.": {
-            "scaleInDock": 4
-        },
         "西郊车站东.tmx": {
-            "expandedGroupLayers": [
-<<<<<<< Updated upstream
-                15,
-                12,
-                17,
-                11
-            ],
-            "expandedObjectLayers": [
-                18,
-                17
-            ],
-            "scale": 1,
-            "selectedLayer": 4,
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1781.5,
-                "y": 4770.5
-=======
-                11,
-                17,
-                15,
-                12
-            ],
-            "scale": 0.75,
-            "selectedLayer": 4,
-            "viewCenter": {
-                "x": 1970,
-                "y": 4953.333333333333
->>>>>>> Stashed changes
+                "x": 94.25,
+                "y": 6634
             }
         },
         "西郊车站东.tmx#grass.": {
             "scaleInDock": 1
         },
         "西郊车站东.tmx#spring_outdoorsTileSheet.zh-CN.": {
-            "scaleInDock": 2
+            "scaleInDock": 1
         },
         "西郊车站东.tmx#summer_outdoorsTileSheet.zh-CN.": {
-            "scaleInDock": 3
+            "scaleInDock": 1
         }
     },
-    "last.imagePath": "C:/Library/Unity/maoxiandalu/DevLib/使用的素材",
-    "last.worldFilePath": "C:/Library/Unity/maoxiandalu/DevLib",
+    "last.worldFilePath": "C:/Library/Unity/RainOut/DevLib",
     "loadedWorlds": [
         "C:/Library/Unity/RainOut/DevLib/泉镇.world"
     ],
-    "map.lastUsedFormat": "tmx",
-    "map.tileHeight": 16,
-    "map.tileWidth": 16,
     "openFiles": [
-        "西郊车站.tmx",
         "西郊车站东.tmx"
     ],
-    "project": "雨末.tiled-project",
+    "project": "",
     "recentFiles": [
-        "西郊车站.tmx",
-        "西郊车站东.tmx",
-        "一队西郊.tmx"
-    ],
-    "tileset.embedInMap": true,
-    "tileset.tileSize": {
-        "height": 16,
-        "width": 16
-    }
+        "西郊车站东.tmx"
+    ]
 }

@@ -642,6 +642,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: "\u884C\u52A8\u610F\u56FE_22"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 621f8efe71171c747b77d0cec98b702d
+      internalID: -532588871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u884C\u52A8\u610F\u56FE_27"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58faac55684abde4d93fed67b98fa811
+      internalID: -36978731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u884C\u52A8\u610F\u56FE_28"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e5534e3c0884840b6aaf1e15f044c9
+      internalID: 350732189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u884C\u52A8\u610F\u56FE_29"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 782389c49c6135249a6a44d1d651c443
+      internalID: 1087742474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -673,6 +757,9 @@ TextureImporter:
       "\u884C\u52A8\u610F\u56FE_24": -1517606053
       "\u884C\u52A8\u610F\u56FE_25": -1710270931
       "\u884C\u52A8\u610F\u56FE_26": 1129117800
+      "\u884C\u52A8\u610F\u56FE_27": -36978731
+      "\u884C\u52A8\u610F\u56FE_28": 350732189
+      "\u884C\u52A8\u610F\u56FE_29": 1087742474
       "\u884C\u52A8\u610F\u56FE_3": -2005052620
       "\u884C\u52A8\u610F\u56FE_4": -1275715286
       "\u884C\u52A8\u610F\u56FE_5": 1016386654
