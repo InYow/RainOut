@@ -44,7 +44,8 @@ public class PrgTreeViewer : GraphView
     {
         PrgViewer prgViewer = new PrgViewer(prg);
         prgViewer.CreateNodeBtn.clicked += () => CreateNode(prgViewer);
-        prg.prgViewer = prgViewer;
+        prg.guid = prgViewer.viewDataKey;
+
         prgViewer.OnPrgViewerSelected = OnPrgViewerSelected;
         prgViewer.OnRemoveNode = OnRemoveNode;
         // 将对应段落UI添加到段落树视图上
@@ -81,13 +82,16 @@ public class PrgTreeViewer : GraphView
         {
             prg.inPrgs.ForEach(other =>
             {
+                var prgViewer = GetPrgViewerByViewDataKey(prg.guid);
+                var otherprgViewer = GetPrgViewerByViewDataKey(other.guid);
                 PrgEdge edge = new()
                 {
-                    input = prg.prgViewer.inPort,
-                    output = other.prgViewer.outPort
+
+                    input = prgViewer.inPort,
+                    output = otherprgViewer.outPort
                 };
-                prg.prgViewer.inPort.Connect(edge);
-                other.prgViewer.outPort.Connect(edge);
+                prgViewer.inPort.Connect(edge);
+                otherprgViewer.outPort.Connect(edge);
                 //值绑定
                 Choice chc = other.FindChoice(prg);
                 SerializedObject serializedObject = new(chc);

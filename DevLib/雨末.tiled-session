@@ -4,11 +4,15 @@
     ],
     "fileStates": {
         "西郊车站东.tmx": {
+            "expandedGroupLayers": [
+                17,
+                15
+            ],
             "scale": 2,
-            "selectedLayer": 2,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 94.25,
-                "y": 6634
+                "x": -100.75,
+                "y": 6528.5
             }
         },
         "西郊车站东.tmx#grass.": {

@@ -8,7 +8,6 @@ public class Paragraph : ScriptableObject
 {
     public string guid;
 
-    [HideInInspector] public PrgViewer prgViewer;
     public Vector2 position;
     public string prg_Name;//名称
     public List<TheNode> nodes = new();//包含的节点
@@ -90,6 +89,8 @@ public class Paragraph : ScriptableObject
         }
         return chc;
     }
+
+#if UNITY_EDITOR
     internal void RemoveOutPrg(Paragraph prg)
     {
         Choice chc = FindChoice(prg);
@@ -101,4 +102,5 @@ public class Paragraph : ScriptableObject
             AssetDatabase.SaveAssets();
         }
     }
+#endif
 }

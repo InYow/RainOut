@@ -28,6 +28,7 @@ public class DetailChecker : MonoBehaviour
 
     [Tooltip("字母计值")] public float half_Value = 0.5f;
 
+#if UNITY_EDITOR
     public void OnValidate()
     {
         if (rectTransform != null)
@@ -38,6 +39,7 @@ public class DetailChecker : MonoBehaviour
              };
         }
     }
+#endif
 
     public void SetTextDes(string str)
     {
