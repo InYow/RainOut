@@ -32,13 +32,32 @@ public class PrgTreeViewer : GraphView
     {
         evt.menu.AppendAction($"创建一个段落", a => CreatePrgInViewer());
     }
+
     //创建一个段落
     PrgViewer CreatePrgInViewer()
     {
+
         // 创建运行时段落树上的对应类型段落
         Paragraph prg = prgTree.CreatePrg();
+
+        //
+        TheNode theNode = TheNode.CreateInstance<TheNode>();
+        if (theNode != null)
+        {
+            if (!Application.isPlaying)
+            {
+                AssetDatabase.AddObjectToAsset(theNode, prg);
+            }
+            AssetDatabase.SaveAssets();
+            prg.nodes.Add(theNode);
+
+            theNode.name = $"N {prg.name}--0";
+        }
+        //
+
         return CreatePrgViewer(prg);
     }
+
     //创建段落视图
     PrgViewer CreatePrgViewer(Paragraph prg)
     {

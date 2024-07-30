@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -47,6 +48,12 @@ public class MyStory : EditorWindow
 
     private void ListSelectChange(IEnumerable<object> enumerable)
     {
+        // if (enumerable == null || !enumerable.Any())
+        // {
+        //     Debug.Log("Enumerable is null or empty");
+        //     return;
+        // }
+
         foreach (var item in enumerable)
         {
             Selection.activeObject = (UnityEngine.Object)item;
@@ -142,11 +149,6 @@ public class MyStory : EditorWindow
             Debug.LogError(" viewer.prg is null");
             return;
         }
-        if (currentPrg == null)
-        {
-            Debug.LogError("currentPrg is null");
-            return;
-        }
         if (listViewer == null)
         {
             Debug.LogError("listViewer is null");
@@ -160,11 +162,14 @@ public class MyStory : EditorWindow
         }
 
         currentPrg = viewer.prg;
-        listViewer.itemsSource = viewer.prg.nodes;
 
+        if (viewer.prg.nodes.Count == 0)
+        {
+            return;
+        }
+        else
+            listViewer.itemsSource = viewer.prg.nodes;
 
-
-        listViewer.RefreshItems();
     }
 
     private VisualElement MakeListItem()
