@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../Users/Administrator/Desktop/素材使用记录"
+		}
+	],
+    "settings": {
+        "dotnet.defaultSolution": "RainOut.sln",
+        "git.ignoreLimitWarning": true,
+        "dotnet.preferCSharpExtension": true
+    }
+}

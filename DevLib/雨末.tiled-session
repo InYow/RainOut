@@ -1,18 +1,45 @@
 {
-    "activeFile": "西郊车站东.tmx",
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "C:/Users/Administrator/Desktop/对话框.tmx",
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "#MenuTiles.": {
+            "scaleInEditor": 1
+        },
+        "#windowmv6": {
+            "scaleInEditor": 1
+        },
+        "C:/Users/Administrator/Desktop/对话框.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 278.99999999999994,
+                "y": 275.33333333333337
+            }
+        },
+        "C:/Users/Administrator/Desktop/对话框.tmx#MenuTiles.": {
+            "scaleInDock": 1.5
+        },
+        "C:/Users/Administrator/Desktop/对话框.tmx#windowmv6": {
+            "scaleInDock": 2
+        },
         "西郊车站东.tmx": {
             "expandedGroupLayers": [
                 17,
                 15
             ],
-            "scale": 2,
+            "scale": 4,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": -100.75,
-                "y": 6528.5
+                "x": 2956.375,
+                "y": 4553.25
             }
         },
         "西郊车站东.tmx#grass.": {
@@ -29,11 +56,18 @@
     "loadedWorlds": [
         "C:/Library/Unity/RainOut/DevLib/泉镇.world"
     ],
+    "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "西郊车站东.tmx"
+        "C:/Users/Administrator/Desktop/对话框.tmx"
     ],
     "project": "",
     "recentFiles": [
+        "C:/Users/Administrator/Desktop/对话框.tmx",
         "西郊车站东.tmx"
-    ]
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 24,
+        "width": 24
+    }
 }
