@@ -19,6 +19,9 @@ public class MyStory : EditorWindow
         MyStory wnd = GetWindow<MyStory>();
         wnd.titleContent = new GUIContent("MyStory");
     }
+
+    [System.Obsolete]
+
     public void CreateGUI()
     {
         // Each editor window contains a root VisualElement object
@@ -101,7 +104,7 @@ public class MyStory : EditorWindow
         if (theNode != null)
         {
             AssetDatabase.RemoveObjectFromAsset(theNode);
-            Undo.DestroyObjectImmediate(theNode);
+            //Undo.DestroyObjectImmediate(theNode);
             AssetDatabase.SaveAssets();
             currentPrg.nodes.Remove(theNode);
             listViewer.RefreshItems();
@@ -137,7 +140,7 @@ public class MyStory : EditorWindow
         nodeViewer.NodeViewerBind((TheNode)listViewer.itemsSource[index]);
     }
 
-    private void SelectPrgViwer(PrgViewer viewer)
+    private void Sel2ctPrgViwer(PrgViewer viewer)
     {
         if (viewer == null)
         {
@@ -161,17 +164,72 @@ public class MyStory : EditorWindow
             return;
         }
 
-        currentPrg = viewer.prg;
-
         if (viewer.prg.nodes.Count == 0)
         {
             return;
         }
         else
+        {
+            listViewer.itemsSource = null;
             listViewer.itemsSource = viewer.prg.nodes;
-
+        }
     }
 
+    [System.Obsolete]
+    public void SelectPrgViwer(PrgViewer viewer)
+    {
+        if (viewer == null)
+        {
+            Debug.LogError("Viewer is null");
+            return;
+        }
+
+        if (viewer.prg == null)
+        {
+            Debug.LogError("Viewer's prg is null");
+            return;
+        }
+
+        if (viewer.prg.nodes == null)
+        {
+            Debug.LogError("Viewer's prg.nodes is null");
+            return;
+        }
+
+        currentPrg = viewer.prg;
+
+        // 记录日志
+        Debug.Log("Clearing listViewer's itemsSource");
+
+        // 清空 listViewer 的 itemsSource
+        listViewer.itemsSource = null;
+
+        // 检查 listViewer 的状态
+        if (listViewer == null)
+        {
+            Debug.LogError("listViewer is null after clearing itemsSource");
+            return;
+        }
+
+        // 记录日志
+        Debug.Log("Setting listViewer's itemsSource to new nodes");
+
+        // 重新设置 itemsSource
+        listViewer.itemsSource = viewer.prg.nodes;
+
+        // 检查 listViewer 的状态
+        if (listViewer.itemsSource == null)
+        {
+            Debug.LogError("listViewer's itemsSource is null after setting new nodes");
+            return;
+        }
+
+        // 更新 ListView（如果需要）
+        listViewer.Refresh();
+
+        // 记录日志
+        Debug.Log("ListView refreshed successfully");
+    }
     private VisualElement MakeListItem()
     {
         return new NodeViewer();

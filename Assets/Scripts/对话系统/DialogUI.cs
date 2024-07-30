@@ -42,7 +42,7 @@ public class DialogUI : MonoBehaviour
     {
         get
         {
-            return currentNode;
+            return story.CurrentNode;
         }
         set
         {
@@ -86,6 +86,8 @@ public class DialogUI : MonoBehaviour
         DialogUIGO.SetActive(!DialogUIGO.activeSelf);
         if (DialogUIGO.activeSelf == true)
         {
+            CurrentNode = CurrentNode;
+
             OnOpen();
         }
     }
