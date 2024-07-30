@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <Style src="project://database/Assets/NodeEditor/Editor/MyStory/MyStory.uss?fileID=7433441132597879392&amp;guid=a98f9d9dd0c46644cb5636ea4672eaa2&amp;type=3#MyStory" />
+    <Style src="project://database/Assets/NodeEditor/Editor/MyStory.uss?fileID=7433441132597879392&amp;guid=a98f9d9dd0c46644cb5636ea4672eaa2&amp;type=3#MyStory" />
     <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
         <ui:VisualElement name="right" style="flex-grow: 1;">
             <PrgTreeViewer focusable="true" style="flex-grow: 1;" />

@@ -37,7 +37,7 @@ public class PrgViewer : Node
         toDeleteVE = this.Q<VisualElement>("title-button-container");
         toDeleteVE.RemoveFromHierarchy();
         //使用预设的布局
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/NodeEditor/Editor/MyStory/MyStory.uss");
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/NodeEditor/Editor/MyStory.uss");
         this.styleSheets.Add(styleSheet);
         //赋值
         this.prg = prg;

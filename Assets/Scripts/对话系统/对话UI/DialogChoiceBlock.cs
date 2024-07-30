@@ -62,7 +62,7 @@ public class DialogChoiceBlock : MonoBehaviour, IPointerClickHandler, IPointerEn
         }
         else
         {
-            Debug.Log($"{gameObject.name}OnPClick了");
+            //            Debug.Log($"{gameObject.name}OnPClick了");
             OnClick.Invoke();
             dialogChoiceMenu.Destroy();
         }
@@ -76,7 +76,7 @@ public class DialogChoiceBlock : MonoBehaviour, IPointerClickHandler, IPointerEn
         }
         else
         {
-            Debug.Log($"{gameObject.name}进入了");
+            //            Debug.Log($"{gameObject.name}进入了");
             image.color = hoverColor;
         }
     }

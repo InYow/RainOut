@@ -12,7 +12,7 @@ public class NodeViewer : VisualElement
     public TextField text;
     public NodeViewer()
     {
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/NodeEditor/Editor/MyStory/NodeViewer.uxml");
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/NodeEditor/Editor/NodeViewer.uxml");
         visualTree.CloneTree(this);
         //说话的人
         speaker = this.Q<TextField>("speaker");

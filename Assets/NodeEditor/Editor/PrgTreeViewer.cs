@@ -24,7 +24,7 @@ public class PrgTreeViewer : GraphView
         this.AddManipulator(new SelectionDragger());
         // 添加框选
         this.AddManipulator(new RectangleSelector());
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/NodeEditor/Editor/MyStory/PrgTreeViewer.uss");
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/NodeEditor/Editor/PrgTreeViewer.uss");
         styleSheets.Add(styleSheet);
     }
     // 右键菜单栏

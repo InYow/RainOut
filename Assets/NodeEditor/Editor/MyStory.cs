@@ -24,7 +24,7 @@ public class MyStory : EditorWindow
         VisualElement root = rootVisualElement;
 
         // Import UXML
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/NodeEditor/Editor/MyStory/MyStory.uxml");
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/NodeEditor/Editor/MyStory.uxml");
         visualTree.CloneTree(root);
         //绑定关键元素
         //FIXME 绑定 没指定名称
@@ -63,6 +63,13 @@ public class MyStory : EditorWindow
         }
         AssetDatabase.SaveAssets();
         currentPrg.nodes.Add(theNode);
+
+        if (listViewer == null)
+        {
+            Debug.LogError("listViewer is null");
+            return;
+        }
+
         listViewer.RefreshItems();
     }
 
@@ -125,8 +132,39 @@ public class MyStory : EditorWindow
 
     private void SelectPrgViwer(PrgViewer viewer)
     {
+        if (viewer == null)
+        {
+            Debug.LogError("viewer is null");
+            return;
+        }
+        if (viewer.prg == null)
+        {
+            Debug.LogError(" viewer.prg is null");
+            return;
+        }
+        if (currentPrg == null)
+        {
+            Debug.LogError("currentPrg is null");
+            return;
+        }
+        if (listViewer == null)
+        {
+            Debug.LogError("listViewer is null");
+            return;
+        }
+
+        if (viewer.prg.nodes == null)
+        {
+            Debug.LogError("viewer.prg.nodes is null");
+            return;
+        }
+
         currentPrg = viewer.prg;
         listViewer.itemsSource = viewer.prg.nodes;
+
+
+
+        listViewer.RefreshItems();
     }
 
     private VisualElement MakeListItem()
