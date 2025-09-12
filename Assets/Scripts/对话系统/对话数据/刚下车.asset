@@ -16,6 +16,38 @@ MonoBehaviour:
   Emotion: {fileID: 0}
   Text: "\u516C\u4EA4\u8F66\u7AD9\u70B9\u7ADF\u7136\u8FD8\u4F1A\u8BBE\u7ACB\u5728\u8FD9\u79CD\u5730\u65B9\u3002"
   Readed: 1
+--- !u!114 &-7510103613771706599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9a1e6b19e6d4947abb5892e7efb0e7, type: 3}
+  m_Name: N 2--0
+  m_EditorClassIdentifier: 
+  Speaker: 
+  Emotion: {fileID: 0}
+  Text: 
+  Readed: 0
+--- !u!114 &-3431319669615167691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a9890a5eb6254459f33c2fb5789519, type: 3}
+  m_Name: C 1->2
+  m_EditorClassIdentifier: 
+  prg: {fileID: 0}
+  Text: 
+  locked: 0
+  LockText: 
 --- !u!114 &-2594804098551815019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +78,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prgList:
   - {fileID: 5046118926770900023}
+  - {fileID: 2810070903800104949}
+--- !u!114 &2810070903800104949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ab1680eb3f9df4db5fc698d722a9fe, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  guid: c757efef-e3e5-4a1c-92a7-ea541a44e7cf
+  position: {x: 350, y: 0}
+  prg_Name: 2
+  nodes:
+  - {fileID: -7510103613771706599}
+  inPrgs: []
+  outChcs: []
+  extention: 0
+  repeat_Times: 1
 --- !u!114 &5046118926770900023
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,9 +6,35 @@ using UnityEngine;
 public class 玩家移动 : MonoBehaviour
 {
     [Header("输入操作")]
+
+    private MyInput myInput;
+
     public float speed;
 
     public bool walk;
+
+    public bool Walk
+    {
+        get
+        {
+            return walk;
+        }
+        set
+        {
+            if (Walk != value)
+            {
+                if (value == true)
+                {
+                    _walk_audio_recover = 0.018f;
+                }
+                else
+                {
+
+                }
+            }
+            walk = value;
+        }
+    }
 
     public bool run;
 
@@ -28,6 +54,30 @@ public class 玩家移动 : MonoBehaviour
 
     public List<AudioSource> audio_attack;
 
+    public List<AudioSource> audio_walk;
+
+    public float walk_audio_recover;
+
+    public float _walk_audio_recover;
+
+    public static 玩家移动 instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+            myInput = GameObject.FindObjectOfType<MyInput>();
+
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -41,6 +91,16 @@ public class 玩家移动 : MonoBehaviour
         {
             _attack_recover -= Time.deltaTime;
         }
+
+        if (run && _walk_audio_recover > 0f)
+        {
+            _walk_audio_recover -= Time.deltaTime * 2;
+        }
+        else if (Walk && _walk_audio_recover > 0f)
+        {
+            _walk_audio_recover -= Time.deltaTime;
+        }
+
     }
 
     void Update()
@@ -52,23 +112,26 @@ public class 玩家移动 : MonoBehaviour
         {
 
             //行走方向
-            move_dic = Vector2.zero;
-            if (Input.GetKey(KeyCode.A))
-            {
-                move_dic += new Vector2(-1f, 0f);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                move_dic += new Vector2(1f, 0f);
-            }
-            if (Input.GetKey(KeyCode.W))
-            {
-                move_dic += new Vector2(0f, 1f);
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                move_dic += new Vector2(0f, -1f);
-            }
+            //move_dic = Vector2.zero;
+
+            move_dic = myInput.inputActions.回合战斗外.Move.ReadValue<Vector2>();
+
+            // if (Input.GetKey(KeyCode.A))
+            // {
+            //     move_dic += new Vector2(-1f, 0f);
+            // }
+            // if (Input.GetKey(KeyCode.D))
+            // {
+            //     move_dic += new Vector2(1f, 0f);
+            // }
+            // if (Input.GetKey(KeyCode.W))
+            // {
+            //     move_dic += new Vector2(0f, 1f);
+            // }
+            // if (Input.GetKey(KeyCode.S))
+            // {
+            //     move_dic += new Vector2(0f, -1f);
+            // }
 
             //面朝方向
             if (move_dic != Vector2.zero)
@@ -77,7 +140,7 @@ public class 玩家移动 : MonoBehaviour
             }
 
             //攻击
-            if (Input.GetKeyDown(KeyCode.J))
+            if (myInput.inputActions.回合战斗外.Attack.IsPressed())
             {
                 _animator.Play("attack_blend", 0, 0f);
 
@@ -90,7 +153,7 @@ public class 玩家移动 : MonoBehaviour
         }
 
         //受击
-        if (Input.GetKey(KeyCode.RightControl) && Input.GetKeyDown(KeyCode.H))
+        if (myInput.inputActions.回合战斗外.Hit.triggered)
         {
             _animator.Play("hit_blend", 0, 0f);
 
@@ -99,18 +162,19 @@ public class 玩家移动 : MonoBehaviour
 
         if (move_dic != Vector2.zero)
         {
-            walk = true;
+            Walk = true;
         }
         else
         {
-            walk = false;
+            Walk = false;
         }
 
         //跑步
-        if (walk && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.K)))
+        if (Walk && myInput.inputActions.回合战斗外.Run.IsPressed())
             run = true;
         else
             run = false;
+
 
         //设置速度
         if (run)
@@ -118,11 +182,17 @@ public class 玩家移动 : MonoBehaviour
         else
             _rb.velocity = move_dic * speed;
 
+        //行走声音
+        if (Walk && _walk_audio_recover <= 0f)
+        {
+            WalkAudio();
+            _walk_audio_recover = walk_audio_recover;
+        }
 
         #region  动画机传递参数
 
         //行走
-        if (walk)
+        if (Walk)
         {
             _animator.SetBool("walk", true);
         }
@@ -146,7 +216,7 @@ public class 玩家移动 : MonoBehaviour
         _animator.SetFloat("face_dic_y", face_dic.y);
 
         //死亡
-        if (Input.GetKey(KeyCode.RightControl) && Input.GetKeyDown(KeyCode.D))
+        if (myInput.inputActions.回合战斗外.Death.triggered)
         {
             _animator.Play("death");
         }
@@ -160,5 +230,17 @@ public class 玩家移动 : MonoBehaviour
         int index = Random.Range(0, audioSources.Count);
 
         audioSources[index].Play();
+    }
+
+    public void WalkAudio()
+    {
+        audio_walk[0].Play();
+    }
+
+    private List<Vector3> positions = new List<Vector3>();
+
+    public List<Vector3> GetPositions()
+    {
+        return new List<Vector3>(positions);
     }
 }

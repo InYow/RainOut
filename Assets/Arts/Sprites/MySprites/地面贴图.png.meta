@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sitazi_0
+      name: "\u6CE5\u571F_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -118,7 +118,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_1
+      name: "\u6CE5\u571F_1"
       rect:
         serializedVersion: 2
         x: 16
@@ -139,7 +139,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_2
+      name: "\u6CE5\u571F_2"
       rect:
         serializedVersion: 2
         x: 32
@@ -160,7 +160,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_3
+      name: "\u6CE5\u571F_3"
       rect:
         serializedVersion: 2
         x: 48
@@ -433,7 +433,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_16
+      name: "\u6CE5\u571F_4"
       rect:
         serializedVersion: 2
         x: 0
@@ -454,7 +454,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_17
+      name: "\u6CE5\u571F_5"
       rect:
         serializedVersion: 2
         x: 16
@@ -475,7 +475,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_18
+      name: "\u6CE5\u571F_6"
       rect:
         serializedVersion: 2
         x: 32
@@ -496,7 +496,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_19
+      name: "\u6CE5\u571F_7"
       rect:
         serializedVersion: 2
         x: 48
@@ -769,7 +769,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_32
+      name: "\u6CE5\u571F_8"
       rect:
         serializedVersion: 2
         x: 0
@@ -790,7 +790,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_33
+      name: "\u6CE5\u571F_9"
       rect:
         serializedVersion: 2
         x: 16
@@ -811,7 +811,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_34
+      name: "\u6CE5\u571F_10"
       rect:
         serializedVersion: 2
         x: 32
@@ -832,7 +832,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_35
+      name: "\u6CE5\u571F_11"
       rect:
         serializedVersion: 2
         x: 48
@@ -1105,7 +1105,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_48
+      name: "\u6CE5\u571F_12"
       rect:
         serializedVersion: 2
         x: 0
@@ -1126,7 +1126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_49
+      name: "\u6CE5\u571F_13"
       rect:
         serializedVersion: 2
         x: 16
@@ -1147,7 +1147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_50
+      name: "\u6CE5\u571F_14"
       rect:
         serializedVersion: 2
         x: 32
@@ -1168,7 +1168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sitazi_51
+      name: "\u6CE5\u571F_15"
       rect:
         serializedVersion: 2
         x: 48
@@ -4163,8 +4163,6 @@ TextureImporter:
       shuini_7: -1572931452
       shuini_8: 1769398491
       shuini_9: 1750597037
-      sitazi_0: 818859623
-      sitazi_1: -1617638448
       sitazi_10: -980537133
       sitazi_100: 394565308
       sitazi_101: -2131720872
@@ -4215,7 +4213,6 @@ TextureImporter:
       sitazi_153: -1379959402
       sitazi_154: 1113216415
       sitazi_155: -889621952
-      sitazi_16: 914346995
       sitazi_160: -1129170992
       sitazi_161: -307944721
       sitazi_162: 43817056
@@ -4226,14 +4223,12 @@ TextureImporter:
       sitazi_167: -1941415585
       sitazi_168: -2015109652
       sitazi_169: -1463164240
-      sitazi_17: 1989184557
       sitazi_170: 450300728
       sitazi_171: -391545614
       sitazi_176: 612352254
       sitazi_177: -1762549089
       sitazi_178: 336671007
       sitazi_179: -1354058171
-      sitazi_18: 158528062
       sitazi_180: -1387644013
       sitazi_181: 1569833839
       sitazi_182: 1989106193
@@ -4242,8 +4237,6 @@ TextureImporter:
       sitazi_185: 351807629
       sitazi_186: 2044590397
       sitazi_187: -659151611
-      sitazi_19: -1294190531
-      sitazi_2: -524904852
       sitazi_20: 150864682
       sitazi_21: -1660815276
       sitazi_22: 1575817708
@@ -4254,13 +4247,8 @@ TextureImporter:
       sitazi_27: 1734687483
       sitazi_28: 39672214
       sitazi_29: 565266076
-      sitazi_3: -1393303489
       sitazi_30: 1602841371
       sitazi_31: 250761233
-      sitazi_32: 761354665
-      sitazi_33: 240315053
-      sitazi_34: -1056127006
-      sitazi_35: 953726710
       sitazi_36: -140045528
       sitazi_37: -1272110581
       sitazi_38: -1888702130
@@ -4274,11 +4262,7 @@ TextureImporter:
       sitazi_45: 1828309219
       sitazi_46: -1726106118
       sitazi_47: 1450118244
-      sitazi_48: 192572549
-      sitazi_49: -1784644220
       sitazi_5: -1333340165
-      sitazi_50: -1717971934
-      sitazi_51: -1884677392
       sitazi_52: 1125354474
       sitazi_53: 1241749911
       sitazi_54: 1791932115
@@ -4331,6 +4315,22 @@ TextureImporter:
       sitazi_97: -87691080
       sitazi_98: -1389062003
       sitazi_99: 2141825479
+      "\u6CE5\u571F_0": 818859623
+      "\u6CE5\u571F_1": -1617638448
+      "\u6CE5\u571F_10": -1056127006
+      "\u6CE5\u571F_11": 953726710
+      "\u6CE5\u571F_12": 192572549
+      "\u6CE5\u571F_13": -1784644220
+      "\u6CE5\u571F_14": -1717971934
+      "\u6CE5\u571F_15": -1884677392
+      "\u6CE5\u571F_2": -524904852
+      "\u6CE5\u571F_3": -1393303489
+      "\u6CE5\u571F_4": 914346995
+      "\u6CE5\u571F_5": 1989184557
+      "\u6CE5\u571F_6": 158528062
+      "\u6CE5\u571F_7": -1294190531
+      "\u6CE5\u571F_8": 761354665
+      "\u6CE5\u571F_9": 240315053
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

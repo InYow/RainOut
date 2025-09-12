@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/Administrator/Desktop/对话框.tmx",
+    "activeFile": "西郊车站东.tmx",
     "expandedProjectPaths": [
     ],
     "fileStates": {
@@ -20,8 +20,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 278.99999999999994,
-                "y": 275.33333333333337
+                "x": 882,
+                "y": 552.3333333333333
             }
         },
         "C:/Users/Administrator/Desktop/对话框.tmx#MenuTiles.": {
@@ -35,11 +35,11 @@
                 17,
                 15
             ],
-            "scale": 4,
+            "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 2956.375,
-                "y": 4553.25
+                "x": 527,
+                "y": 6545.5
             }
         },
         "西郊车站东.tmx#grass.": {
@@ -58,12 +58,12 @@
     ],
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "C:/Users/Administrator/Desktop/对话框.tmx"
+        "西郊车站东.tmx"
     ],
     "project": "",
     "recentFiles": [
-        "C:/Users/Administrator/Desktop/对话框.tmx",
-        "西郊车站东.tmx"
+        "西郊车站东.tmx",
+        "C:/Users/Administrator/Desktop/对话框.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
